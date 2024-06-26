@@ -13,4 +13,5 @@
 body {
    box-sizing: border-box;
    color: theme(colors.black);
+   background-color: theme(colors.background);
 }

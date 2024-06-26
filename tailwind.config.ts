@@ -13,6 +13,7 @@ const config: Config = {
          huge: '1440px',
       },
       colors: {
+         background: '#f2f2f2',
          white: '#fff',
          black: '#333',
       },
