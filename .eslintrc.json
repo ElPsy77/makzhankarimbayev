@@ -25,6 +25,7 @@
       "no-var": "error",
       "no-unused-vars": "warn",
       "react/react-in-jsx-scope": "off",
+      "import/no-anonymous-default-export": "off",
       "camelcase": "error",
       "spaced-comment": "error",
       "quotes": ["error", "single"],
