@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../../public/assets/logo.svg';
@@ -7,7 +7,7 @@ type LayoutProps = {
    children: ReactNode;
 };
 
-const Layout = ({ children }: LayoutProps) => (
+const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => (
    <div>
       <header className='bg-white px-8 py-4 mb-12 shadow-sm flex justify-between items-center'>
          <Image src={logo} alt='logo aspergo' width={105} height={54} />

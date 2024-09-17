@@ -1,0 +1,12 @@
+.input-big-size,
+.input-number .ant-input-number-lg input.ant-input-number-input {
+   @apply h-14;
+}
+
+.input-number .ant-input-number-group .ant-input-number-group-addon {
+   @apply px-4;
+}
+
+.ant-upload-wrapper .ant-upload.ant-upload-drag {
+   height: 230px;
+}
