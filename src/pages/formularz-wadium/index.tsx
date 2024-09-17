@@ -20,8 +20,10 @@ const onFinish: FormProps<DepositReportFormData>['onFinish'] = async (
    let uploadUrls: string = '';
 
    if (formValues.files && formValues.files.fileList.length > 0) {
-      formValues.files.fileList.forEach((file: any) => {
-         formData.append('files', file.originFileObj);
+      formValues.files.fileList.forEach((file) => {
+         if (file.originFileObj) {
+            formData.append('files', file.originFileObj);
+         }
       });
 
       try {
@@ -36,25 +38,27 @@ const onFinish: FormProps<DepositReportFormData>['onFinish'] = async (
          const responseData: UploadPostResponseData = await response.json();
 
          uploadUrls = responseData.uploadUrls;
+
+         console.log(uploadUrls);
       } catch (err) {
          console.error(err);
       }
    }
 
-   try {
-      fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deposit-reports`, {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({
-            ...formValues,
-            uploadUrls: uploadUrls,
-         }),
-      });
-   } catch (err) {
-      console.error(err);
-   }
+   // try {
+   //    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deposit-reports`, {
+   //       method: 'POST',
+   //       headers: {
+   //          'Content-Type': 'application/json',
+   //       },
+   //       body: JSON.stringify({
+   //          ...formValues,
+   //          uploadUrls: uploadUrls,
+   //       }),
+   //    });
+   // } catch (err) {
+   //    console.error(err);
+   // }
 };
 
 const formItemCommonProps = {

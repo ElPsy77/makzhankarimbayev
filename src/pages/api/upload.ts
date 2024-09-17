@@ -28,19 +28,19 @@ export default async (
       multiples: true,
    });
 
-   form.parse(req, async (err, fields, files: any) => {
-      if (err || Object.keys(files).length === 0) {
+   form.parse(req, async (err, fields, files) => {
+      if (err || !files.files || Object.keys(files.files).length === 0) {
          return res.status(500).json({ error: 'Błąd zapisywania plików' });
       }
-
-      const uploadedFiles = Array.isArray(files.files)
-         ? files.files
-         : [files.files];
 
       const uploadUrls: string[] = [];
 
       try {
-         uploadedFiles.forEach((file: any) => {
+         files.files.forEach((file) => {
+            if (!file.originalFilename || !file.originalFilename) {
+               throw Error('Błąd zapisywania plików');
+            }
+
             const ext = path.extname(file.originalFilename);
             const name = path.basename(file.originalFilename, ext);
 
