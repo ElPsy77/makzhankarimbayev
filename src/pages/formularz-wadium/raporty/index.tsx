@@ -22,6 +22,7 @@ export const getServerSideProps = async () => {
    const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/deposit-reports`,
    );
+
    const responseData: GetResponseData | ResponseError = await response.json();
    let depositReports: DepositReport[] = [];
 

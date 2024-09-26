@@ -45,20 +45,20 @@ const onFinish: FormProps<DepositReportFormData>['onFinish'] = async (
       }
    }
 
-   // try {
-   //    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deposit-reports`, {
-   //       method: 'POST',
-   //       headers: {
-   //          'Content-Type': 'application/json',
-   //       },
-   //       body: JSON.stringify({
-   //          ...formValues,
-   //          uploadUrls: uploadUrls,
-   //       }),
-   //    });
-   // } catch (err) {
-   //    console.error(err);
-   // }
+   try {
+      fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deposit-reports`, {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            ...formValues,
+            uploadUrls: uploadUrls,
+         }),
+      });
+   } catch (err) {
+      console.error(err);
+   }
 };
 
 const formItemCommonProps = {
@@ -68,7 +68,7 @@ const formItemCommonProps = {
 };
 
 const requiredFieldRule = {
-   required: false,
+   required: true,
    message: 'To pole jest obowiązkowe',
 };
 
