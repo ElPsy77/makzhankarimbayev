@@ -23,7 +23,7 @@
    "plugins": ["react", "react-hooks", "prettier"],
    "rules": {
       "no-var": "error",
-      "no-unused-vars": "warn",
+      "no-unused-vars": "off",
       "react/react-in-jsx-scope": "off",
       "import/no-anonymous-default-export": "off",
       "camelcase": "error",

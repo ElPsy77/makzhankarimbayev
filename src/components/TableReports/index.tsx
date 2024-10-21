@@ -26,6 +26,8 @@ import {
    PlusOutlined,
 } from '@ant-design/icons';
 import { useSession } from 'next-auth/react';
+import { FilterValue } from 'antd/lib/table/interface';
+import { SorterResult } from 'antd/es/table/interface';
 
 export type TableReportsProps = {
    depositReports: DepositReport[];
@@ -63,12 +65,6 @@ export const statusData = [
    { text: 'Gotowe', color: 'success' },
 ];
 
-type OnChange = NonNullable<TableProps<TableDataType>['onChange']>;
-type Filters = Parameters<OnChange>[1];
-
-type GetSingle<T> = T extends (infer U)[] ? U : never;
-type Sorts = GetSingle<Parameters<OnChange>[2]>;
-
 const TableReports = ({
    depositReports,
 }: TableReportsProps): ReactElement<TableReportsProps> => {
@@ -85,8 +81,14 @@ const TableReports = ({
    const [notificationApi, notificationContext] = notification.useNotification({
       stack: false,
    });
-   const [filteredInfo, setFilteredInfo] = useState<Filters>({});
-   const [sortedInfo, setSortedInfo] = useState<Sorts>({});
+
+   const [filteredInfo, setFilteredInfo] = useState<
+      Record<string, FilterValue | null>
+   >({});
+
+   const [sortedInfo, setSortedInfo] = useState<SorterResult<TableDataType>>(
+      {},
+   );
 
    const downloadFile = async (fileName: string) => {
       if (session) {
@@ -109,14 +111,15 @@ const TableReports = ({
       }
    };
 
-   const handleTableOnChange = (_: any, filters: Filters, sorter: Sorts) => {
-      console.log(filters);
+   const handleTableOnChange = (
+      _: any,
+      filters: Record<string, FilterValue | null>,
+      sorter: SorterResult<TableDataType> | SorterResult<TableDataType>[],
+   ) => {
       console.log(sorter);
 
       setFilteredInfo(filters);
-      setSortedInfo(sorter);
-
-      console.log(sorter);
+      setSortedInfo(Array.isArray(sorter) ? sorter[0] : sorter);
    };
 
    const clearAll = () => {
@@ -175,11 +178,18 @@ const TableReports = ({
       filterIcon: (filtered: boolean) => (
          <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />
       ),
-      onFilter: (value, record) =>
-         record[dataIndex]
-            .toString()
-            .toLowerCase()
-            .includes((value as string).toLowerCase()),
+      onFilter: (value, record) => {
+         const currentRecord = record[dataIndex];
+
+         if (typeof currentRecord === 'string') {
+            return currentRecord
+               .toString()
+               .toLowerCase()
+               .includes((value as string).toLowerCase());
+         }
+
+         return false;
+      },
    });
 
    const showNotification = (message: string, duration?: number) => {
@@ -214,7 +224,7 @@ const TableReports = ({
             2,
          );
       } catch (err) {
-         console.log(err);
+         console.error(err);
       }
    };
 
@@ -231,7 +241,7 @@ const TableReports = ({
 
          showNotification('Raport usunięty');
       } catch (err) {
-         console.log(err);
+         console.error(err);
       }
    };
 

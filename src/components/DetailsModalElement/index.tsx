@@ -19,7 +19,7 @@ const DetailsModalElement = ({
    handleOnCancel,
    showNotification,
 }: DetailsModalElementProps): ReactElement<DetailsModalElementProps> => {
-   const { status, ...restActiveReportData } = activeReportData;
+   const { key, status, ...restActiveReportData } = activeReportData;
 
    const detailsElement = (
       <>
