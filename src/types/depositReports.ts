@@ -6,12 +6,15 @@ export type DepositReportData = {
    email: string;
    phone: string;
    offerDeadline: string;
-   depositPrice: string;
-   contractValue: string;
+   depositPrice: number;
+   contractValue: number;
    consortiumStatus: string;
    warrantyPeriod: string;
    caseSign: string;
-   fileUrl: string;
+   uploadNames: string | null;
+   status: number;
+   createdDate: string;
+   closedDate: string | null;
 };
 
 export type DepositReportFormData = {

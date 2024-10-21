@@ -1,12 +1,29 @@
 .input-big-size,
-.input-number .ant-input-number-lg input.ant-input-number-input {
+.input-big-size .ant-input-affix-wrapper {
    @apply h-14;
 }
 
-.input-number .ant-input-number-group .ant-input-number-group-addon {
+.input-big-size .ant-input-group .ant-input-group-addon {
    @apply px-4;
 }
 
 .ant-upload-wrapper .ant-upload.ant-upload-drag {
    height: 230px;
+}
+
+.ant-form-item-explain-error {
+   @apply mb-3;
+   @apply mt-1;
+}
+
+.ant-form .ant-form-item .ant-row .ant-form-item-label {
+   @apply pb-1;
+}
+
+.ant-btn {
+   box-shadow: none;
+}
+
+.ant-upload-drag-icon svg {
+   @apply text-black text-opacity-90;
 }
