@@ -1,33 +1,48 @@
 import { ReactElement, ReactNode } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../../../public/assets/logo.svg';
+import Logo from '../../../public/assets/logo.svg';
+import { signOut, useSession } from 'next-auth/react';
+import { Button } from 'antd';
 
 type LayoutProps = {
    children: ReactNode;
 };
 
-const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => (
-   <div>
-      <header className='bg-white px-8 py-4 mb-12 shadow-sm flex justify-between items-center'>
-         <Image src={logo} alt='logo aspergo' width={105} height={54} />
+const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
+   const { data: session } = useSession();
 
-         <Link
-            href='https://aspergo.pl/kontakt/'
-            title='kontakt'
-            target='_blank'
-            className='transition-colors hover:text-brown'
-         >
-            Kontakt
-         </Link>
-      </header>
+   return (
+      <div>
+         <header className='bg-white px-8 py-4 mb-12 shadow-sm flex justify-between items-center'>
+            <Logo className='w-28 h-14' />
 
-      <div className='flex justify-center mb-12'>
-         <div className='container bg-white px-10 py-8 rounded-2xl'>
-            {children}
-         </div>
+            <div>
+               {session ? (
+                  <Button
+                     onClick={() => {
+                        signOut();
+                     }}
+                     title='Wyloguj'
+                     className='mr-5'
+                  >
+                     Wyloguj
+                  </Button>
+               ) : null}
+
+               <Link
+                  href='https://aspergo.pl/kontakt/'
+                  title='kontakt'
+                  target='_blank'
+                  className='transition-colors hover:text-brown'
+               >
+                  Kontakt
+               </Link>
+            </div>
+         </header>
+
+         <div className='flex justify-center mb-12'>{children}</div>
       </div>
-   </div>
-);
+   );
+};
 
 export default Layout;
