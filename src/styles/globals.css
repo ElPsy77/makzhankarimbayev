@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import 'forms.css';
+@import 'tableReports.css';
 
 *,
 *::before,

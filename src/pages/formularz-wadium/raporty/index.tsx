@@ -1,38 +1,53 @@
-import { DepositReport } from '@/types/depositReports';
 import React, { ReactElement } from 'react';
-import { GetResponseData, ResponseError } from '../../api/deposit-reports';
+import TableReports from '@/components/TableReports';
+import ContentContainer from '@/components/ContentContainer';
+import { useQuery } from 'react-query';
+import { getAllDepositReports } from '@/services/apiQueries/getAllDepositReports';
+import { Spin } from 'antd';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
-type DepositReportsPageProps = {
-   depositReports: DepositReport[];
-};
+export default function DepositReportsPage(): ReactElement {
+   const session = useSession();
+   const router = useRouter();
 
-export default function DepositReportsPage({
-   depositReports,
-}: DepositReportsPageProps): ReactElement<DepositReportsPageProps> {
-   console.log(depositReports);
-
-   return (
-      <>
-         <h1 className='mb-5 text-3xl font-bold'>Admin Wadium</h1>
-      </>
-   );
-}
-
-export const getServerSideProps = async () => {
-   const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/deposit-reports`,
-   );
-
-   const responseData: GetResponseData | ResponseError = await response.json();
-   let depositReports: DepositReport[] = [];
-
-   if (response.ok) {
-      depositReports = (responseData as GetResponseData).depositReports;
+   if (session?.status === 'unauthenticated' && !session?.data) {
+      router.replace('/panel-logowania');
    }
 
-   return {
-      props: {
-         depositReports,
-      },
-   };
-};
+   const {
+      data: depositReports,
+      isLoading,
+      isError,
+   } = useQuery({
+      queryFn: async () => await getAllDepositReports(),
+      queryKey: ['depositReports'],
+   });
+
+   if (!session || session.status !== 'authenticated') {
+      return (
+         <>
+            <Spin />
+         </>
+      );
+   }
+
+   if (isError) {
+      return <h2>Wystąpił problem podczas pobierania raportów...</h2>;
+   }
+
+   return (
+      <ContentContainer isFull>
+         <h1 className='mb-5 text-3xl font-bold'>Raporty Wadium</h1>
+
+         {isLoading ? (
+            <div className='flex'>
+               <Spin className='mr-3' />
+               Ładowanie danych
+            </div>
+         ) : (
+            <TableReports depositReports={depositReports || []} />
+         )}
+      </ContentContainer>
+   );
+}

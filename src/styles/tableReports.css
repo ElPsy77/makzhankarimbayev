@@ -1,0 +1,14 @@
+.details-row {
+   border-bottom: 1px solid #ccc;
+}
+
+.details-row:last-child {
+   border-bottom: 0;
+   margin-bottom: 0;
+   padding-bottom: 0;
+}
+
+.table-reports-modal {
+   margin-top: 1.5rem;
+   margin-bottom: 1.5rem;
+}
