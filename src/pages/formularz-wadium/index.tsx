@@ -217,6 +217,8 @@ export default function DepositFormPage(): ReactElement {
    const validationErrors =
       formResultStatus === FormResultStatus.ERROR ? getValidatioErrors() : null;
 
+   console.log('test');
+
    return (
       <ContentContainer>
          <h1 className='mb-5 text-3xl font-bold'>Formularz Wadium</h1>
