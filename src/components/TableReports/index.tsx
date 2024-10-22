@@ -92,7 +92,9 @@ const TableReports = ({
 
    const downloadFile = async (fileName: string) => {
       if (session) {
-         const response = await fetch(`/api/uploads/${fileName}`);
+         const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileName}`,
+         );
          if (response.ok) {
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
