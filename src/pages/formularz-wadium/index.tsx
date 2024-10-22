@@ -67,7 +67,7 @@ export default function DepositFormPage(): ReactElement {
 
          try {
             const response = await fetch(
-               `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload`,
+               `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads`,
                {
                   method: 'POST',
                   body: formData,
