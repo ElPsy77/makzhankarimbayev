@@ -1,11 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export const config = {
-   api: {
-      bodyParser: true,
-   },
-};
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
    res.setHeader(
       'Access-Control-Allow-Origin',
