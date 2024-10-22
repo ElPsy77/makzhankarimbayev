@@ -14,6 +14,13 @@ export default async (
    req: NextApiRequest,
    res: NextApiResponse<Buffer | ResponseError | any>,
 ) => {
+   res.setHeader(
+      'Access-Control-Allow-Origin',
+      `${process.env.NEXT_PUBLIC_BASE_URL}`,
+   );
+   res.setHeader('Access-Control-Allow-Methods', 'GET');
+   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
    switch (req.method) {
       case 'GET': {
          const session = await getSession({ req });
