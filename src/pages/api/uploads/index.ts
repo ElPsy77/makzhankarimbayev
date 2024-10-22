@@ -37,7 +37,7 @@ export default async (
             if (err || !files.files || Object.keys(files.files).length === 0) {
                return res
                   .status(500)
-                  .json({ error: 'Błąd zapisywania plików' });
+                  .json({ error: 'Błąd zapisywania plików 1' });
             }
 
             const uploadNames: string[] = [];
@@ -45,7 +45,7 @@ export default async (
             try {
                files.files.forEach((file) => {
                   if (!file.originalFilename || !file.originalFilename) {
-                     throw Error('Błąd zapisywania plików');
+                     throw Error('Błąd zapisywania plików 2');
                   }
 
                   const ext = path.extname(file.originalFilename);
@@ -58,10 +58,14 @@ export default async (
                         .replace(/\./g, '_') + ext;
 
                   const uploadDir = path.join(process.cwd(), '/src/uploads');
+                  console.log(uploadDir);
+
                   const newPath = path.join(
                      uploadDir,
                      generateUniqueUploadFilename(uploadDir, sanitizedFilename),
                   );
+
+                  console.log(newPath);
 
                   uploadNames.push(sanitizedFilename);
 
@@ -76,7 +80,7 @@ export default async (
             } catch (err) {
                return res
                   .status(500)
-                  .json({ error: 'Błąd zapisywania plików' });
+                  .json({ error: 'Błąd zapisywania plików 3' });
             }
          });
 
