@@ -118,8 +118,6 @@ const TableReports = ({
       filters: Record<string, FilterValue | null>,
       sorter: SorterResult<TableDataType> | SorterResult<TableDataType>[],
    ) => {
-      console.log(sorter);
-
       setFilteredInfo(filters);
       setSortedInfo(Array.isArray(sorter) ? sorter[0] : sorter);
    };
@@ -401,9 +399,6 @@ const TableReports = ({
             const filteredFilesNames = filesNames.filter(
                (fileName) => fileName !== 'null',
             );
-
-            console.log(filesNames);
-            console.log(filteredFilesNames);
 
             const filesElements = filteredFilesNames.map((fileName) => (
                <Tooltip key={fileName} title='Pobierz plik'>
