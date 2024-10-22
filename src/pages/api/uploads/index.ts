@@ -27,6 +27,10 @@ export default async (
    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
    switch (req.method) {
+      case 'GET': {
+         return res.status(200);
+      }
+
       case 'POST': {
          const form = formidable({
             keepExtensions: true,

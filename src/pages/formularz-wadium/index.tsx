@@ -324,6 +324,7 @@ export default function DepositFormPage(): ReactElement {
                {...formItemCommonProps}
             >
                <Upload.Dragger
+                  action={`${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads`}
                   multiple
                   beforeUpload={handleBeforeUpload}
                   onRemove={handleUploadFileRemove}

@@ -398,7 +398,11 @@ const TableReports = ({
          render: (_, record) => {
             const filesNames = new String(record.uploadNames).split(',');
 
-            const filesElements = filesNames.map((fileName) => (
+            const filteredFilesNames = filesNames.filter(
+               (fileName) => fileName !== 'null',
+            );
+
+            const filesElements = filteredFilesNames.map((fileName) => (
                <Tooltip key={fileName} title='Pobierz plik'>
                   <Button
                      onClick={() => downloadFile(fileName)}
