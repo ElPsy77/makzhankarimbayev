@@ -402,6 +402,9 @@ const TableReports = ({
                (fileName) => fileName !== 'null',
             );
 
+            console.log(filesNames);
+            console.log(filteredFilesNames);
+
             const filesElements = filteredFilesNames.map((fileName) => (
                <Tooltip key={fileName} title='Pobierz plik'>
                   <Button
