@@ -5,12 +5,6 @@ import os from 'os';
 import { ResponseError } from '../deposit-reports';
 import { getSession } from 'next-auth/react';
 
-export const config = {
-   api: {
-      bodyParser: false,
-   },
-};
-
 export default async (
    req: NextApiRequest,
    res: NextApiResponse<Buffer | ResponseError | any>,

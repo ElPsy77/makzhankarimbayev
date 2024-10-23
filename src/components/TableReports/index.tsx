@@ -91,10 +91,15 @@ const TableReports = ({
    );
 
    const downloadFile = async (fileName: string) => {
+      console.log('session', session);
+
       if (session) {
          const response = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileName}`,
          );
+
+         console.log('response', response);
+
          if (response.ok) {
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
@@ -106,10 +111,10 @@ const TableReports = ({
             a.click();
             window.URL.revokeObjectURL(url);
          } else {
-            alert('Musisz być zalogowany, aby pobrać plik.');
+            alert('Wystąpił błąd podczas pobierania pliku');
          }
       } else {
-         alert('Musisz być zalogowany, aby pobrać plik.');
+         alert('Musisz być zalogowany, aby pobrać plik');
       }
    };
 
