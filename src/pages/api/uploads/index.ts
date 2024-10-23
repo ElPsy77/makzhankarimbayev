@@ -29,8 +29,6 @@ export default async (
 
    switch (req.method) {
       case 'POST': {
-         console.log('post');
-
          const form = formidable({
             keepExtensions: true,
             multiples: true,
@@ -62,7 +60,6 @@ export default async (
                         .replace(/\./g, '_') + ext;
 
                   const uploadDir = path.join(os.tmpdir(), 'uploads');
-                  console.log(uploadDir);
 
                   const newPath = path.join(
                      uploadDir,
