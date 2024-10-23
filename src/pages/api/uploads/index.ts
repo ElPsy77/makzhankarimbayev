@@ -17,7 +17,7 @@ export type UploadPostResponseData = {
 
 export default async (
    req: NextApiRequest,
-   res: NextApiResponse<UploadPostResponseData | ResponseError>,
+   res: NextApiResponse<UploadPostResponseData | ResponseError | any>,
 ) => {
    res.setHeader(
       'Access-Control-Allow-Origin',
@@ -28,10 +28,14 @@ export default async (
 
    switch (req.method) {
       case 'POST': {
+         console.log('post');
+
          const form = formidable({
             keepExtensions: true,
             multiples: true,
          });
+
+         console.log('form');
 
          form.parse(req, async (err, fields, files) => {
             if (err || !files.files || Object.keys(files.files).length === 0) {
@@ -57,7 +61,7 @@ export default async (
                         .replace(/\s+/g, '_')
                         .replace(/\./g, '_') + ext;
 
-                  const uploadDir = path.join(process.cwd(), '/src/uploads');
+                  const uploadDir = path.join(process.cwd(), '/tmp/uploads');
                   console.log(uploadDir);
 
                   const newPath = path.join(
@@ -80,7 +84,7 @@ export default async (
             } catch (err) {
                return res
                   .status(500)
-                  .json({ error: 'Błąd zapisywania plików 3' });
+                  .json({ error: 'Błąd zapisywania plików 3', test: err });
             }
          });
 

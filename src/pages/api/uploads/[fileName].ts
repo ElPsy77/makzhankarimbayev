@@ -37,7 +37,7 @@ export default async (
 
          const filePath = path.resolve(
             '.',
-            'src/uploads',
+            'tmp/uploads',
             Array.isArray(fileName) ? fileName.join('/') : fileName,
          );
 
