@@ -36,7 +36,7 @@ const priceRegex = {
    message: 'Nieprawidłowa cena',
 };
 
-const maxSingleFileSize = 1 * 1024 * 1024;
+const maxSingleFileSize = 3 * 1024 * 1024;
 const maxTotalFilesSize = 10 * 1024 * 1024;
 const acceptedFilesExtensions = [
    'application/pdf',
@@ -137,7 +137,7 @@ export default function DepositFormPage(): ReactElement {
 
          if (file.size > maxSingleFileSize) {
             uploadErrors.push(
-               `Rozmiar pliku "${file.name}" jest zbyt duży (max. 1MB)`,
+               `Rozmiar pliku "${file.name}" jest zbyt duży (max. 3MB)`,
             );
          }
 
@@ -338,7 +338,7 @@ export default function DepositFormPage(): ReactElement {
                   </p>
 
                   <p className='ant-upload-hint'>
-                     Maksymalny rozmiar pliku 1 MB
+                     Maksymalny rozmiar pliku 3 MB
                      <br />
                      Dopuszczalne rozszerzenia: .pdf, .jpg, .png, .zip
                   </p>
