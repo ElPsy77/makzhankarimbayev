@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { ResponseError } from '../deposit-reports';
 import { getSession } from 'next-auth/react';
 
@@ -37,7 +38,7 @@ export default async (
 
          const filePath = path.resolve(
             '.',
-            'tmp/uploads',
+            `${os.tmpdir()}uploads`,
             Array.isArray(fileName) ? fileName.join('/') : fileName,
          );
 

@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { formidable } from 'formidable';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { generateUniqueUploadFilename } from '@/helpers/generateUniqueUploadFilename';
 import { ResponseError } from '../deposit-reports';
 
@@ -33,9 +34,8 @@ export default async (
          const form = formidable({
             keepExtensions: true,
             multiples: true,
+            uploadDir: '/tmp',
          });
-
-         console.log('form');
 
          form.parse(req, async (err, fields, files) => {
             if (err || !files.files || Object.keys(files.files).length === 0) {
@@ -61,15 +61,13 @@ export default async (
                         .replace(/\s+/g, '_')
                         .replace(/\./g, '_') + ext;
 
-                  const uploadDir = path.join(process.cwd(), '/tmp/uploads');
+                  const uploadDir = path.join(os.tmpdir(), 'uploads');
                   console.log(uploadDir);
 
                   const newPath = path.join(
                      uploadDir,
                      generateUniqueUploadFilename(uploadDir, sanitizedFilename),
                   );
-
-                  console.log(newPath);
 
                   uploadNames.push(sanitizedFilename);
 
