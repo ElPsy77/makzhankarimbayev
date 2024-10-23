@@ -93,6 +93,8 @@ const TableReports = ({
    const downloadFile = async (fileName: string) => {
       console.log('session', session);
 
+      console.log('fileName', fileName);
+
       if (session) {
          const response = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileName}`,
