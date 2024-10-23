@@ -27,12 +27,12 @@ export default async (
          const { fileName } = req.query;
 
          if (!fileName) {
-            return res.status(404).json({ error: 'file not found' });
+            return res.status(404).json({ error: 'fileName not found' });
          }
 
          const filePath = path.resolve(
-            '.',
-            `${os.tmpdir()}uploads`,
+            os.tmpdir(),
+            'uploads',
             Array.isArray(fileName) ? fileName.join('/') : fileName,
          );
 
