@@ -37,7 +37,9 @@ export default async (
          );
 
          if (!fs.existsSync(filePath)) {
-            return res.status(404).json({ error: 'file not found' });
+            return res
+               .status(404)
+               .json({ error: 'file not found', filePath: filePath });
          }
 
          const fileContent = fs.readFileSync(filePath);

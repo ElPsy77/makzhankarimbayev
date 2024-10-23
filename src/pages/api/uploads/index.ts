@@ -79,7 +79,7 @@ export default async (
             } catch (err) {
                return res
                   .status(500)
-                  .json({ error: 'Błąd zapisywania plików 3', test: err });
+                  .json({ error: 'Błąd zapisywania plików 3' });
             }
          });
 
