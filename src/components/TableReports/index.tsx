@@ -371,26 +371,33 @@ const TableReports = ({
          sortOrder:
             sortedInfo.field === 'createdDate' ? sortedInfo.order : null,
          hidden: isArchiveVisible,
+         render: (_, record) => new Date(record.createdDate).toLocaleString(),
       },
       {
          title: 'Data zamknięcia',
          dataIndex: 'closedDate',
          sorter: (a, b) => {
-            const dataAValue = new Date(a.createdDate).getTime();
-            const dataBValue = new Date(b.createdDate).getTime();
+            if (a.closedDate && b.closedDate) {
+               const dataAValue = new Date(a.closedDate).getTime();
+               const dataBValue = new Date(b.closedDate).getTime();
 
-            if (dataAValue < dataBValue) {
-               return -1;
-            }
+               if (dataAValue < dataBValue) {
+                  return -1;
+               }
 
-            if (dataAValue > dataBValue) {
-               return 1;
+               if (dataAValue > dataBValue) {
+                  return 1;
+               }
             }
 
             return 0;
          },
          sortOrder: sortedInfo.field === 'closedDate' ? sortedInfo.order : null,
          hidden: !isArchiveVisible,
+         render: (_, record) =>
+            record.closedDate
+               ? new Date(record.closedDate).toLocaleString()
+               : null,
       },
       {
          title: 'Załączniki',
@@ -467,15 +474,43 @@ const TableReports = ({
       depositPrice: `${report.depositPrice} zł`,
       contractValue: `${report.contractValue} zł`,
       warrantyPeriod: new Date(report.warrantyPeriod).toLocaleDateString(),
-      createdDate: new Date(report.warrantyPeriod).toLocaleString(),
-      closedDate: report.closedDate
-         ? new Date(report.closedDate).toLocaleString()
-         : null,
    }));
 
-   const actualTableData = tableData.filter((report) => report.status !== 2);
+   const actualTableData = tableData
+      .filter((report) => report.status !== 2)
+      .sort((reportA, reportB) => {
+         const dataAValue = new Date(reportA.createdDate).getTime();
+         const dataBValue = new Date(reportB.createdDate).getTime();
 
-   const archivedTableData = tableData.filter((report) => report.status === 2);
+         if (dataAValue < dataBValue) {
+            return 1;
+         }
+
+         if (dataAValue > dataBValue) {
+            return -1;
+         }
+
+         return 0;
+      });
+
+   const archivedTableData = tableData
+      .filter((report) => report.status === 2)
+      .sort((reportA, reportB) => {
+         if (reportA.closedDate && reportB.closedDate) {
+            const dataAValue = new Date(reportA.closedDate).getTime();
+            const dataBValue = new Date(reportB.closedDate).getTime();
+
+            if (dataAValue < dataBValue) {
+               return 1;
+            }
+
+            if (dataAValue > dataBValue) {
+               return -1;
+            }
+         }
+
+         return 0;
+      });
 
    return (
       <>

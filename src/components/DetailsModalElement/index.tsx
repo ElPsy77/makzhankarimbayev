@@ -34,6 +34,12 @@ const DetailsModalElement = ({
                return null;
             }
 
+            let finalValue = value;
+
+            if (objectKey === 'createdDate' || objectKey === 'closedDate') {
+               finalValue = new Date(value).toLocaleString();
+            }
+
             const columnData = tableColumns.find(
                (column) =>
                   (column as ColumnType<TableDataType>).dataIndex === objectKey,
@@ -51,14 +57,14 @@ const DetailsModalElement = ({
                         </b>
                      </p>
 
-                     <p>{value}</p>
+                     <p>{finalValue}</p>
                   </div>
 
                   <Tooltip title='Kopiuj wartość'>
                      <Button
                         onClick={async () => {
                            try {
-                              await navigator.clipboard.writeText(value);
+                              await navigator.clipboard.writeText(finalValue);
 
                               showNotification('Skopiowano');
                            } catch {
