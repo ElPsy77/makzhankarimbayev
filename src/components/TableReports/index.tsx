@@ -275,7 +275,7 @@ const TableReports = ({
             sortedInfo.field === 'companyName' ? sortedInfo.order : null,
          ...getColumnSearchProps('companyName'),
          render: (_, record) => (
-            <div>
+            <div className='flex items-center'>
                <Tooltip title='Zobacz szczegóły'>
                   <Button
                      className='text-l px-3 py-5 mr-3'

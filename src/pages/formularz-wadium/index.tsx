@@ -50,9 +50,13 @@ export default function DepositFormPage(): ReactElement {
    const [formResultStatus, setFormResultStatus] =
       useState<FormResultStatus | null>(null);
 
+   const [isButtonLoading, setIsButtonLoading] = useState(false);
+
    const onFinish: FormProps<DepositReportFormData>['onFinish'] = async (
       formValues,
    ) => {
+      setIsButtonLoading(true);
+
       const formData = new FormData();
       let uploadNames: string | null = null;
 
@@ -84,6 +88,8 @@ export default function DepositFormPage(): ReactElement {
 
             return;
          }
+
+         setIsButtonLoading(false);
       }
 
       try {
@@ -350,6 +356,7 @@ export default function DepositFormPage(): ReactElement {
                   type='primary'
                   htmlType='submit'
                   className='bg-green w-full px-10 py-7 hover:bg-brown text-lg mt-2'
+                  loading={isButtonLoading}
                >
                   Wyślij formularz
                </Button>
