@@ -25,23 +25,12 @@ export default async function handler(
          };
 
          try {
-            const data = await s3.getObject(params).promise();
+            await s3.headObject(params).promise();
 
-            res.setHeader(
-               'Content-Type',
-               data.ContentType || 'application/octet-stream',
-            );
-            res.setHeader(
-               'Content-Disposition',
-               `attachment; filename="${fileName}"`,
-            );
-
-            res.send(data.Body);
-         } catch (error) {
-            return res.status(500).json({ error: 'Error fetching file' });
+            return res.status(200).json({ fileExist: true });
+         } catch (err) {
+            return res.status(404).json({ fileExist: false });
          }
-
-         break;
       }
 
       default:

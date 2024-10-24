@@ -3,13 +3,6 @@ import { updateDepositReport } from '@/services/db/updateDepositReport';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-   res.setHeader(
-      'Access-Control-Allow-Origin',
-      `${process.env.NEXT_PUBLIC_BASE_URL}`,
-   );
-   res.setHeader('Access-Control-Allow-Methods', 'PATCH,DELETE');
-   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
    const { id } = req.query;
 
    switch (req.method) {

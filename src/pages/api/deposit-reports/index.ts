@@ -16,13 +16,6 @@ export default async (
    req: NextApiRequest,
    res: NextApiResponse<GetResponseData | ResponseError>,
 ) => {
-   res.setHeader(
-      'Access-Control-Allow-Origin',
-      `${process.env.NEXT_PUBLIC_BASE_URL}`,
-   );
-   res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
-   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
    switch (req.method) {
       case 'GET': {
          try {
