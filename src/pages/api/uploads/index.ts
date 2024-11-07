@@ -5,6 +5,10 @@ import path from 'path';
 import { ResponseError } from '../deposit-reports';
 import { S3 } from 'aws-sdk';
 
+export type UploadPostResponseData = {
+   uploadNames: string;
+};
+
 export const config = {
    api: {
       bodyParser: false,
@@ -17,13 +21,9 @@ const s3 = new S3({
    region: process.env.AWS_REGION,
 });
 
-export type UploadPostResponseData = {
-   uploadNames: string;
-};
-
 export default async (
    req: NextApiRequest,
-   res: NextApiResponse<UploadPostResponseData | ResponseError | any>,
+   res: NextApiResponse<UploadPostResponseData | ResponseError>,
 ) => {
    switch (req.method) {
       case 'POST': {

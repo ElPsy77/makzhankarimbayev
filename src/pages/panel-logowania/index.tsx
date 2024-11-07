@@ -4,20 +4,16 @@ import InputElement from '@/components/InputElement';
 import ContentContainer from '@/components/ContentContainer';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import {
+   formCommonProps,
+   formItemCommonProps,
+   validateMessages,
+} from '@/configs/form';
+import FormSubmitButton from '@/components/FormSubmitButton';
 
 type LoginForm = {
    login: string;
    password: string;
-};
-
-const formItemCommonProps = {
-   hasFeedback: true,
-   validateDebounce: 500,
-   className: 'mb-6',
-};
-
-const validateMessages = {
-   required: '${label} jest polem wymaganym',
 };
 
 export default function LoginPanelPage(): ReactElement {
@@ -80,13 +76,10 @@ export default function LoginPanelPage(): ReactElement {
          <Form
             form={formRef}
             name='panel-logowania'
-            layout='vertical'
-            onFinish={onFinish}
-            autoComplete='off'
-            requiredMark={false}
-            size='large'
             validateMessages={validateMessages}
+            onFinish={onFinish}
             onValuesChange={handleOnChange}
+            {...formCommonProps}
          >
             <Form.Item<LoginForm>
                label='Login'
@@ -106,17 +99,7 @@ export default function LoginPanelPage(): ReactElement {
                <InputElement type='password' />
             </Form.Item>
 
-            <Form.Item>
-               <Spin spinning={isButtonLoading}>
-                  <Button
-                     type='primary'
-                     htmlType='submit'
-                     className='bg-green w-full px-10 py-7 hover:bg-brown text-lg mt-2'
-                  >
-                     Zaloguj
-                  </Button>
-               </Spin>
-            </Form.Item>
+            <FormSubmitButton text='Zaloguj' isLoading={isButtonLoading} />
          </Form>
 
          {errorStatus === 401 ? (

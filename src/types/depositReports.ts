@@ -1,4 +1,3 @@
-import { UploadFile } from 'antd';
 import { WithId } from 'mongodb';
 
 export type DepositReportData = {
@@ -17,10 +16,4 @@ export type DepositReportData = {
    closedDate: string | null;
 };
 
-export type DepositReportFormData = {
-   files?: {
-      fileList: UploadFile[];
-   };
-} & Omit<DepositReportData, 'fileUrl'>;
-
-export type DepositReport = WithId<DepositReportData>;
+export type DepositReportModel = WithId<DepositReportData>;

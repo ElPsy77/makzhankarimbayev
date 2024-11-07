@@ -1,5 +1,5 @@
 import { DepositReportData } from '@/types/depositReports';
-import clientPromise from '../../lib/mongoDb';
+import clientPromise from '../../../../lib/mongoDb';
 
 export const sendDepositReport = async (
    depositReport: DepositReportData,

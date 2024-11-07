@@ -1,5 +1,5 @@
 import { GetResponseData, ResponseError } from '@/pages/api/deposit-reports';
-import { DepositReport } from '@/types/depositReports';
+import { DepositReportModel } from '@/types/depositReports';
 
 export const getAllDepositReports = async () => {
    const response = await fetch(
@@ -7,7 +7,7 @@ export const getAllDepositReports = async () => {
    );
 
    const responseData: GetResponseData | ResponseError = await response.json();
-   let depositReports: DepositReport[] = [];
+   let depositReports: DepositReportModel[] = [];
 
    if (response.ok) {
       depositReports = (responseData as GetResponseData).depositReports;
@@ -15,5 +15,5 @@ export const getAllDepositReports = async () => {
       return depositReports;
    }
 
-   throw Error('Wystąpił problem podczas pobierania raportów-');
+   throw Error('Wystąpił problem podczas pobierania raportów');
 };

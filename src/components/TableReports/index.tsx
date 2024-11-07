@@ -17,7 +17,7 @@ import {
 } from 'antd';
 import DetailsModalElement from '../DetailsModalElement';
 import { ObjectId } from 'mongodb';
-import { DepositReport } from '@/types/depositReports';
+import { DepositReportModel } from '@/types/depositReports';
 import { useQueryClient } from 'react-query';
 import {
    SearchOutlined,
@@ -30,7 +30,7 @@ import { FilterValue } from 'antd/lib/table/interface';
 import { SorterResult } from 'antd/es/table/interface';
 
 export type TableReportsProps = {
-   depositReports: DepositReport[];
+   depositReports: DepositReportModel[];
 };
 
 export type TableDataType = {

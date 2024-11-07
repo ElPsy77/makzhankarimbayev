@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { ColumnsType, statusData, TableDataType } from '../TableReports';
-import CopyIcon from '@/assets/icons/copy-icon.svg';
+import CopyIcon from '@/icons/copy-icon.svg';
 import { ColumnType } from 'antd/es/table';
 import { Button, Modal, Tag, Tooltip } from 'antd';
 

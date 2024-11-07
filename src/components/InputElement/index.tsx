@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { Input, InputProps } from 'antd';
 
 const InputElement = (props: InputProps): ReactElement<InputProps> => (
-   <Input size='large' className='input-big-size' {...props} />
+   <Input {...props} size='large' className='input-big-size' />
 );
 
 export default InputElement;

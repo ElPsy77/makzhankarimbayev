@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'forms.css';
+@import '../features/depositForm/styles/forms.css';
 @import 'tableReports.css';
 
 *,

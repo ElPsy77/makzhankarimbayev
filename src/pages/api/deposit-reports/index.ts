@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { sendDepositReport } from '@/services/db/sendDepositReport';
+import { sendDepositReport } from '@/features/depositForm/services/db/sendDepositReport';
 import { getAllDepositReportsDb } from '@/services/db/getAllDepositReportsDb';
-import { DepositReport } from '@/types/depositReports';
+import { DepositReportModel } from '@/types/depositReports';
 import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
 
 export type GetResponseData = {
-   depositReports: DepositReport[];
+   depositReports: DepositReportModel[];
 };
 
 export type ResponseError = {
@@ -23,7 +23,7 @@ export default async (
 
             res.status(200).json({ depositReports });
          } catch (err) {
-            res.status(500).send({ error: 'failed get all deposit reports' });
+            res.status(500).json({ error: 'failed get all deposit reports' });
          }
 
          break;
@@ -31,7 +31,7 @@ export default async (
 
       case 'POST': {
          try {
-            const depositReportData: DepositReport = req.body;
+            const depositReportData: DepositReportModel = req.body;
             sendDepositReport(depositReportData);
 
             if (depositReportData.email) {
@@ -40,7 +40,7 @@ export default async (
 
             res.status(201);
          } catch (err) {
-            res.status(500).send({ error: 'failed send deposit report' });
+            res.status(500).json({ error: 'failed send deposit report' });
          }
 
          break;
