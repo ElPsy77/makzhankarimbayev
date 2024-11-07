@@ -5,7 +5,7 @@ import {
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-import Form from 'antd/lib/form';
+import { Form } from 'antd';
 import { ReactElement } from 'react';
 import {
    phoneValidationRule,

@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { FormProps, Button, Form, Alert, Spin } from 'antd';
+import { FormProps, Form, Alert, Spin } from 'antd';
 import InputElement from '@/components/InputElement';
 import ContentContainer from '@/components/ContentContainer';
 import { signIn, useSession } from 'next-auth/react';
@@ -99,7 +99,9 @@ export default function LoginPanelPage(): ReactElement {
                <InputElement type='password' />
             </Form.Item>
 
-            <FormSubmitButton text='Zaloguj' isLoading={isButtonLoading} />
+            <Form.Item>
+               <FormSubmitButton text='Zaloguj' isLoading={isButtonLoading} />
+            </Form.Item>
          </Form>
 
          {errorStatus === 401 ? (
