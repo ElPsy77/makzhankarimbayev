@@ -1,9 +1,12 @@
-import React, { ReactElement } from 'react';
+import router from 'next/router';
+import { ReactElement, useEffect } from 'react';
 
-export default function HomePage(): ReactElement {
-   return (
-      <>
-         <h1 className='mb-5 text-3xl font-bold'>Hello Sebastian</h1>
-      </>
-   );
-}
+const HomePage = (): ReactElement => {
+   useEffect(() => {
+      router.replace('/formularz-wadium');
+   });
+
+   return <></>;
+};
+
+export default HomePage;
