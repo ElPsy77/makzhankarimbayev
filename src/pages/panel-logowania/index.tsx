@@ -4,7 +4,7 @@ import LoginForm from '@/features/loginPanel/components/LoginForm';
 import { Spin } from 'antd';
 import { useAuthSession } from '@/hooks/useAuthSession';
 
-export default function LoginPanelPage(): ReactElement {
+const LoginPanelPage = (): ReactElement => {
    const { isLoading, isAuth, redirectToUrl } = useAuthSession(
       '/formularz-wadium/raporty',
    );
@@ -22,4 +22,6 @@ export default function LoginPanelPage(): ReactElement {
          <LoginForm />
       </ContentContainer>
    );
-}
+};
+
+export default LoginPanelPage;

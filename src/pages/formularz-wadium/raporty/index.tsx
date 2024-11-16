@@ -1,46 +1,47 @@
-import React, { ReactElement } from 'react';
-import TableReports from '@/components/TableReports';
+import { ReactElement } from 'react';
+import TableReports from '@/features/depositReports/components/TableReports';
 import ContentContainer from '@/components/ContentContainer';
 import { useQuery } from 'react-query';
 import { getAllDepositReports } from '@/services/apiQueries/getAllDepositReports';
 import { Spin } from 'antd';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useAuthSession } from '@/hooks/useAuthSession';
 
-export default function DepositReportsPage(): ReactElement {
-   const session = useSession();
-   const router = useRouter();
-
-   if (session?.status === 'unauthenticated' && !session?.data) {
-      router.replace('/panel-logowania');
-   }
+const DepositReportsPage = (): ReactElement => {
+   const {
+      isLoading: isAuthLoaing,
+      isUnAuth,
+      redirectToUrl,
+   } = useAuthSession('/panel-logowania');
 
    const {
       data: depositReports,
-      isLoading,
+      isLoading: isQueryLoading,
       isError,
    } = useQuery({
-      queryFn: async () => await getAllDepositReports(),
+      queryFn: getAllDepositReports,
       queryKey: ['depositReports'],
    });
 
-   if (!session || session.status !== 'authenticated') {
-      return (
-         <>
-            <Spin />
-         </>
-      );
+   if (isUnAuth) {
+      redirectToUrl();
+      return <Spin />;
+   }
+
+   if (isAuthLoaing) {
+      return <Spin />;
    }
 
    if (isError) {
       return <h2>Wystąpił problem podczas pobierania raportów...</h2>;
    }
 
+   console.log('dupa');
+
    return (
       <ContentContainer isFull>
          <h1 className='mb-5 text-3xl font-bold'>Raporty Wadium</h1>
 
-         {isLoading ? (
+         {isQueryLoading ? (
             <div className='flex'>
                <Spin className='mr-3' />
                Ładowanie danych
@@ -50,4 +51,6 @@ export default function DepositReportsPage(): ReactElement {
          )}
       </ContentContainer>
    );
-}
+};
+
+export default DepositReportsPage;
