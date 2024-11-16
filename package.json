@@ -5,7 +5,8 @@
    "scripts": {
       "dev": "next dev",
       "build": "next build",
-      "start": "next start",
+      "start": "NODE_ENV=production node20 app.js",
+      "start-dev": "next start",
       "lint": "next lint",
       "format": "prettier --check --ignore-path .gitignore .",
       "format:fix": "prettier --write --ignore-path .gitignore .",
