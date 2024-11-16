@@ -35,8 +35,6 @@ const DepositReportsPage = (): ReactElement => {
       return <h2>Wystąpił problem podczas pobierania raportów...</h2>;
    }
 
-   console.log('dupa');
-
    return (
       <ContentContainer isFull>
          <h1 className='mb-5 text-3xl font-bold'>Raporty Wadium</h1>

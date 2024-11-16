@@ -3,7 +3,7 @@ import { formidable } from 'formidable';
 import fs from 'fs';
 import path from 'path';
 import { ResponseError } from '../deposit-reports';
-import { S3 } from 'aws-sdk';
+import { generateUniqueUploadFilename } from '@/helpers/generateUniqueUploadFilename';
 
 export type UploadPostResponseData = {
    uploadNames: string;
@@ -15,30 +15,18 @@ export const config = {
    },
 };
 
-const s3 = new S3({
-   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-   region: process.env.AWS_REGION,
-});
-
 export default async (
    req: NextApiRequest,
    res: NextApiResponse<UploadPostResponseData | ResponseError>,
 ) => {
    switch (req.method) {
       case 'POST': {
-         if (!process.env.AWS_S3_BUCKET_NAME) {
-            return res
-               .status(500)
-               .json({ error: 'File saving error - bad s3 bucket name' });
-         }
-
          const form = formidable({
             keepExtensions: true,
             multiples: true,
          });
 
-         form.parse(req, async (err, fields, files) => {
+         form.parse(req, async (err, _, files) => {
             if (err || !files.files || Object.keys(files.files).length === 0) {
                return res.status(500).json({
                   error: 'File saving error - problem with files parse',
@@ -46,7 +34,6 @@ export default async (
             }
 
             const uploadNames: string[] = [];
-            const uploadResults: S3.ManagedUpload.SendData[] = [];
 
             try {
                await Promise.all(
@@ -60,33 +47,30 @@ export default async (
                      const ext = path.extname(file.originalFilename);
                      const name = path.basename(file.originalFilename, ext);
 
-                     let sanitizedFilename = name
-                        .toLowerCase()
-                        .replace(/\s+/g, '_')
-                        .replace(/\./g, '_');
+                     let sanitizedFilename =
+                        name
+                           .toLowerCase()
+                           .replace(/[^a-z0-9]+/g, '_')
+                           .replace(/^_+|_+$/g, '')
+                           .replace(/\./g, '_') + ext;
 
-                     const checkFileResponse = await fetch(
-                        `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/check-file/${sanitizedFilename + ext}`,
+                     const uploadDir = './uploads';
+
+                     const newPath = path.join(
+                        uploadDir,
+                        generateUniqueUploadFilename(
+                           uploadDir,
+                           sanitizedFilename,
+                        ),
                      );
 
-                     if (checkFileResponse.ok) {
-                        sanitizedFilename = `${sanitizedFilename}_1`;
+                     uploadNames.push(sanitizedFilename);
+
+                     if (!fs.existsSync(uploadDir)) {
+                        fs.mkdirSync(uploadDir, { recursive: true });
                      }
 
-                     const finalFileName = sanitizedFilename + ext;
-
-                     const fileStream = fs.createReadStream(file.filepath);
-
-                     const uploadParams = {
-                        Bucket: process.env.AWS_S3_BUCKET_NAME || '',
-                        Key: `uploads/${finalFileName}`,
-                        Body: fileStream,
-                        ContentType: file.mimetype || undefined,
-                     };
-
-                     await s3.upload(uploadParams).promise();
-
-                     uploadNames.push(finalFileName);
+                     fs.copyFileSync(file.filepath, newPath);
                   }),
                );
 

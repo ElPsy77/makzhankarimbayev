@@ -5,7 +5,8 @@ import {
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-import { Form } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
+import { Form, Upload } from 'antd';
 import { ReactElement } from 'react';
 import {
    phoneValidationRule,
@@ -15,9 +16,9 @@ import {
    DepositReportFormData,
    useDepositForm,
 } from '../../hooks/useDepositForm';
+import { useUpload } from '../../hooks/useUpload';
 import DatePickerElement from '../DatePickerElement';
 import ResultStatusMessage from '../ResultStatusMessage';
-import UploadElement from '../UploadElement';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
@@ -30,6 +31,10 @@ const DepositForm = (): ReactElement => {
       setFormError,
       resetFormStatus,
    } = useDepositForm(formRef);
+
+   const { validateUploadFiles, resetUploadFiles } = useUpload(formRef);
+
+   const uploadActionApiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload-mock`;
 
    return (
       <>
@@ -128,7 +133,26 @@ const DepositForm = (): ReactElement => {
                name='files'
                {...formItemCommonProps}
             >
-               <UploadElement formRef={formRef} />
+               <Upload.Dragger
+                  action={uploadActionApiUrl}
+                  multiple
+                  beforeUpload={validateUploadFiles}
+                  onRemove={resetUploadFiles}
+               >
+                  <p className='ant-upload-drag-icon'>
+                     <InboxOutlined />
+                  </p>
+
+                  <p className='ant-upload-text'>
+                     Kliknij lub przeciągnij plik aby przesłać
+                  </p>
+
+                  <p className='ant-upload-hint'>
+                     Maksymalny rozmiar pliku 1 MB
+                     <br />
+                     Dopuszczalne rozszerzenia: .pdf, .jpg, .png, .zip
+                  </p>
+               </Upload.Dragger>
             </Form.Item>
 
             <Form.Item>
