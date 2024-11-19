@@ -30,14 +30,15 @@ export const useLogin = (formRef: FormInstance): LoginHookResult => {
          redirect: false,
       });
 
-      if (res?.ok) {
-         redirectToBackUrl('/formularz-wadium/raporty', 1500);
-      } else {
+      if (!res?.ok) {
          setErrorStatus(res?.status || 500);
          formRef.resetFields();
+
+         setIsButtonLoading(false);
+         return;
       }
 
-      setIsButtonLoading(false);
+      redirectToBackUrl('/formularz-wadium/raporty', 1500);
    };
 
    const resetErrorStatus = (): void => {
