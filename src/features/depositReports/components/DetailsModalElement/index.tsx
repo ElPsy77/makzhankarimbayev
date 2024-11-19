@@ -8,7 +8,6 @@ export type DetailsModalElementProps = {
    tableColumns: ColumnsType;
    isModalOpen: boolean;
    handleOnCancel: () => void;
-   showNotification: (message: string, duration?: number) => void;
 };
 
 const DetailsModalElement = ({
@@ -16,7 +15,6 @@ const DetailsModalElement = ({
    tableColumns,
    isModalOpen,
    handleOnCancel,
-   showNotification,
 }: DetailsModalElementProps): ReactElement<DetailsModalElementProps> => {
    const { id, status, ...restActiveReportData } = activeReportData;
 

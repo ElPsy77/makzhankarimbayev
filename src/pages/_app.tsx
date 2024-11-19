@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/pl';
 import pl from 'antd/lib/locale/pl_PL';
 import { theme } from '@/styles/ant-theme';
+import { NotificationProvider } from '@/providers/notificationProvider';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
@@ -21,11 +22,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <SessionProvider>
          <ConfigProvider locale={pl} theme={theme}>
             <QueryClientProvider client={queryClient}>
-               <main className={`${lato.className}`}>
-                  <Layout>
-                     <Component {...pageProps} />
-                  </Layout>
-               </main>
+               <NotificationProvider>
+                  <main className={`${lato.className}`}>
+                     <Layout>
+                        <Component {...pageProps} />
+                     </Layout>
+                  </main>
+               </NotificationProvider>
             </QueryClientProvider>
          </ConfigProvider>
       </SessionProvider>

@@ -1,5 +1,7 @@
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 import { Button, Tooltip } from 'antd';
+import { CopyOutlined } from '@ant-design/icons';
+import { NotificationContext } from '@/providers/notificationProvider';
 
 type CopyButtonProps = {
    value: string;
@@ -8,13 +10,15 @@ type CopyButtonProps = {
 const CopyButton = ({
    value,
 }: CopyButtonProps): ReactElement<CopyButtonProps> => {
+   const { showNotification } = useContext(NotificationContext);
+
    const handleOnClick = async (): Promise<void> => {
       try {
          await navigator.clipboard.writeText(value);
 
-         //  showNotification('Skopiowano');
+         showNotification('Skopiowano', 'success');
       } catch {
-         //  showNotification('Błąd kopiowania');
+         showNotification('Błąd kopiowania', 'error');
       }
    };
 
@@ -24,7 +28,7 @@ const CopyButton = ({
             onClick={handleOnClick}
             size='large'
             className='mt-1'
-            //    icon={<CopyIcon className='w-5' />}
+            icon={<CopyOutlined className='w-5' />}
          />
       </Tooltip>
    );

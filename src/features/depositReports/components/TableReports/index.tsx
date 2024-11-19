@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useContext, useState } from 'react';
 import {
    Button,
    GetProp,
@@ -6,7 +6,6 @@ import {
    Table,
    TableProps,
    Tag,
-   notification,
    Dropdown,
    MenuProps,
    Popconfirm,
@@ -26,6 +25,7 @@ import {
 import { FilterValue } from 'antd/lib/table/interface';
 import { SorterResult } from 'antd/es/table/interface';
 import { DepositReportModel } from '@/services/db/getAllDepositReportsDb';
+import { NotificationContext } from '@/providers/notificationProvider';
 
 export type TableReportsProps = {
    depositReports: DepositReportModel[];
@@ -68,16 +68,14 @@ const TableReports = ({
 }: TableReportsProps): ReactElement<TableReportsProps> => {
    const queryClient = useQueryClient();
 
+   const { showNotification } = useContext(NotificationContext);
+
    const [activeReportData, setActiveReportData] =
       useState<TableDataType | null>(null);
 
    const [isArchiveVisible, setIsArchiveVisible] = useState<boolean>(false);
 
    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
-
-   const [notificationApi, notificationContext] = notification.useNotification({
-      stack: false,
-   });
 
    const [filteredInfo, setFilteredInfo] = useState<
       Record<string, FilterValue | null>
@@ -186,14 +184,6 @@ const TableReports = ({
       },
    });
 
-   const showNotification = (message: string, duration?: number) => {
-      notificationApi['success']({
-         message,
-         duration: duration || 1,
-         placement: 'topRight',
-      });
-   };
-
    const handleUpdateUserStatus = async (id: string, status: number) => {
       const isDone = status === 2;
 
@@ -215,6 +205,7 @@ const TableReports = ({
             isDone
                ? 'Raport został przeniesiony do archiwum'
                : 'Status zaktualizowany',
+            'success',
             2,
          );
       } catch (err) {
@@ -233,7 +224,7 @@ const TableReports = ({
 
          await queryClient.invalidateQueries(['depositReports']);
 
-         showNotification('Raport usunięty');
+         showNotification('Raport usunięty', 'success');
       } catch (err) {
          console.error(err);
       }
@@ -506,8 +497,6 @@ const TableReports = ({
 
    return (
       <>
-         {notificationContext}
-
          <div className='flex justify-between'>
             <Segmented
                className='mb-3'
@@ -539,7 +528,6 @@ const TableReports = ({
                tableColumns={tableColumns}
                isModalOpen={isDetailsModalOpen}
                handleOnCancel={() => setIsDetailsModalOpen(false)}
-               showNotification={showNotification}
             />
          ) : null}
       </>
