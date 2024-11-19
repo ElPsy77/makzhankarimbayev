@@ -1,11 +1,12 @@
-import clientPromise from '../../lib/mongoDb';
-import { ObjectId } from 'mongodb';
+import pool from '@/lib/db';
+import { ResultSetHeader } from 'mysql2';
 
-export const deleteDepositReport = async (reportId: string): Promise<void> => {
-   const client = await clientPromise;
-   const db = client.db(process.env.MONGODB_DATABASE_NAME);
+const SQL_QUERY = 'DELETE FROM reports WHERE id = ?';
 
-   db.collection('reports').deleteOne({
-      _id: new ObjectId(reportId),
-   });
+export const deleteDepositReport = async (
+   reportId: string,
+): Promise<boolean> => {
+   const [result] = await pool.query<ResultSetHeader>(SQL_QUERY, [reportId]);
+
+   return result.affectedRows === 1;
 };

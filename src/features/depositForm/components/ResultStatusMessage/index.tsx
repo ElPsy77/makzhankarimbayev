@@ -29,7 +29,7 @@ const ResultStatusMessage = ({
          {status === FormResultStatus.ERROR ? (
             <Alert
                message={
-                  validationErrors === null ? (
+                  validationErrors === null || !validationErrors.length ? (
                      'Wystąpił problem podczas wysyłania wiadomości, skontaktuj się z administratorem'
                   ) : (
                      <>

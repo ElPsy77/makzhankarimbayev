@@ -1,5 +1,5 @@
 import { GetResponseData, ResponseError } from '@/pages/api/deposit-reports';
-import { DepositReportModel } from '@/types/depositReports';
+import { DepositReportModel } from '../db/getAllDepositReportsDb';
 
 export const getAllDepositReports = async () => {
    const response = await fetch(

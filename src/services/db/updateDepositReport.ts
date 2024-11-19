@@ -1,18 +1,18 @@
-import clientPromise from '../../lib/mongoDb';
-import { ObjectId } from 'mongodb';
-import { DepositReportData } from '@/types/depositReports';
+import pool from '@/lib/db';
+import { ResultSetHeader } from 'mysql2';
 
-export const updateDepositReport = async (
+const SQL_QUERY = 'UPDATE reports SET status = ?, closedDate = ? WHERE id = ?';
+
+export const updateDepositReportStatus = async (
    reportId: string,
-   newData: DepositReportData,
-): Promise<void> => {
-   const client = await clientPromise;
-   const db = client.db(process.env.MONGODB_DATABASE_NAME);
+   status: number,
+   closedDate: string,
+): Promise<boolean> => {
+   const [result] = await pool.query<ResultSetHeader>(SQL_QUERY, [
+      status,
+      closedDate,
+      reportId,
+   ]);
 
-   db.collection('reports').findOneAndUpdate(
-      {
-         _id: new ObjectId(reportId),
-      },
-      { $set: newData },
-   );
+   return result.affectedRows === 1;
 };

@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { sendDepositReport } from '@/features/depositForm/services/db/sendDepositReport';
-import { getAllDepositReportsDb } from '@/services/db/getAllDepositReportsDb';
-import { DepositReportModel } from '@/types/depositReports';
+import {
+   DepositReportModel,
+   getAllDepositReportsDb,
+} from '@/services/db/getAllDepositReportsDb';
 import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
 
 export type GetResponseData = {
@@ -32,10 +34,14 @@ export default async (
       case 'POST': {
          try {
             const depositReportData: DepositReportModel = req.body;
-            sendDepositReport(depositReportData);
+            const isOk = await sendDepositReport(depositReportData);
 
             if (depositReportData.email) {
                sendFormConfirmationEmail(depositReportData.email);
+            }
+
+            if (!isOk) {
+               res.status(500).json({ error: 'failed send deposit report' });
             }
 
             res.status(201);

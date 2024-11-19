@@ -1,16 +1,19 @@
-import { WithId } from 'mongodb';
-import clientPromise from '../../../../lib/mongoDb';
+import pool from '@/lib/db';
+import { RowDataPacket } from 'mysql2';
 import { LoginFormData } from '../../hooks/useLogin';
 
-export type UserModel = WithId<LoginFormData>;
+export type UserModel = LoginFormData;
+
+const SQL_QUERY = 'SELECT * FROM users WHERE login = ?';
 
 export const getUserByLogin = async (
    login: string,
 ): Promise<UserModel | null> => {
-   const client = clientPromise;
-   const db = client.db(process.env.MONGODB_DATABASE_NAME);
+   const [rows] = await pool.query<RowDataPacket[]>(SQL_QUERY, [login]);
 
-   const user = await db.collection('users').findOne<UserModel>({ login });
+   if (rows.length > 0) {
+      return rows[0] as UserModel;
+   }
 
-   return user;
+   return null;
 };

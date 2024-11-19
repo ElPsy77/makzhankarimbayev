@@ -32,10 +32,14 @@ export const useDepositForm = (
    const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
 
    const setSuccessFormStatus = (): void => {
+      setIsButtonLoading(false);
+
       setFormResultStatus(FormResultStatus.SUCCESSS);
    };
 
    const setErrorFormStatus = (): void => {
+      setIsButtonLoading(false);
+
       setFormResultStatus(FormResultStatus.ERROR);
    };
 
@@ -60,6 +64,8 @@ export const useDepositForm = (
 
             if (!response.ok) {
                setErrorFormStatus();
+
+               return;
             }
 
             const responseData: UploadPostResponseData = await response.json();
@@ -79,6 +85,8 @@ export const useDepositForm = (
 
          if (!response.ok) {
             setErrorFormStatus();
+
+            return;
          }
 
          formRef.resetFields();
@@ -89,8 +97,6 @@ export const useDepositForm = (
 
          setErrorFormStatus();
       }
-
-      setIsButtonLoading(false);
    };
 
    const setFormError: FormProps<DepositReportFormData>['onFinishFailed'] = (

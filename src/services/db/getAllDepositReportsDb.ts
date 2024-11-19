@@ -1,16 +1,21 @@
-import clientPromise from '@/lib/mongoDb';
-import { DepositReportModel, DepositReportData } from '@/types/depositReports';
+import pool from '@/lib/db';
+import { DepositReportData } from '@/types/depositReports';
+import { RowDataPacket } from 'mysql2';
+
+export type DepositReportModel = DepositReportData & {
+   id: string;
+};
+
+const SQL_QUERY = 'SELECT * FROM reports';
 
 export const getAllDepositReportsDb = async (): Promise<
    DepositReportModel[]
 > => {
-   const client = await clientPromise;
-   const db = client.db(process.env.MONGODB_DATABASE_NAME);
+   const [rows] = await pool.query<RowDataPacket[]>(SQL_QUERY);
 
-   const reports = await db
-      .collection<DepositReportData>('reports')
-      .find({})
-      .toArray();
+   if (rows.length > 0) {
+      return rows as DepositReportModel[];
+   }
 
-   return reports;
+   return [];
 };

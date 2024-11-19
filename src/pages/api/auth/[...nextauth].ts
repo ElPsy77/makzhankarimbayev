@@ -28,7 +28,7 @@ export default NextAuth({
                   const isValid = await compare(password, user.password);
 
                   if (isValid) {
-                     return { id: `${user._id}`, login: user.login };
+                     return { id: user.login, login: user.login };
                   }
                }
 

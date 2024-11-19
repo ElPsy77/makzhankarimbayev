@@ -16,8 +16,6 @@ import {
    Tooltip,
 } from 'antd';
 import DetailsModalElement from '../DetailsModalElement';
-import { ObjectId } from 'mongodb';
-import { DepositReportModel } from '@/types/depositReports';
 import { useQueryClient } from 'react-query';
 import {
    SearchOutlined,
@@ -28,13 +26,14 @@ import {
 import { useSession } from 'next-auth/react';
 import { FilterValue } from 'antd/lib/table/interface';
 import { SorterResult } from 'antd/es/table/interface';
+import { DepositReportModel } from '@/services/db/getAllDepositReportsDb';
 
 export type TableReportsProps = {
    depositReports: DepositReportModel[];
 };
 
 export type TableDataType = {
-   key: ObjectId;
+   id: string;
    companyName: string;
    email: string;
    phone: string;
@@ -429,7 +428,7 @@ const TableReports = ({
             <div className='flex'>
                <Dropdown
                   menu={{
-                     items: getStatusDropdownButtonItems(record.key.toString()),
+                     items: getStatusDropdownButtonItems(record.id),
                   }}
                   trigger={['click']}
                   placement='bottomRight'
@@ -450,7 +449,7 @@ const TableReports = ({
                         Raport ten NIE zostanie przeniesiony do archiwum
                      </>
                   }
-                  onConfirm={() => handleRemoveUser(record.key.toString())}
+                  onConfirm={() => handleRemoveUser(record.id)}
                   okText='Tak'
                   cancelText='Nie'
                   placement='topRight'
@@ -468,7 +467,6 @@ const TableReports = ({
 
    const tableData = depositReports.map((report) => ({
       ...report,
-      key: report._id,
       phone: `+48 ${report.phone}`,
       offerDeadline: new Date(report.offerDeadline).toLocaleDateString(),
       depositPrice: `${report.depositPrice} zł`,

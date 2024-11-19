@@ -1,5 +1,3 @@
-import { WithId } from 'mongodb';
-
 export type DepositReportData = {
    companyName: string;
    email: string;
@@ -15,5 +13,3 @@ export type DepositReportData = {
    createdDate: string;
    closedDate: string | null;
 };
-
-export type DepositReportModel = WithId<DepositReportData>;
