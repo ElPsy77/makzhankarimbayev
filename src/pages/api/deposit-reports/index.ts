@@ -5,6 +5,7 @@ import {
    getAllDepositReportsDb,
 } from '@/services/db/getAllDepositReportsDb';
 import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
+import { getSession } from 'next-auth/react';
 
 export type GetResponseData = {
    depositReports: DepositReportModel[];
@@ -18,8 +19,14 @@ export default async (
    req: NextApiRequest,
    res: NextApiResponse<GetResponseData | ResponseError>,
 ) => {
+   const session = await getSession({ req });
+
    switch (req.method) {
       case 'GET': {
+         if (!session) {
+            res.status(401).json({ error: 'Unauthorized' });
+         }
+
          try {
             const depositReports = await getAllDepositReportsDb();
 

@@ -20,6 +20,7 @@ const DepositReportsPage = (): ReactElement => {
    } = useQuery({
       queryFn: getAllDepositReports,
       queryKey: ['depositReports'],
+      refetchOnWindowFocus: false,
    });
 
    if (isUnAuth) {

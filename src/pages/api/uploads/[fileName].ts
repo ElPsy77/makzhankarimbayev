@@ -1,11 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
 import fs from 'fs';
+import { getSession } from 'next-auth/react';
 
-export default async function handler(
-   req: NextApiRequest,
-   res: NextApiResponse,
-) {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+   const session = await getSession({ req });
+
+   if (!session) {
+      res.status(401).json({ error: 'Unauthorized' });
+   }
+
    switch (req.method) {
       case 'GET': {
          const { fileName } = req.query;
@@ -44,4 +48,4 @@ export default async function handler(
       default:
          res.status(405).json({ error: 'Method not allowed' });
    }
-}
+};

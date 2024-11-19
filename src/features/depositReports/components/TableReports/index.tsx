@@ -23,7 +23,6 @@ import {
    EditOutlined,
    PlusOutlined,
 } from '@ant-design/icons';
-import { useSession } from 'next-auth/react';
 import { FilterValue } from 'antd/lib/table/interface';
 import { SorterResult } from 'antd/es/table/interface';
 import { DepositReportModel } from '@/services/db/getAllDepositReportsDb';
@@ -68,7 +67,6 @@ const TableReports = ({
    depositReports,
 }: TableReportsProps): ReactElement<TableReportsProps> => {
    const queryClient = useQueryClient();
-   const session = useSession();
 
    const [activeReportData, setActiveReportData] =
       useState<TableDataType | null>(null);
@@ -90,26 +88,22 @@ const TableReports = ({
    );
 
    const downloadFile = async (fileName: string) => {
-      if (session) {
-         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileName}`,
-         );
+      const response = await fetch(
+         `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileName}`,
+      );
 
-         if (response.ok) {
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = fileName;
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-         } else {
-            alert('Wystąpił błąd podczas pobierania pliku');
-         }
+      if (response.ok) {
+         const blob = await response.blob();
+         const url = window.URL.createObjectURL(blob);
+         const a = document.createElement('a');
+         a.style.display = 'none';
+         a.href = url;
+         a.download = fileName;
+         document.body.appendChild(a);
+         a.click();
+         window.URL.revokeObjectURL(url);
       } else {
-         alert('Musisz być zalogowany, aby pobrać plik');
+         alert('Wystąpił błąd podczas pobierania pliku');
       }
    };
 
