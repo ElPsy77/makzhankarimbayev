@@ -1,9 +1,9 @@
+import { checkIsUploadFileExist } from '@/helpers/checkIsUploadFileExist';
+import { checkIsUploadFileHasInvalidExtension } from '@/helpers/checkIsUploadFileHasInvalidExtension';
+import { checkIsUploadFileTooBig } from '@/helpers/checkIsUploadFileTooBig';
+import { checkIsUploadTotalFilesSizeTooBig } from '@/helpers/checkIsUploadTotalFilesSizeTooBig';
 import { FormInstance } from 'antd/lib/form/Form';
 import Upload, { RcFile } from 'antd/lib/upload';
-import { checkIsUploadFileExist } from '../helpers/checkIsUploadFileExist';
-import { checkIsUploadFileHasInvalidExtension } from '../helpers/checkIsUploadFileHasInvalidExtension';
-import { checkIsUploadFileTooBig } from '../helpers/checkIsUploadFileTooBig';
-import { checkIsUploadTotalFilesSizeTooBig } from '../helpers/checkIsUploadTotalFilesSizeTooBig';
 
 type UploadHookResult = {
    validateUploadFiles: (_: RcFile, fileList: RcFile[]) => string | boolean;

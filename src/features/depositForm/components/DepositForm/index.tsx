@@ -5,20 +5,17 @@ import {
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-import { InboxOutlined } from '@ant-design/icons';
 import { Form, Upload } from 'antd';
 import { ReactElement } from 'react';
-import {
-   phoneValidationRule,
-   priceValidationRule,
-} from '../../configs/formRules';
 import {
    DepositReportFormData,
    useDepositForm,
 } from '../../hooks/useDepositForm';
 import { useUpload } from '../../hooks/useUpload';
-import DatePickerElement from '../DatePickerElement';
+import DatePickerElement from '../../../../components/DatePickerElement';
 import ResultStatusMessage from '../ResultStatusMessage';
+import { phoneValidationRule, priceValidationRule } from '@/configs/formRules';
+import UploadContent from '@/components/UploadContent';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
@@ -139,19 +136,7 @@ const DepositForm = (): ReactElement => {
                   beforeUpload={validateUploadFiles}
                   onRemove={resetUploadFiles}
                >
-                  <p className='ant-upload-drag-icon'>
-                     <InboxOutlined />
-                  </p>
-
-                  <p className='ant-upload-text'>
-                     Kliknij lub przeciągnij plik aby przesłać
-                  </p>
-
-                  <p className='ant-upload-hint'>
-                     Maksymalny rozmiar pliku 1 MB
-                     <br />
-                     Dopuszczalne rozszerzenia: .pdf, .jpg, .png, .zip
-                  </p>
+                  <UploadContent />
                </Upload.Dragger>
             </Form.Item>
 

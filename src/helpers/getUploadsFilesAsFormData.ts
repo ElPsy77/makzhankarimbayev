@@ -1,4 +1,4 @@
-import { DepositReportFormData } from '../hooks/useDepositForm';
+import { DepositReportFormData } from '@/features/depositForm/hooks/useDepositForm';
 
 export const getUploadsFilesAsFormData = (
    files: DepositReportFormData['files'],
