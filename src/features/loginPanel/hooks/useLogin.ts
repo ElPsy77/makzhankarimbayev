@@ -2,11 +2,7 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { FormInstance, FormProps } from 'antd';
 import { redirectToBackUrl } from '../helpers/redirectToBackUrl';
-
-export type LoginFormData = {
-   login: string;
-   password: string;
-};
+import { LoginFormData } from '../types';
 
 type LoginHookResult = {
    isButtonLoading: boolean;

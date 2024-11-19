@@ -7,7 +7,8 @@ import FormSubmitButton from '@/components/FormSubmitButton';
 import { Form } from 'antd';
 import InputElement from '@/components/InputElement';
 import ErrorStatusMessage from '../ErrorStatusMessage';
-import { LoginFormData, useLogin } from '../../hooks/useLogin';
+import { useLogin } from '../../hooks/useLogin';
+import { LoginFormData } from '../../types';
 
 const LoginForm = () => {
    const [formRef] = Form.useForm();

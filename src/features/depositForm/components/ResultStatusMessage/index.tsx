@@ -1,10 +1,6 @@
 import Alert from 'antd/lib/alert';
 import React, { ReactElement } from 'react';
-
-export enum FormResultStatus {
-   SUCCESSS = 'success',
-   ERROR = 'error',
-}
+import { FormResultStatus } from '../../types';
 
 type ResultStatusMessageProps = {
    status: FormResultStatus;

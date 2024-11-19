@@ -1,8 +1,8 @@
 import pool from '@/lib/db';
 import { RowDataPacket } from 'mysql2';
-import { LoginFormData } from '../../hooks/useLogin';
+import { LoginFormData } from '../../types';
 
-export type UserModel = LoginFormData;
+type UserModel = LoginFormData;
 
 const SQL_QUERY = 'SELECT * FROM users WHERE login = ?';
 

@@ -7,15 +7,13 @@ import {
 } from '@/configs/form';
 import { Form, Upload } from 'antd';
 import { ReactElement } from 'react';
-import {
-   DepositReportFormData,
-   useDepositForm,
-} from '../../hooks/useDepositForm';
+import { useDepositForm } from '../../hooks/useDepositForm';
 import { useUpload } from '../../hooks/useUpload';
 import DatePickerElement from '../../../../components/DatePickerElement';
 import ResultStatusMessage from '../ResultStatusMessage';
 import { phoneValidationRule, priceValidationRule } from '@/configs/formRules';
 import UploadContent from '@/components/UploadContent';
+import { DepositReportFormData } from '../../types';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();

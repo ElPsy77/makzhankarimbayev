@@ -1,18 +1,10 @@
 import { getUploadsFilesAsFormData } from '@/helpers/getUploadsFilesAsFormData';
 import { UploadPostResponseData } from '@/pages/api/uploads';
-import { DepositReportData } from '@/types/depositReports';
 import { FormInstance, FormProps } from 'antd/lib/form';
-import { UploadFile } from 'antd/lib/upload';
 import { useState } from 'react';
-import { FormResultStatus } from '../components/ResultStatusMessage';
 import { sendFormDataAction } from '../services/api/sendFormDataAction';
 import { uploadFilesAction } from '../services/api/uploadFilesAction';
-
-export type DepositReportFormData = {
-   files?: {
-      fileList: UploadFile[];
-   };
-} & Omit<DepositReportData, 'fileUrl'>;
+import { DepositReportFormData, FormResultStatus } from '../types';
 
 type DepositFormHookResult = {
    formResultStatus: FormResultStatus | null;
