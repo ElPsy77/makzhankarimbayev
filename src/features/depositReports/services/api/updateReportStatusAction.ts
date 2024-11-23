@@ -7,9 +7,6 @@ export const updateReportStatusAction = async (
 
    const response = await fetch(apiQuery, {
       method: 'PATCH',
-      headers: {
-         'Content-Type': 'application/json',
-      },
       body: JSON.stringify({
          status,
          closedDate: isDoneStatus ? new Date() : null,

@@ -4,12 +4,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-   const session = await getSession({ req });
-
-   if (!session) {
-      res.status(401).json({ error: 'Unauthorized' });
-   }
-
    const { id } = req.query;
 
    switch (req.method) {
@@ -17,14 +11,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
          try {
             const { status, closedDate } = JSON.parse(req.body);
 
+            if (!status) {
+               return res.status(500).send({ error: 'invalid status' });
+            }
+
             const isOk = await updateDepositReportStatus(
                id as string,
                status,
                closedDate,
             );
 
+            console.log(isOk);
+
             if (!isOk) {
-               res.status(500).send({ error: 'failed update report' });
+               return res.status(500).send({ error: 'failed update report' });
             }
 
             res.status(200).json({ isOk: true });
@@ -36,11 +36,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       case 'DELETE': {
+         const session = await getSession({ req });
+
+         if (!session) {
+            return res.status(401).json({ error: 'Unauthorized' });
+         }
+
          try {
             const isOk = await deleteDepositReport(id as string);
 
             if (!isOk) {
-               res.status(500).send({ error: 'failed delete report' });
+               return res.status(500).send({ error: 'failed delete report' });
             }
 
             res.status(200).json({ isOk: true });

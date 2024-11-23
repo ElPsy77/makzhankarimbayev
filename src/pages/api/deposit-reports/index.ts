@@ -24,7 +24,7 @@ export default async (
    switch (req.method) {
       case 'GET': {
          if (!session) {
-            res.status(401).json({ error: 'Unauthorized' });
+            return res.status(401).json({ error: 'Unauthorized' });
          }
 
          try {
@@ -48,7 +48,9 @@ export default async (
             }
 
             if (!isOk) {
-               res.status(500).json({ error: 'failed send deposit report' });
+               return res
+                  .status(500)
+                  .json({ error: 'failed send deposit report' });
             }
 
             res.status(201);
