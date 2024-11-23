@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
-import { ColumnsType, statusData, TableDataType } from '../TableReports';
 import { Modal, Tag } from 'antd';
+import { statusData } from '../TableReports';
 import DetailsRow from '../DetailsRow';
+import { ColumnsType, TableDataType } from '../../types';
 
 export type DetailsModalElementProps = {
    activeReportData: TableDataType;

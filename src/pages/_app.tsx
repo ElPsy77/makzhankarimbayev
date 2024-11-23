@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/pl';
 import pl from 'antd/lib/locale/pl_PL';
 import { theme } from '@/styles/ant-theme';
-import { NotificationProvider } from '@/providers/notificationProvider';
+import { NotificationProvider } from '@/providers/NotificationProvider';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 

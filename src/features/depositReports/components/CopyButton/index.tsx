@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from 'react';
 import { Button, Tooltip } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
-import { NotificationContext } from '@/providers/notificationProvider';
+import { NotificationContext } from '@/providers/NotificationProvider';
 
 type CopyButtonProps = {
    value: string;
