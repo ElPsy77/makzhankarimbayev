@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
          try {
             const { status, closedDate } = JSON.parse(req.body);
 
-            if (!status) {
+            if (typeof status !== 'number') {
                return res.status(500).send({ error: 'invalid status' });
             }
 
@@ -20,8 +20,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                status,
                closedDate,
             );
-
-            console.log(isOk);
 
             if (!isOk) {
                return res.status(500).send({ error: 'failed update report' });
