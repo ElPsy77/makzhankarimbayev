@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { Modal, Tag } from 'antd';
-import { statusData } from '../TableReports';
+import { Modal } from 'antd';
 import DetailsRow from '../DetailsRow';
 import { ColumnsType, TableDataType } from '../../types';
+import StatusTag from '../StatusTag';
 
 export type DetailsModalElementProps = {
    activeReportData: TableDataType;
@@ -22,9 +22,7 @@ const DetailsModalElement = ({
    const detailsElement = (
       <>
          <p className='mt-3 mb-7'>
-            <Tag color={statusData[status].color} className='mr-0'>
-               {statusData[status].text}
-            </Tag>
+            <StatusTag status={status} />
          </p>
 
          {Object.entries(restActiveReportData).map(([objectKey, value]) =>

@@ -8,10 +8,16 @@ type StatusTagProps = {
 
 const StatusTag = ({
    status,
-}: StatusTagProps): ReactElement<StatusTagProps> => (
-   <Tag color={statusData[status].color} className='mr-0'>
-      {statusData[status].text}
-   </Tag>
-);
+}: StatusTagProps): ReactElement<StatusTagProps> | null => {
+   if (!statusData[status]) {
+      return null;
+   }
+
+   return (
+      <Tag color={statusData[status].color} className='mr-0'>
+         {statusData[status].text}
+      </Tag>
+   );
+};
 
 export default StatusTag;

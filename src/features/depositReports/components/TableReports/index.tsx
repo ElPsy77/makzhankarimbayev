@@ -11,10 +11,15 @@ export type TableReportsProps = {
    depositReports: DepositReportModel[];
 };
 
-export const statusData = [
-   { text: 'Nowy', color: 'magenta' },
-   { text: 'W toku', color: 'processing' },
-   { text: 'Gotowe', color: 'success' },
+type StatusDataType = {
+   text: string;
+   color: string;
+   isArchive: boolean;
+};
+
+export const statusData: StatusDataType[] = [
+   { text: 'Nowy', color: 'magenta', isArchive: false },
+   { text: 'Wprowadzone', color: 'success', isArchive: true },
 ];
 
 const TableReports = ({
@@ -69,7 +74,11 @@ const TableReports = ({
    }));
 
    const actualTableData = tableData
-      .filter((report) => report.status !== 2)
+      .filter((report) =>
+         statusData[report.status]
+            ? !statusData[report.status].isArchive
+            : false,
+      )
       .sort((reportA, reportB) => {
          const dataAValue = new Date(reportA.createdDate).getTime();
          const dataBValue = new Date(reportB.createdDate).getTime();
@@ -86,7 +95,7 @@ const TableReports = ({
       });
 
    const archivedTableData = tableData
-      .filter((report) => report.status === 2)
+      .filter((report) => statusData[report.status]?.isArchive)
       .sort((reportA, reportB) => {
          if (reportA.closedDate && reportB.closedDate) {
             const dataAValue = new Date(reportA.closedDate).getTime();

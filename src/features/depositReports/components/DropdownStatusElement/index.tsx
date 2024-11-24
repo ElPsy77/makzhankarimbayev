@@ -17,10 +17,8 @@ const DropdownStatusElement = ({
    const { showNotification } = useContext(NotificationContext);
 
    const handleDropdownItemOnClick = async (id: string, status: number) => {
-      const isDone = status === 2;
-
       try {
-         const reponse = await updateReportStatusAction(id, status, isDone);
+         const reponse = await updateReportStatusAction(id, status);
 
          if (!reponse.ok) {
             alert('Coś poszło nie tak podczas aktualizacji statusu');
@@ -30,13 +28,11 @@ const DropdownStatusElement = ({
 
          await queryClient.invalidateQueries(['depositReports']);
 
-         showNotification(
-            isDone
-               ? 'Raport został przeniesiony do archiwum'
-               : 'Status zaktualizowany',
-            'success',
-            2,
-         );
+         const notificationText = statusData[status]?.isArchive
+            ? 'Raport przeniesiony do archiwum'
+            : 'Raport przeniesiony do aktualnych';
+
+         showNotification(notificationText, 'success', 2);
       } catch (err) {
          console.error(err);
       }

@@ -8,7 +8,7 @@ import {
 import { Form, Upload } from 'antd';
 import { ReactElement } from 'react';
 import { useDepositForm } from '../../hooks/useDepositForm';
-import { useUpload } from '../../hooks/useUpload';
+import { useUpload } from '../../../../hooks/useUpload';
 import DatePickerElement from '../../../../components/DatePickerElement';
 import ResultStatusMessage from '../ResultStatusMessage';
 import { phoneValidationRule, priceValidationRule } from '@/configs/formRules';
