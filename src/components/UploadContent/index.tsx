@@ -11,7 +11,7 @@ const UploadContent = () => (
       </p>
 
       <p className='ant-upload-hint'>
-         Maksymalny rozmiar pliku 1 MB
+         Maksymalny rozmiar pliku 3 MB
          <br />
          Dopuszczalne rozszerzenia: .pdf, .jpg, .png, .zip
       </p>

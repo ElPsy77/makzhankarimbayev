@@ -28,7 +28,7 @@ export const useUpload = (formRef: FormInstance): UploadHookResult => {
 
          if (checkIsUploadFileTooBig(file)) {
             uploadErrors.push(
-               `Rozmiar pliku "${file.name}" jest zbyt duży (max. 1MB)`,
+               `Rozmiar pliku "${file.name}" jest zbyt duży (max. 3MB)`,
             );
          }
 
