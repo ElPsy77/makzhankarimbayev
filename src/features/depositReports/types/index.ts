@@ -8,13 +8,13 @@ export type TableDataType = {
    offerDeadline: string;
    depositPrice: string;
    contractValue: string;
-   consortiumStatus: string;
+   consortiumStatus?: string | null;
    warrantyPeriod: string;
-   caseSign: string | null;
-   uploadNames: string | null;
+   caseSign?: string | null;
+   uploadNames?: string | null;
    status: number;
    createdDate: string;
-   closedDate: string | null;
+   closedDate?: string | null;
 };
 
 export type DataIndex = keyof TableDataType;

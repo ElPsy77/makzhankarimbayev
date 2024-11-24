@@ -5,11 +5,11 @@ export type DepositReportData = {
    offerDeadline: string;
    depositPrice: number;
    contractValue: number;
-   consortiumStatus: string;
+   consortiumStatus?: string | null;
    warrantyPeriod: string;
-   caseSign: string | null;
+   caseSign?: string | null;
    uploadNames: string | null;
    status: number;
    createdDate: string;
-   closedDate: string | null;
+   closedDate?: string | null;
 };

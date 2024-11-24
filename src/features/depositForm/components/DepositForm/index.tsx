@@ -5,7 +5,7 @@ import {
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-import { Form, Upload } from 'antd';
+import { Form, Radio, Upload } from 'antd';
 import { ReactElement } from 'react';
 import { useDepositForm } from '../../hooks/useDepositForm';
 import { useUpload } from '../../../../hooks/useUpload';
@@ -18,8 +18,12 @@ import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 import InputPriceElement from '@/components/InputPriceElement';
 import InputPhoneNumber from '@/components/InputPhoneNumber';
 
+const UPLOAD_ACTION_API_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload-mock`;
+
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
+
+   const consortiumFieldValue = Form.useWatch('consortium', formRef);
 
    const {
       formResultStatus,
@@ -31,8 +35,6 @@ const DepositForm = (): ReactElement => {
    } = useDepositForm(formRef);
 
    const { validateUploadFiles, resetUploadFiles } = useUpload(formRef);
-
-   const uploadActionApiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload-mock`;
 
    return (
       <>
@@ -104,10 +106,22 @@ const DepositForm = (): ReactElement => {
                <InputPriceElement name='contractValue' formRef={formRef} />
             </Form.Item>
 
+            <Form.Item
+               label='*Konsorcjum'
+               name='consortium'
+               rules={[{ required: true }]}
+            >
+               <Radio.Group>
+                  <Radio value={1}>Tak</Radio>
+                  <Radio value={0}>Nie</Radio>
+               </Radio.Group>
+            </Form.Item>
+
             <Form.Item<DepositReportFormData>
                label='*Status konsorcjum'
                name='consortiumStatus'
-               rules={[{ required: true }]}
+               hidden={consortiumFieldValue !== 1}
+               rules={[{ required: consortiumFieldValue === 1 }]}
                {...formItemCommonProps}
             >
                <InputElement />
@@ -136,7 +150,7 @@ const DepositForm = (): ReactElement => {
                {...formItemCommonProps}
             >
                <Upload.Dragger
-                  action={uploadActionApiUrl}
+                  action={UPLOAD_ACTION_API_URL}
                   multiple
                   beforeUpload={validateUploadFiles}
                   onRemove={resetUploadFiles}

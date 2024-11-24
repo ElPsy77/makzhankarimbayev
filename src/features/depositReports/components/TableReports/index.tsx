@@ -70,7 +70,10 @@ const TableReports = ({
       offerDeadline: new Date(report.offerDeadline).toLocaleDateString(),
       depositPrice: `${report.depositPrice} zł`,
       contractValue: `${report.contractValue} zł`,
-      caseSign: report.caseSign === null ? '-' : report.caseSign,
+      caseSign: !report.caseSign ? '-' : report.caseSign,
+      consortiumStatus: !report.consortiumStatus
+         ? '-'
+         : report.consortiumStatus,
    }));
 
    const actualTableData = tableData
@@ -133,7 +136,7 @@ const TableReports = ({
          <Table<TableDataType>
             columns={tableColumns}
             dataSource={isArchiveVisible ? archivedTableData : actualTableData}
-            pagination={false}
+            pagination={{ position: ['bottomRight'] }}
             onChange={handleTableOnChange}
             tableLayout='auto'
             virtual
