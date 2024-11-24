@@ -16,6 +16,7 @@ import UploadContent from '@/components/UploadContent';
 import { DepositReportFormData } from '../../types';
 import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 import InputPriceElement from '@/components/InputPriceElement';
+import InputPhoneNumber from '@/components/InputPhoneNumber';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
@@ -73,7 +74,7 @@ const DepositForm = (): ReactElement => {
                rules={[{ required: true }, phoneValidationRule]}
                {...formItemCommonProps}
             >
-               <InputElement addonBefore='+48' />
+               <InputPhoneNumber />
             </Form.Item>
 
             <Form.Item<DepositReportFormData>

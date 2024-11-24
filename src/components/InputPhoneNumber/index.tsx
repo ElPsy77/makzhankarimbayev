@@ -1,22 +1,22 @@
 import React, { ChangeEvent, ReactElement } from 'react';
-import { normalizerPrice } from '@/helpers/normalizerPrice';
+import { normalizerPhoneNumber } from '@/helpers/normalizerPhoneNumber';
 import InputElement from '../InputElement';
 
-const InputPriceElement = ({ ...props }): ReactElement => {
+const InputPhoneNumber = ({ ...props }): ReactElement => {
    const { onChange } = props || {};
 
    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       event.preventDefault();
 
       const value = event.currentTarget.value;
-      const formatedValue = normalizerPrice(value);
+      const formatedValue = normalizerPhoneNumber(value);
 
       if (onChange) {
          onChange(formatedValue);
       }
    };
 
-   return <InputElement {...props} onChange={handleChange} addonAfter='zł' />;
+   return <InputElement {...props} onChange={handleChange} addonBefore='+48' />;
 };
 
-export default InputPriceElement;
+export default InputPhoneNumber;
