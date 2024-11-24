@@ -39,7 +39,7 @@ const DetailsModalElement = ({
    );
 
    const modalTitle = (
-      <p className='text-2xl'>{`Raport ${activeReportData?.caseSign}`}</p>
+      <p className='text-2xl'>{`Raport ${activeReportData?.companyName}`}</p>
    );
 
    return (

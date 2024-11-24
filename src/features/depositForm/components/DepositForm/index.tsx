@@ -47,7 +47,7 @@ const DepositForm = (): ReactElement => {
             <Form.Item<DepositReportFormData>
                label={
                   <FormLabelWithTooltip
-                     text='Nazwa firmy'
+                     text='*Nazwa firmy'
                      tooltip='Przykładowy tekst'
                   />
                }
@@ -59,7 +59,7 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Adres email'
+               label='*Adres email'
                name='email'
                rules={[{ required: true }, { type: 'email' }]}
                {...formItemCommonProps}
@@ -68,7 +68,7 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Telefon'
+               label='*Telefon'
                name='phone'
                rules={[{ required: true }, phoneValidationRule]}
                {...formItemCommonProps}
@@ -77,7 +77,7 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Termin składania ofert'
+               label='*Termin składania ofert'
                name='offerDeadline'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -86,7 +86,7 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Kwota wadium'
+               label='*Kwota wadium'
                name='depositPrice'
                rules={[{ required: true }, priceValidationRule]}
                {...formItemCommonProps}
@@ -95,7 +95,7 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Szacunkowa wartość kontraktu'
+               label='*Szacunkowa wartość kontraktu'
                name='contractValue'
                rules={[{ required: true }, priceValidationRule]}
                {...formItemCommonProps}
@@ -104,7 +104,7 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Status konsorcjum'
+               label='*Status konsorcjum'
                name='consortiumStatus'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -113,7 +113,7 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Okres gwarancji i rękojmi'
+               label='*Okres gwarancji i rękojmi'
                name='warrantyPeriod'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -122,9 +122,8 @@ const DepositForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
-               label='Znak sprawy / numer postępowania'
+               label='Znak sprawy / link'
                name='caseSign'
-               rules={[{ required: true }]}
                {...formItemCommonProps}
             >
                <InputElement />

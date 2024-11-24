@@ -10,7 +10,7 @@ export type TableDataType = {
    contractValue: string;
    consortiumStatus: string;
    warrantyPeriod: string;
-   caseSign: string;
+   caseSign: string | null;
    uploadNames: string | null;
    status: number;
    createdDate: string;

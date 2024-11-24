@@ -7,7 +7,7 @@ export type DepositReportData = {
    contractValue: number;
    consortiumStatus: string;
    warrantyPeriod: string;
-   caseSign: string;
+   caseSign: string | null;
    uploadNames: string | null;
    status: number;
    createdDate: string;

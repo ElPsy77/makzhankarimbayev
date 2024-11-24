@@ -48,10 +48,9 @@ export const useTableColumns = (
          render: (_, record) => <StatusTag status={record.status} />,
       },
       {
-         title: 'Znak sprawy / numer postępowania',
+         title: 'Znak sprawy / link',
          dataIndex: 'caseSign',
-         filteredValue: filteredInfo.caseSign || null,
-         ...getColumnSearchProps('caseSign'),
+         hidden: true,
       },
       {
          title: 'Adres email',
@@ -68,7 +67,6 @@ export const useTableColumns = (
       {
          title: 'Termin składania ofert',
          dataIndex: 'offerDeadline',
-         hidden: true,
       },
       {
          title: 'Kwota wadium',

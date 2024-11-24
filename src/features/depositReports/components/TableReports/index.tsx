@@ -70,7 +70,7 @@ const TableReports = ({
       offerDeadline: new Date(report.offerDeadline).toLocaleDateString(),
       depositPrice: `${report.depositPrice} zł`,
       contractValue: `${report.contractValue} zł`,
-      warrantyPeriod: new Date(report.warrantyPeriod).toLocaleDateString(),
+      caseSign: report.caseSign === null ? '-' : report.caseSign,
    }));
 
    const actualTableData = tableData
