@@ -4,6 +4,6 @@ export const phoneValidationRule = {
 };
 
 export const priceValidationRule = {
-   pattern: /^\d+([,.]\d{1,2})?$/,
+   pattern: /^\s*\d{1,3}(\s\d{3})*(\s*[,.]\s*\d{1,2})?\s*$/,
    message: 'Nieprawidłowa cena',
 };

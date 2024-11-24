@@ -15,6 +15,7 @@ import { phoneValidationRule, priceValidationRule } from '@/configs/formRules';
 import UploadContent from '@/components/UploadContent';
 import { DepositReportFormData } from '../../types';
 import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
+import InputPriceElement from '@/components/InputPriceElement';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
@@ -90,7 +91,7 @@ const DepositForm = (): ReactElement => {
                rules={[{ required: true }, priceValidationRule]}
                {...formItemCommonProps}
             >
-               <InputElement addonAfter='zł' />
+               <InputPriceElement name='depositPrice' formRef={formRef} />
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
@@ -99,7 +100,7 @@ const DepositForm = (): ReactElement => {
                rules={[{ required: true }, priceValidationRule]}
                {...formItemCommonProps}
             >
-               <InputElement addonAfter='zł' />
+               <InputPriceElement name='contractValue' formRef={formRef} />
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
@@ -117,7 +118,7 @@ const DepositForm = (): ReactElement => {
                rules={[{ required: true }]}
                {...formItemCommonProps}
             >
-               <DatePickerElement />
+               <InputElement />
             </Form.Item>
 
             <Form.Item<DepositReportFormData>
