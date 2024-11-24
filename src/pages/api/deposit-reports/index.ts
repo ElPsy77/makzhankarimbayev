@@ -7,18 +7,7 @@ import {
 import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
 import { getSession } from 'next-auth/react';
 
-export type GetResponseData = {
-   depositReports: DepositReportModel[];
-};
-
-export type ResponseError = {
-   error: string;
-};
-
-export default async (
-   req: NextApiRequest,
-   res: NextApiResponse<GetResponseData | ResponseError>,
-) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
    const session = await getSession({ req });
 
    switch (req.method) {
@@ -30,12 +19,12 @@ export default async (
          try {
             const depositReports = await getAllDepositReportsDb();
 
-            res.status(200).json({ depositReports });
+            return res.status(200).json({ depositReports });
          } catch (err) {
-            res.status(500).json({ error: 'failed get all deposit reports' });
+            return res
+               .status(500)
+               .json({ error: 'failed get all deposit reports' });
          }
-
-         break;
       }
 
       case 'POST': {
@@ -53,15 +42,15 @@ export default async (
                   .json({ error: 'failed send deposit report' });
             }
 
-            res.status(201);
+            return res.status(201).json({ isOk: true });
          } catch (err) {
-            res.status(500).json({ error: 'failed send deposit report' });
+            return res
+               .status(500)
+               .json({ error: 'failed send deposit report' });
          }
-
-         break;
       }
 
       default:
-         res.status(400).json({ error: 'Bad request' });
+         return res.status(400).json({ error: 'Bad request' });
    }
 };
