@@ -14,6 +14,7 @@ import ResultStatusMessage from '../ResultStatusMessage';
 import { phoneValidationRule, priceValidationRule } from '@/configs/formRules';
 import UploadContent from '@/components/UploadContent';
 import { DepositReportFormData } from '../../types';
+import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
@@ -43,7 +44,12 @@ const DepositForm = (): ReactElement => {
             {...formCommonProps}
          >
             <Form.Item<DepositReportFormData>
-               label='Nazwa firmy'
+               label={
+                  <FormLabelWithTooltip
+                     text='Nazwa firmy'
+                     tooltip='Przykładowy tekst'
+                  />
+               }
                name='companyName'
                rules={[{ required: true }]}
                {...formItemCommonProps}

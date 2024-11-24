@@ -27,3 +27,7 @@
 .ant-upload-drag-icon svg {
    @apply text-black text-opacity-90;
 }
+
+.form-tooltip-icon svg {
+   @apply w-4 h-4 cursor-pointer;
+}
