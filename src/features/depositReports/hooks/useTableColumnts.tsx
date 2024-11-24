@@ -4,7 +4,6 @@ import DropdownStatusElement from '../components/DropdownStatusElement';
 import FilesDownloadButtons from '../components/FilesDownloadButtons';
 import RemoveUserActionButton from '../components/RemoveUserActionButton';
 import StatusTag from '../components/StatusTag';
-import { statusData } from '../components/TableReports';
 import { getColumnSearchProps } from '../helpers/getColumnSearchProps';
 import { sortTableValues } from '../helpers/sortTableValues';
 import { ColumnsType, TableDataType } from '../types';
@@ -38,13 +37,6 @@ export const useTableColumns = (
       {
          title: 'Status',
          dataIndex: 'status',
-         filters: statusData.map((status, index) => ({
-            text: status.text,
-            value: index,
-         })),
-         filterMode: 'menu',
-         onFilter: (value, record) => record.status === value,
-         filteredValue: filteredInfo.status || null,
          render: (_, record) => <StatusTag status={record.status} />,
       },
       {
