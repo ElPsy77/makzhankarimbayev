@@ -32,8 +32,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const depositReportData: DepositReportModel = req.body;
             const isOk = await sendDepositReport(depositReportData);
 
-            if (depositReportData.email) {
-               sendFormConfirmationEmail(depositReportData.email);
+            if (depositReportData) {
+               sendFormConfirmationEmail(depositReportData);
             }
 
             if (!isOk) {
