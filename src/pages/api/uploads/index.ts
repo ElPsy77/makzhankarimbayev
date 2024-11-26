@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { formidable } from 'formidable';
 import fs from 'fs';
 import path from 'path';
-import { ResponseError } from '../deposit-reports';
 import { generateUniqueUploadFilename } from '@/helpers/generateUniqueUploadFilename';
 
 export type UploadPostResponseData = {
@@ -15,10 +14,7 @@ export const config = {
    },
 };
 
-export default async (
-   req: NextApiRequest,
-   res: NextApiResponse<UploadPostResponseData | ResponseError>,
-) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
    switch (req.method) {
       case 'POST': {
          const form = formidable({

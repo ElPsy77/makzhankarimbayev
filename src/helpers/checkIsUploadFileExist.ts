@@ -1,12 +1,14 @@
 import { RcFile } from 'antd/lib/upload';
 
 export const checkIsUploadFileExist = (
-   prevUploadFiles: RcFile[],
+   fileList: RcFile[],
    file: RcFile,
 ): boolean => {
-   const isFileExist = prevUploadFiles.find(
-      (prevFile) => prevFile.name === file.name,
-   );
+   const fileName = file.name;
 
-   return !!isFileExist;
+   const duplicatesArray = fileList.filter((item) => item.name === fileName);
+
+   const isDuplicated = duplicatesArray.length > 1;
+
+   return isDuplicated;
 };

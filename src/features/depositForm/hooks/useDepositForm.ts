@@ -39,12 +39,28 @@ export const useDepositForm = (
       setFormResultStatus(null);
    };
 
+   const setFormError: FormProps<DepositReportFormData>['onFinishFailed'] = (
+      errorInfo,
+   ) => {
+      console.error(errorInfo);
+
+      setErrorFormStatus();
+   };
+
    const sendFormData: FormProps<DepositReportFormData>['onFinish'] = async (
       formValues: DepositReportFormData,
    ): Promise<void> => {
       setIsButtonLoading(true);
 
       let uploadNames: string | null = null;
+
+      const filesFieldErrors = formRef.getFieldError('files');
+
+      if (filesFieldErrors) {
+         setErrorFormStatus();
+
+         return;
+      }
 
       const { files, ...restFormValues } = formValues;
 
@@ -89,14 +105,6 @@ export const useDepositForm = (
 
          setErrorFormStatus();
       }
-   };
-
-   const setFormError: FormProps<DepositReportFormData>['onFinishFailed'] = (
-      errorInfo,
-   ) => {
-      console.error(errorInfo);
-
-      setErrorFormStatus();
    };
 
    const getValidatioErrors = (): string[] | null => {

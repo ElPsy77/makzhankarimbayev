@@ -3,26 +3,32 @@ import { checkIsUploadFileHasInvalidExtension } from '@/helpers/checkIsUploadFil
 import { checkIsUploadFileTooBig } from '@/helpers/checkIsUploadFileTooBig';
 import { checkIsUploadTotalFilesSizeTooBig } from '@/helpers/checkIsUploadTotalFilesSizeTooBig';
 import { FormInstance } from 'antd/lib/form/Form';
-import Upload, { RcFile } from 'antd/lib/upload';
+import { RcFile, UploadChangeParam, UploadFile } from 'antd/lib/upload';
 
 type UploadHookResult = {
-   validateUploadFiles: (_: RcFile, fileList: RcFile[]) => string | boolean;
+   validateUploadFiles: (info: UploadChangeParam<UploadFile>) => void;
    resetUploadFiles: () => void;
 };
 
 export const useUpload = (formRef: FormInstance): UploadHookResult => {
-   const validateUploadFiles = (
-      _: RcFile,
-      fileList: RcFile[],
-   ): string | boolean => {
+   const resetUploadFiles = (): void => {
+      formRef.setFields([
+         {
+            name: 'files',
+            errors: [],
+         },
+      ]);
+   };
+
+   const validateUploadFiles = (info: UploadChangeParam<UploadFile>): void => {
       const uploadErrors: string[] = [];
 
-      const prevUpload = formRef.getFieldValue('files');
-
-      const prevUploadFiles: RcFile[] = prevUpload ? prevUpload.fileList : [];
+      const fileList: RcFile[] = info.fileList
+         .map((uploadFile) => uploadFile.originFileObj || null)
+         .filter(Boolean) as RcFile[];
 
       fileList.forEach((file) => {
-         if (checkIsUploadFileExist(prevUploadFiles, file)) {
+         if (checkIsUploadFileExist(fileList, file)) {
             uploadErrors.push(`Plik "${file.name}" jest już dodany`);
          }
 
@@ -39,40 +45,30 @@ export const useUpload = (formRef: FormInstance): UploadHookResult => {
          }
       });
 
-      if (checkIsUploadTotalFilesSizeTooBig(prevUploadFiles, fileList)) {
+      if (checkIsUploadTotalFilesSizeTooBig(fileList)) {
          uploadErrors.push(
             'Łączny rozmiar wszystkich plików nie może przekraczać 10MB',
          );
       }
 
-      if (uploadErrors.length > 0) {
+      const uploadUniqueErrors = uploadErrors.reduce((uniqueErrors, error) => {
+         if (!uniqueErrors.includes(error)) {
+            uniqueErrors.push(error);
+         }
+
+         return uniqueErrors;
+      }, [] as string[]);
+
+      resetUploadFiles();
+
+      if (uploadUniqueErrors.length > 0) {
          formRef.setFields([
             {
                name: 'files',
-               errors: uploadErrors,
+               errors: uploadUniqueErrors,
             },
          ]);
-
-         return Upload.LIST_IGNORE;
       }
-
-      formRef.setFields([
-         {
-            name: 'files',
-            errors: [],
-         },
-      ]);
-
-      return true;
-   };
-
-   const resetUploadFiles = (): void => {
-      formRef.setFields([
-         {
-            name: 'files',
-            errors: [],
-         },
-      ]);
    };
 
    return {
