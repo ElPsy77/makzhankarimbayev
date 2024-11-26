@@ -56,7 +56,7 @@ export const useDepositForm = (
 
       const filesFieldErrors = formRef.getFieldError('files');
 
-      if (filesFieldErrors) {
+      if (filesFieldErrors.length > 0) {
          setErrorFormStatus();
 
          return;
