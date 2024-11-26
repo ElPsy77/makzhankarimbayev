@@ -1,4 +1,3 @@
-import { GetResponseData, ResponseError } from '@/pages/api/deposit-reports';
 import { DepositReportModel } from '../db/getAllDepositReportsDb';
 
 export const getAllDepositReports = async () => {
@@ -6,11 +5,11 @@ export const getAllDepositReports = async () => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/deposit-reports`,
    );
 
-   const responseData: GetResponseData | ResponseError = await response.json();
+   const responseData = await response.json();
    let depositReports: DepositReportModel[] = [];
 
    if (response.ok) {
-      depositReports = (responseData as GetResponseData).depositReports;
+      depositReports = responseData.depositReports;
 
       return depositReports;
    }

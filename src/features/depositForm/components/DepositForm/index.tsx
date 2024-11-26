@@ -5,7 +5,7 @@ import {
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-import { Form, Radio, Upload } from 'antd';
+import { Checkbox, Form, Radio, Upload } from 'antd';
 import { ReactElement } from 'react';
 import { useDepositForm } from '../../hooks/useDepositForm';
 import { useUpload } from '../../../../hooks/useUpload';
@@ -17,8 +17,7 @@ import { DepositReportFormData } from '../../types';
 import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 import InputPriceElement from '@/components/InputPriceElement';
 import InputPhoneNumber from '@/components/InputPhoneNumber';
-
-const UPLOAD_ACTION_API_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload-mock`;
+import Link from 'next/link';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
@@ -34,7 +33,7 @@ const DepositForm = (): ReactElement => {
       resetFormStatus,
    } = useDepositForm(formRef);
 
-   const { validateUploadFiles, resetUploadFiles } = useUpload(formRef);
+   const { validateUploadFiles } = useUpload(formRef);
 
    return (
       <>
@@ -55,7 +54,12 @@ const DepositForm = (): ReactElement => {
                   />
                }
                name='companyName'
-               rules={[{ required: true }]}
+               rules={[
+                  {
+                     required: true,
+                     message: '*Nazwa firmy jest polem wymaganym',
+                  },
+               ]}
                {...formItemCommonProps}
             >
                <InputElement />
@@ -149,14 +153,39 @@ const DepositForm = (): ReactElement => {
                name='files'
                {...formItemCommonProps}
             >
-               <Upload.Dragger
-                  action={UPLOAD_ACTION_API_URL}
-                  multiple
-                  beforeUpload={validateUploadFiles}
-                  onRemove={resetUploadFiles}
-               >
+               <Upload.Dragger multiple onChange={validateUploadFiles}>
                   <UploadContent />
                </Upload.Dragger>
+            </Form.Item>
+
+            <Form.Item
+               name='agreement'
+               valuePropName='checked'
+               label={null}
+               rules={[
+                  {
+                     validator: (_, value) =>
+                        value
+                           ? Promise.resolve()
+                           : Promise.reject(
+                                new Error(
+                                   'Akceptacja polityki prywatności jest wymagana',
+                                ),
+                             ),
+                  },
+               ]}
+            >
+               <Checkbox>
+                  *Zapoznałem się oraz akceptuję{' '}
+                  <Link
+                     className='form-link'
+                     href='https://aspergo.pl/wp-content/uploads/2022/10/Polityka-prywatnosci-klienci-ASPERGO-RODO-2018.pdf'
+                     target='_blank'
+                     title='polityka prywatności'
+                  >
+                     politykę prywatności
+                  </Link>
+               </Checkbox>
             </Form.Item>
 
             <Form.Item>

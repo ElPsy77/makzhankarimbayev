@@ -31,3 +31,11 @@
 .form-tooltip-icon svg {
    @apply w-4 h-4;
 }
+
+.form-link {
+   color: theme(colors.brown);
+}
+
+.form-link:hover {
+   color: theme(colors.green);
+}
