@@ -12,3 +12,7 @@
    margin-top: 1.5rem;
    margin-bottom: 1.5rem;
 }
+
+.ant-popconfirm .ant-popconfirm-buttons button:nth-child(2) {
+   background: theme(colors.brown);
+}

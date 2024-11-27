@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'forms.css';
-@import 'tableReports.css';
+@import '../features/depositForm/styles/index.css';
+@import '../features/depositReports/styles/index.css';
 
 *,
 *::before,
