@@ -52,15 +52,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
                      const uploadDir = './uploads';
 
-                     const newPath = path.join(
+                     const uniqueUploadFileName = generateUniqueUploadFilename(
                         uploadDir,
-                        generateUniqueUploadFilename(
-                           uploadDir,
-                           sanitizedFilename,
-                        ),
+                        sanitizedFilename,
                      );
 
-                     uploadNames.push(sanitizedFilename);
+                     const newPath = path.join(uploadDir, uniqueUploadFileName);
+
+                     uploadNames.push(uniqueUploadFileName);
 
                      if (!fs.existsSync(uploadDir)) {
                         fs.mkdirSync(uploadDir, { recursive: true });
