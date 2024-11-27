@@ -1,4 +1,4 @@
-import { DepositReportModel } from '../db/getAllDepositReportsDb';
+import { DepositReportDataWithId } from '@/types';
 
 export const getAllDepositReports = async () => {
    const response = await fetch(
@@ -6,7 +6,7 @@ export const getAllDepositReports = async () => {
    );
 
    const responseData = await response.json();
-   let depositReports: DepositReportModel[] = [];
+   let depositReports: DepositReportDataWithId[] = [];
 
    if (response.ok) {
       depositReports = responseData.depositReports;

@@ -4,7 +4,7 @@ import { Button, Dropdown, MenuProps, Tooltip } from 'antd';
 import { ReactElement, useContext } from 'react';
 import { useQueryClient } from 'react-query';
 import { updateReportStatusAction } from '../../services/api/updateReportStatusAction';
-import { statusData } from '../TableReports';
+import { statusData } from '../StatusTag';
 
 type DropdownStatusElementProps = {
    userId: string;

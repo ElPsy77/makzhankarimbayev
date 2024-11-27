@@ -1,6 +1,16 @@
 import { ReactElement } from 'react';
 import { Tag } from 'antd';
-import { statusData } from '../TableReports';
+
+export type StatusDataType = {
+   text: string;
+   color: string;
+   isArchive: boolean;
+};
+
+export const statusData: StatusDataType[] = [
+   { text: 'Nowy', color: 'magenta', isArchive: false },
+   { text: 'Wprowadzone', color: 'success', isArchive: true },
+];
 
 type StatusTagProps = {
    status: number;

@@ -30,7 +30,7 @@ const DetailsModalElement = ({
                <DetailsRow
                   key={objectKey}
                   detailKey={objectKey}
-                  value={value}
+                  value={`${value}`}
                   tableColumns={tableColumns}
                />
             ) : null,

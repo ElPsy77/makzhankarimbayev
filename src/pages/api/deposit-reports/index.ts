@@ -1,11 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { sendDepositReport } from '@/features/depositForm/services/db/sendDepositReport';
-import {
-   DepositReportModel,
-   getAllDepositReportsDb,
-} from '@/services/db/getAllDepositReportsDb';
+import { getAllDepositReportsDb } from '@/services/db/getAllDepositReportsDb';
 import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
 import { getSession } from 'next-auth/react';
+import { DepositReportData } from '@/types';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
    const session = await getSession({ req });
@@ -29,7 +27,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       case 'POST': {
          try {
-            const depositReportData: DepositReportModel = req.body;
+            const depositReportData: DepositReportData = req.body;
             const isOk = await sendDepositReport(depositReportData);
 
             if (depositReportData) {

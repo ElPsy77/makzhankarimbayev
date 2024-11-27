@@ -1,20 +1,12 @@
+import { DepositReportDataWithId } from '@/types';
 import { GetProp, TableProps } from 'antd';
 
-export type TableDataType = {
-   id: string;
-   companyName: string;
-   email: string;
-   phone: string;
-   offerDeadline: string;
-   depositPrice: string;
-   contractValue: string;
-   consortiumStatus?: string | null;
-   warrantyPeriod: string;
-   caseSign?: string | null;
-   uploadNames?: string | null;
-   status: number;
-   createdDate: string;
-   closedDate?: string | null;
+export type TableDataType = Omit<
+   DepositReportDataWithId,
+   'depositPrice' | 'contractValue'
+> & {
+   depositPrice: number | string;
+   contractValue: number | string;
 };
 
 export type DataIndex = keyof TableDataType;

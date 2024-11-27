@@ -1,4 +1,4 @@
-import { statusData } from '../../components/TableReports';
+import { statusData } from '../../components/StatusTag';
 
 export const updateReportStatusAction = async (
    reportId: string,

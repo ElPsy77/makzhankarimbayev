@@ -1,4 +1,4 @@
-import { DepositReportData } from '@/types/depositReports';
+import { DepositReportData } from '@/types';
 import { UploadFile } from 'antd';
 
 export type DepositReportFormData = {

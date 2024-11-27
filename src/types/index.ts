@@ -13,3 +13,7 @@ export type DepositReportData = {
    createdDate: string;
    closedDate?: string | null;
 };
+
+export type DepositReportDataWithId = DepositReportData & {
+   id: string;
+};

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { DepositReportData } from '@/types/depositReports';
+import { DepositReportData } from '@/types';
 import pool from '@/lib/db';
 import { ResultSetHeader } from 'mysql2';
 

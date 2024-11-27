@@ -1,4 +1,4 @@
-import { DepositReportData } from '@/types/depositReports';
+import { DepositReportData } from '@/types';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({

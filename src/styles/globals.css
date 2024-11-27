@@ -18,3 +18,7 @@ body {
    color: theme(colors.black);
    background-color: theme(colors.background);
 }
+
+.brown-color {
+   color: theme(colors.brown);
+}
