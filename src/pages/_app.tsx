@@ -10,6 +10,7 @@ import 'dayjs/locale/pl';
 import pl from 'antd/lib/locale/pl_PL';
 import { theme } from '@/styles/ant-theme';
 import { NotificationProvider } from '@/providers/NotificationProvider';
+import Head from 'next/head';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
@@ -19,18 +20,25 @@ dayjs.locale('pl');
 
 export default function App({ Component, pageProps }: AppProps) {
    return (
-      <SessionProvider>
-         <ConfigProvider locale={pl} theme={theme}>
-            <QueryClientProvider client={queryClient}>
-               <NotificationProvider>
-                  <main className={`${lato.className}`}>
-                     <Layout>
-                        <Component {...pageProps} />
-                     </Layout>
-                  </main>
-               </NotificationProvider>
-            </QueryClientProvider>
-         </ConfigProvider>
-      </SessionProvider>
+      <>
+         <Head>
+            <link rel='icon' href='/favicon.png' />
+            <title>Aspergo</title>
+         </Head>
+
+         <SessionProvider>
+            <ConfigProvider locale={pl} theme={theme}>
+               <QueryClientProvider client={queryClient}>
+                  <NotificationProvider>
+                     <main className={`${lato.className}`}>
+                        <Layout>
+                           <Component {...pageProps} />
+                        </Layout>
+                     </main>
+                  </NotificationProvider>
+               </QueryClientProvider>
+            </ConfigProvider>
+         </SessionProvider>
+      </>
    );
 }
