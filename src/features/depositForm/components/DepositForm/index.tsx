@@ -18,6 +18,7 @@ import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 import InputPriceElement from '@/components/InputPriceElement';
 import InputPhoneNumber from '@/components/InputPhoneNumber';
 import Link from 'next/link';
+import { acceptedFilesExtensions } from '@/helpers/checkIsUploadFileHasInvalidExtension';
 
 const DepositForm = (): ReactElement => {
    const [formRef] = Form.useForm();
@@ -153,7 +154,11 @@ const DepositForm = (): ReactElement => {
                name='files'
                {...formItemCommonProps}
             >
-               <Upload.Dragger multiple onChange={validateUploadFiles}>
+               <Upload.Dragger
+                  multiple
+                  onChange={validateUploadFiles}
+                  accept={acceptedFilesExtensions.join(',')}
+               >
                   <UploadContent />
                </Upload.Dragger>
             </Form.Item>
