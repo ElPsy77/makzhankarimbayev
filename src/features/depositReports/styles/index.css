@@ -16,3 +16,12 @@
 .ant-popconfirm .ant-popconfirm-buttons button:nth-child(2) {
    background: theme(colors.brown);
 }
+
+.table-search-icon > svg {
+   @apply w-4 h-4;
+   color: theme(colors.black);
+}
+
+.ant-table-column-sorter .ant-table-column-sorter-inner > .anticon {
+   font-size: 13px;
+}

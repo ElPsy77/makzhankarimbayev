@@ -1,6 +1,6 @@
 import { RcFile } from 'antd/lib/upload';
 
-const acceptedFilesExtensions = [
+export const acceptedFilesExtensions = [
    'application/pdf',
    'image/jpeg',
    'image/png',

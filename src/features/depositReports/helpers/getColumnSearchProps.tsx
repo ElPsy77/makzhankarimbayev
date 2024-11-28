@@ -23,7 +23,9 @@ export const getColumnSearchProps = (
    ),
 
    filterIcon: (filtered: boolean) => (
-      <SearchOutlined className={`${filtered ? 'brown-color' : ''}`} />
+      <SearchOutlined
+         className={`table-search-icon ${filtered ? 'brown-color' : ''}`}
+      />
    ),
 
    onFilter: (value, record) => {
