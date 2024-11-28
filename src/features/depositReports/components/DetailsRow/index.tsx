@@ -37,7 +37,7 @@ const DetailsRow = ({
             <p>{convertedValue}</p>
          </div>
 
-         <CopyButton value={convertedValue} />
+         {/* <CopyButton value={convertedValue} /> */}
       </div>
    );
 };
