@@ -1,6 +1,5 @@
 export type JobApplicationData = {
    name: string;
-   appliedPostion: string;
    town: string;
    email: string;
    phone: string;

@@ -59,15 +59,6 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='*Applied Position'
-               name='appliedPostion'
-               rules={[{ required: true }]}
-               {...formItemCommonProps}
-            >
-               <InputElement />
-            </Form.Item>
-
-            <Form.Item<JobApplicationFormData>
                label='*Town'
                name='town'
                rules={[{ required: true }]}

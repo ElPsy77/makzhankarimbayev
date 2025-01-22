@@ -39,11 +39,6 @@ export const useTableColumns = (
          render: (_, record) => <StatusTag status={record.status} />,
       },
       {
-         title: 'Applied Position',
-         dataIndex: 'appliedPostion',
-         hidden: true,
-      },
-      {
          title: 'Town',
          dataIndex: 'town',
          hidden: true,

@@ -5,9 +5,9 @@ import pool from '@/lib/db';
 
 const SQL_QUERY = `
    INSERT INTO applications
-   (id, name, appliedPostion, town, email, phone, startJobDate, financialExpectations, lastCompany, employeeName, uploadNames, status, createdDate, closedDate)
+   (id, name, town, email, phone, startJobDate, financialExpectations, lastCompany, employeeName, uploadNames, status, createdDate, closedDate)
    VALUES
-   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 `;
 
 export const sendJobApplicationDb = async (
@@ -16,7 +16,6 @@ export const sendJobApplicationDb = async (
    const [result] = await pool.query<ResultSetHeader>(SQL_QUERY, [
       uuidv4(),
       jobApplicationData.name,
-      jobApplicationData.appliedPostion,
       jobApplicationData.town,
       jobApplicationData.email,
       jobApplicationData.phone,

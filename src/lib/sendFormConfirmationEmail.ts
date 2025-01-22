@@ -31,8 +31,6 @@ export const sendFormConfirmationEmail = async (
 
          Imię i nazwisko: <b>${jobApplicationData.name}</b><br/>
 
-         Applied Position: <b>${jobApplicationData.appliedPostion}</b><br/>
-
          Town: <b>${jobApplicationData.town}</b><br/>
 
          E-mail: <b>${jobApplicationData.email}</b><br/>
