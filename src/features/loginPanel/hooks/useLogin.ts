@@ -34,7 +34,7 @@ export const useLogin = (formRef: FormInstance): LoginHookResult => {
          return;
       }
 
-      redirectToBackUrl('/formularz-wadium/raporty', 1500);
+      redirectToBackUrl('/job-applications', 1500);
    };
 
    const resetErrorStatus = (): void => {

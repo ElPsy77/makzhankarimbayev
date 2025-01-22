@@ -15,8 +15,8 @@ export const formItemCommonProps = {
 };
 
 export const validateMessages = {
-   required: '${label} jest polem wymaganym',
+   required: '${label} is a required field',
    types: {
-      email: 'Nieprawidłowy adres email',
+      email: 'Invalid email address',
    },
 };

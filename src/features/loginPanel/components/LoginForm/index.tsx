@@ -1,14 +1,14 @@
+import { Form } from 'antd';
 import {
    formCommonProps,
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
 import FormSubmitButton from '@/components/FormSubmitButton';
-import { Form } from 'antd';
 import InputElement from '@/components/InputElement';
-import ErrorStatusMessage from '../ErrorStatusMessage';
 import { useLogin } from '../../hooks/useLogin';
 import { LoginFormData } from '../../types';
+import ErrorStatusMessage from '../ErrorStatusMessage';
 
 const LoginForm = () => {
    const [formRef] = Form.useForm();
@@ -20,7 +20,7 @@ const LoginForm = () => {
       <>
          <Form
             form={formRef}
-            name='panel-logowania'
+            name='login-panel'
             validateMessages={validateMessages}
             onFinish={loginUser}
             onValuesChange={resetErrorStatus}
@@ -36,7 +36,7 @@ const LoginForm = () => {
             </Form.Item>
 
             <Form.Item<LoginFormData>
-               label='Hasło'
+               label='Password'
                name='password'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -45,7 +45,7 @@ const LoginForm = () => {
             </Form.Item>
 
             <Form.Item>
-               <FormSubmitButton text='Zaloguj' isLoading={isButtonLoading} />
+               <FormSubmitButton text='Sign in' isLoading={isButtonLoading} />
             </Form.Item>
          </Form>
 

@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../features/depositForm/styles/index.css';
-@import '../features/depositReports/styles/index.css';
+@import '../features/jobForm/styles/index.css';
+@import '../features/jobApplications/styles/index.css';
 
 *,
 *::before,

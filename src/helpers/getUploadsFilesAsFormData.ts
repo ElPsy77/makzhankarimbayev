@@ -1,7 +1,7 @@
-import { DepositReportFormData } from '@/features/depositForm/types';
+import { JobApplicationFormData } from '@/features/jobForm/types';
 
 export const getUploadsFilesAsFormData = (
-   files: DepositReportFormData['files'],
+   files: JobApplicationFormData['files'],
 ): FormData => {
    const formData = new FormData();
 

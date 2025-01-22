@@ -6,14 +6,12 @@ const UploadContent = () => (
          <InboxOutlined />
       </p>
 
-      <p className='ant-upload-text'>
-         Kliknij lub przeciągnij plik aby przesłać
-      </p>
+      <p className='ant-upload-text'>Click or drag the file to upload</p>
 
       <p className='ant-upload-hint'>
-         Maksymalny rozmiar pliku 3 MB
+         Maximum file size 3 MB
          <br />
-         Dopuszczalne rozszerzenia: .pdf, .jpg, .png, .zip
+         Acceptable extensions: .pdf, .jpg, .png, .zip
       </p>
    </>
 );

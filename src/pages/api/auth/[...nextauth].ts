@@ -45,6 +45,6 @@ export default NextAuth({
       strategy: 'jwt',
    },
    pages: {
-      signIn: '/panel-logowania',
+      signIn: '/login-panel',
    },
 });

@@ -11,32 +11,56 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
    const { data: session } = useSession();
 
+   const signInButton = (
+      <Button href='/login-panel' title='Sign in'>
+         Sign in
+      </Button>
+   );
+
+   const signOutButton = (
+      <Button
+         onClick={() => {
+            signOut();
+         }}
+         title='Sign out'
+      >
+         Sign out
+      </Button>
+   );
+
+   const linkCommonStyles =
+      'transition-colors hover:text-brown mr-5 max-medium:mr-5 max-medium:text-sm';
+
    return (
       <div>
-         <header className='bg-white px-8 py-4 mb-12 shadow-sm flex justify-between items-center'>
-            <Logo className='w-28 h-14' />
+         <header className='bg-white px-8 py-4 mb-12 shadow-sm flex justify-between items-center max-medium:flex-col'>
+            <Link href='/' className='text-3xl font-bold max-medium:mb-3'>
+               ImJobApp.
+            </Link>
 
             <div>
-               {session ? (
-                  <Button
-                     onClick={() => {
-                        signOut();
-                     }}
-                     title='Wyloguj'
-                     className='mr-5'
-                  >
-                     Wyloguj
-                  </Button>
-               ) : null}
+               <Link href='/' title='form' className={linkCommonStyles}>
+                  Form
+               </Link>
 
                <Link
-                  href='https://aspergo.pl/kontakt/'
+                  href='/applications'
+                  title='applications'
+                  className={linkCommonStyles}
+               >
+                  Applications
+               </Link>
+
+               <Link
+                  href='https://sebastiangolab.pl/contact'
                   title='kontakt'
                   target='_blank'
-                  className='transition-colors hover:text-brown'
+                  className={linkCommonStyles}
                >
-                  Kontakt
+                  Contact
                </Link>
+
+               {session ? signOutButton : signInButton}
             </div>
          </header>
 

@@ -1,4 +1,4 @@
-import { DepositReportData } from '@/types';
+import { JobApplicationData } from '@/types';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendFormConfirmationEmail = async (
-   depositReportData: DepositReportData,
+   jobApplicationData: JobApplicationData,
 ): Promise<void | Error> => {
    transporter.verify(function (error) {
       if (error) {
@@ -22,32 +22,32 @@ export const sendFormConfirmationEmail = async (
 
    await transporter.sendMail({
       from: 'testpoczty@sebastiangolab.pl',
-      to: depositReportData.email,
+      to: jobApplicationData.email,
       cc: 'golomp1997@gmail.com',
-      subject: 'Potwierdzenie wysłania formularza Wadium - Aspergo',
+      subject: 'Confirmation of sending a job application',
       html: `
-         <b>Formularz został dostarzony, odpowiemy w przeciągu 24h</b>
+         <b>The application has been delivered, we will respond as soon as possible</b>
          <br/><br/>
 
-         Nazwa firmy: <b>${depositReportData.companyName}</b><br/>
+         Imię i nazwisko: <b>${jobApplicationData.name}</b><br/>
 
-         Adres email: <b>${depositReportData.email}</b><br/>
+         Applied Position: <b>${jobApplicationData.appliedPostion}</b><br/>
 
-         Telefon: <b>+48 ${depositReportData.phone}</b><br/>
+         Town: <b>${jobApplicationData.town}</b><br/>
 
-         Termin składania ofert: <b>${new Date(depositReportData.offerDeadline).toLocaleDateString()}</b><br/>
+         E-mail: <b>${jobApplicationData.email}</b><br/>
 
-         Kwota wadium: <b>${depositReportData.depositPrice} zł</b><br/>
+         Phone number: <b>+48 ${jobApplicationData.phone}</b><br/>
 
-         Szacunkowa wartość kontraktu: <b>${depositReportData.contractValue}</b><br/>
+         Earliest Possible Start Date: <b>${new Date(jobApplicationData.startJobDate).toLocaleDateString()}</b><br/>
 
-         Status konsorcjum: <b>${depositReportData.consortiumStatus || '-'}</b><br/>
+         Financial Expectations (netto): <b>${jobApplicationData.financialExpectations} zł</b><br/>
 
-         Okres gwarancji i rękojmi: <b>${depositReportData.warrantyPeriod}</b><br/>
+         Last Company Name: <b>${jobApplicationData.lastCompany || '-'}</b><br/>
 
-         Znak sprawy / link: <b>${depositReportData.caseSign || '-'}</b><br/>
+         Employee name: <b>${jobApplicationData.employeeName || '-'}</b><br/>
          
-         Załączniki: <b>${depositReportData.uploadNames || '-'}</b>
+         Załączniki: <b>${jobApplicationData.uploadNames || '-'}</b>
       `,
    });
 };

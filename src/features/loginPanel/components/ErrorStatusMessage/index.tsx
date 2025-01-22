@@ -1,5 +1,5 @@
-import Alert from 'antd/lib/alert';
 import React, { ReactElement } from 'react';
+import Alert from 'antd/lib/alert';
 
 type ResultStatusMessageProps = {
    status: number;
@@ -12,13 +12,13 @@ const ErrorStatusMessage = ({
       <>
          {status === 401 ? (
             <Alert
-               message='Login lub hasło jest nieprawidłowe'
+               message='Login or password is incorrect'
                type='error'
                showIcon
             />
          ) : (
             <Alert
-               message='Wystąpił problem z logowanie, proszę skontaktować się z administratorem.'
+               message='There was a problem logging in, please contact your administrator'
                type='error'
                showIcon
             />

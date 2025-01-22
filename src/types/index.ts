@@ -1,19 +1,19 @@
-export type DepositReportData = {
-   companyName: string;
+export type JobApplicationData = {
+   name: string;
+   appliedPostion: string;
+   town: string;
    email: string;
    phone: string;
-   offerDeadline: string;
-   depositPrice: number;
-   contractValue: number;
-   consortiumStatus?: string | null;
-   warrantyPeriod: string;
-   caseSign?: string | null;
+   startJobDate: string;
+   financialExpectations: number;
+   lastCompany?: string | null;
+   employeeName?: string | null;
    uploadNames: string | null;
    status: number;
    createdDate: string;
    closedDate?: string | null;
 };
 
-export type DepositReportDataWithId = DepositReportData & {
+export type JobApplicationDataWithId = JobApplicationData & {
    id: string;
 };

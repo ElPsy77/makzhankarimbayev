@@ -1,20 +1,29 @@
-import router from 'next/router';
-import { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
+import ContentContainer from '@/components/ContentContainer';
+import JobForm from '@/features/jobForm/components/JobForm';
 import Head from 'next/head';
 
-const HomePage = (): ReactElement => {
-   useEffect(() => {
-      router.replace('/formularz-wadium');
-   });
+const JobApplicationFormPage = (): ReactElement => (
+   <>
+      <Head>
+         <title>Polish Job Application Form</title>
+         <meta name='description' content='Job Application Form' />
+         <meta name='robots' content='index,follow' />
+      </Head>
 
-   return (
-      <>
-         <Head>
-            <title>Aspergo</title>
-            <meta name='robots' content='noindex,nofollow' />
-         </Head>
-      </>
-   );
-};
+      <ContentContainer>
+         <h1 className='mb-5 text-3xl font-bold'>
+            Polish Job Application Form
+         </h1>
 
-export default HomePage;
+         <p className='mb-10'>
+            If you want use my app for your company, please write to me
+            sebagolab97@gmail.com
+         </p>
+
+         <JobForm />
+      </ContentContainer>
+   </>
+);
+
+export default JobApplicationFormPage;
