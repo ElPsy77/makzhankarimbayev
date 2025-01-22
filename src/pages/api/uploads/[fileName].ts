@@ -45,6 +45,41 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
          break;
       }
 
+      case 'DELETE': {
+         const { fileName } = req.query;
+
+         if (!fileName || typeof fileName !== 'string') {
+            return res.status(400).json({ error: 'Invalid fileNames' });
+         }
+
+         const files = fileName.split(',');
+
+         const errors: string[] = [];
+
+         for (const file of files) {
+            const filePath = path.resolve('./uploads', file);
+
+            if (!fs.existsSync(filePath)) {
+               errors.push(`File not found: ${file}`);
+               continue;
+            }
+
+            try {
+               fs.unlinkSync(filePath);
+            } catch (error) {
+               errors.push(`Error deleting file: ${file}`);
+            }
+         }
+
+         if (errors.length > 0) {
+            return res.status(500).json({ errors });
+         } else {
+            return res
+               .status(204)
+               .json({ message: 'Files deleted successfully' });
+         }
+      }
+
       default:
          res.status(405).json({ error: 'Method not allowed' });
    }

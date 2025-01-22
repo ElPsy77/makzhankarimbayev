@@ -47,7 +47,7 @@ export const useUpload = (formRef: FormInstance): UploadHookResult => {
 
       if (checkIsUploadTotalFilesSizeTooBig(fileList)) {
          uploadErrors.push(
-            'Łączny rozmiar wszystkich plików nie może przekraczać 10MB',
+            'Łączny rozmiar wszystkich plików nie może przekraczać 3MB',
          );
       }
 

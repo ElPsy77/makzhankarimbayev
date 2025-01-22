@@ -2,7 +2,7 @@ import { FilterValue, SorterResult } from 'antd/lib/table/interface';
 import NameRow from '../components/NameRow';
 import DropdownStatusElement from '../components/DropdownStatusElement';
 import FilesDownloadButtons from '../components/FilesDownloadButtons';
-import RemoveJobApplicationActionButton from '../components/RemoveUserActionButton';
+import RemoveJobApplicationActionButton from '../components/RemoveJobApplicationActionButton';
 import StatusTag from '../components/StatusTag';
 import { getColumnSearchProps } from '../helpers/getColumnSearchProps';
 import { sortTableValues } from '../helpers/sortTableValues';
@@ -52,8 +52,6 @@ export const useTableColumns = (
       {
          title: 'Phone Number',
          dataIndex: 'phone',
-         filteredValue: filteredInfo.phone || null,
-         ...getColumnSearchProps('phone'),
       },
       {
          title: 'Earliest Possible Start Date',
@@ -124,7 +122,10 @@ export const useTableColumns = (
             <div className='flex'>
                <DropdownStatusElement jobApplicationId={record.id} />
 
-               <RemoveJobApplicationActionButton jobApplicationId={record.id} />
+               <RemoveJobApplicationActionButton
+                  jobApplicationId={record.id}
+                  uploadFiles={record.uploadNames}
+               />
             </div>
          ),
       },

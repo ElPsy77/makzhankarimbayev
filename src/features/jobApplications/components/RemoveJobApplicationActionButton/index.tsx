@@ -3,18 +3,21 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Popconfirm, Tooltip } from 'antd';
 import { ReactElement, useContext } from 'react';
 import { useQueryClient } from 'react-query';
+import { deleteUploadFilesAction } from '../../services/api/deleteUploadFilesAction';
 
 type RemoveJobApplicationActionButtonProps = {
    jobApplicationId: string;
+   uploadFiles: string | null;
 };
 
 const RemoveJobApplicationActionButton = ({
    jobApplicationId,
+   uploadFiles,
 }: RemoveJobApplicationActionButtonProps): ReactElement<RemoveJobApplicationActionButtonProps> => {
    const queryClient = useQueryClient();
    const { showNotification } = useContext(NotificationContext);
 
-   const handleRemoveUser = async (id: string) => {
+   const handleRemoveJobApplication = async (id: string) => {
       try {
          const response = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/job-applications/${id}`,
@@ -35,13 +38,21 @@ const RemoveJobApplicationActionButton = ({
       } catch (err) {
          console.error(err);
       }
+
+      if (uploadFiles && uploadFiles.length > 0) {
+         try {
+            await deleteUploadFilesAction(uploadFiles);
+         } catch (err) {
+            console.error(err);
+         }
+      }
    };
 
    return (
       <Popconfirm
          title='Attention! You delete the application'
          description='Are you sure you want to delete the selected application?'
-         onConfirm={() => handleRemoveUser(jobApplicationId)}
+         onConfirm={() => handleRemoveJobApplication(jobApplicationId)}
          okText='Yes'
          cancelText='No'
          placement='topRight'
