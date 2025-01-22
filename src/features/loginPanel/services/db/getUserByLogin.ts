@@ -4,7 +4,7 @@ import { LoginFormData } from '../../types';
 
 type UserModel = LoginFormData;
 
-const SQL_QUERY = 'SELECT * FROM users WHERE login = ?';
+const SQL_QUERY = `SELECT * FROM ${process.env.DB_TABLE_NAME_USERS} WHERE login = ?`;
 
 export const getUserByLogin = async (
    login: string,

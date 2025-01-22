@@ -2,12 +2,12 @@ import { JobApplicationData } from '@/types';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-   host: 's118.cyber-folks.pl',
-   port: 465,
+   host: process.env.CONFIRMATION_MAIL_HOST,
+   port: parseInt(process.env.CONFIRMATION_MAIL_PORT ?? ''),
    secure: true,
    auth: {
-      user: 'testpoczty@sebastiangolab.pl',
-      pass: '-SVQoC.1x2+-Nq*j',
+      user: process.env.CONFIRMATION_MAIL_USER,
+      pass: process.env.CONFIRMATION_MAIL_PASS,
    },
 });
 
@@ -21,9 +21,9 @@ export const sendFormConfirmationEmail = async (
    });
 
    await transporter.sendMail({
-      from: 'testpoczty@sebastiangolab.pl',
+      from: process.env.CONFIRMATION_MAIL_USER,
       to: jobApplicationData.email,
-      cc: 'golomp1997@gmail.com',
+      cc: process.env.CONFIRMATION_MAIL_CC,
       subject: 'Confirmation of sending a job application',
       html: `
          <b>The application has been delivered, we will respond as soon as possible</b>

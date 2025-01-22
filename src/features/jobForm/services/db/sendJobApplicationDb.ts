@@ -4,7 +4,7 @@ import { JobApplicationData } from '@/types';
 import pool from '@/lib/db';
 
 const SQL_QUERY = `
-   INSERT INTO applications
+   INSERT INTO ${process.env.DB_TABLE_NAME_APPLICATIONS}
    (id, name, town, email, phone, startJobDate, financialExpectations, lastCompany, employeeName, uploadNames, status, createdDate, closedDate)
    VALUES
    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)

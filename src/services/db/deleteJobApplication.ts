@@ -1,7 +1,7 @@
 import pool from '@/lib/db';
 import { ResultSetHeader } from 'mysql2';
 
-const SQL_QUERY = 'DELETE FROM applications WHERE id = ?';
+const SQL_QUERY = `DELETE FROM ${process.env.DB_TABLE_NAME_APPLICATIONS} WHERE id = ?`;
 
 export const deleteJobApplication = async (
    jobApplicationId: string,

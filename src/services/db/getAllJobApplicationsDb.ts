@@ -2,7 +2,7 @@ import pool from '@/lib/db';
 import { JobApplicationDataWithId } from '@/types';
 import { RowDataPacket } from 'mysql2';
 
-const SQL_QUERY = 'SELECT * FROM applications';
+const SQL_QUERY = `SELECT * FROM ${process.env.DB_TABLE_NAME_APPLICATIONS}`;
 
 export const getAllJobApplicationsDb = async (): Promise<
    JobApplicationDataWithId[]
