@@ -13,6 +13,6 @@ export type DataIndex = keyof TableDataType;
 export type ColumnsType = GetProp<TableProps<TableDataType>, 'columns'>;
 
 export enum TABLE_SEGMENTED_OPTIONS {
-   ACTUAL = 'Actual',
+   NEW = 'New',
    ACCEPTED = 'Accepted',
 }

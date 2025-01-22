@@ -6,7 +6,7 @@ import Head from 'next/head';
 const JobApplicationFormPage = (): ReactElement => (
    <>
       <Head>
-         <title>Polish Job Application Form</title>
+         <title>Job Application Form</title>
          <meta name='description' content='Job Application Form' />
          <meta name='robots' content='index,follow' />
       </Head>

@@ -44,7 +44,7 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
                </Link>
 
                <Link
-                  href='/applications'
+                  href='/job-applications'
                   title='applications'
                   className={linkCommonStyles}
                >
@@ -53,7 +53,7 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
 
                <Link
                   href='https://sebastiangolab.pl/contact'
-                  title='kontakt'
+                  title='contact'
                   target='_blank'
                   className={linkCommonStyles}
                >

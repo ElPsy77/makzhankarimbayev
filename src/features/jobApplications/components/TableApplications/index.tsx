@@ -24,7 +24,7 @@ const TableApplications = ({
       isDetailsModalOpen,
       activeApplicationData,
       tableColumns,
-      actualTableData,
+      newTableData,
       acceptedTableData,
       setIsAcceptedVisible,
       closeDetailsModal,
@@ -36,7 +36,7 @@ const TableApplications = ({
             <Segmented
                className='mb-3'
                options={[
-                  TABLE_SEGMENTED_OPTIONS.ACTUAL,
+                  TABLE_SEGMENTED_OPTIONS.NEW,
                   TABLE_SEGMENTED_OPTIONS.ACCEPTED,
                ]}
                onChange={(value) =>
@@ -51,7 +51,7 @@ const TableApplications = ({
 
          <Table<TableDataType>
             columns={tableColumns}
-            dataSource={isAcceptedVisible ? acceptedTableData : actualTableData}
+            dataSource={isAcceptedVisible ? acceptedTableData : newTableData}
             pagination={{ position: ['bottomRight'] }}
             onChange={handleChangeFiltersAndSort}
             tableLayout='auto'

@@ -9,7 +9,7 @@ type TableApplicationsHookResult = {
    isDetailsModalOpen: boolean;
    activeApplicationData: TableDataType | null;
    tableColumns: ColumnsType;
-   actualTableData: TableDataType[];
+   newTableData: TableDataType[];
    acceptedTableData: TableDataType[];
    setIsAcceptedVisible: Dispatch<SetStateAction<boolean>>;
    closeDetailsModal: () => void;
@@ -84,7 +84,7 @@ export const useTableApplications = (
       employeeName: !application.employeeName ? '-' : application.employeeName,
    }));
 
-   const actualTableData = getFilteredTableData(tableData, false);
+   const newTableData = getFilteredTableData(tableData, false);
 
    const acceptedTableData = getFilteredTableData(tableData, true);
 
@@ -93,7 +93,7 @@ export const useTableApplications = (
       isDetailsModalOpen,
       activeApplicationData,
       tableColumns,
-      actualTableData,
+      newTableData,
       acceptedTableData,
       setIsAcceptedVisible,
       closeDetailsModal,
