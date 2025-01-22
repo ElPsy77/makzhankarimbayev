@@ -78,12 +78,12 @@ export const useTableColumns = (
          hidden: true,
       },
       {
-         title: 'Employee name',
+         title: 'Recommending Employee Name',
          dataIndex: 'employeeName',
          hidden: true,
       },
       {
-         title: 'Data utworzenia',
+         title: 'Created Date',
          dataIndex: 'createdDate',
          sorter: (a, b) =>
             sortTableValues(
@@ -96,7 +96,7 @@ export const useTableColumns = (
          render: (_, record) => new Date(record.createdDate).toLocaleString(),
       },
       {
-         title: 'Data zamknięcia',
+         title: 'Accepted Date',
          dataIndex: 'closedDate',
          sorter: (a, b) =>
             sortTableValues(

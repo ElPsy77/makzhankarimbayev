@@ -25,3 +25,7 @@
 .ant-table-column-sorter .ant-table-column-sorter-inner > .anticon {
    font-size: 13px;
 }
+
+.ant-table-wrapper .ant-table-filter-trigger.active {
+   border: 2px solid theme(colors.brown);
+}
