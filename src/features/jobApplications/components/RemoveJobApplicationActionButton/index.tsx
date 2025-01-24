@@ -39,7 +39,11 @@ const RemoveJobApplicationActionButton = ({
          console.error(err);
       }
 
-      if (uploadFiles && uploadFiles.length > 0) {
+      if (
+         uploadFiles &&
+         uploadFiles.length > 0 &&
+         !process.env.NEXT_PUBLIC_IS_DEMO_UPLOAD
+      ) {
          try {
             await deleteUploadFilesAction(uploadFiles);
          } catch (err) {

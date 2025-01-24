@@ -48,6 +48,8 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
    const sendFormData: FormProps<JobApplicationFormData>['onFinish'] = async (
       formValues: JobApplicationFormData,
    ): Promise<void> => {
+      const isDemoUpload = process.env.NEXT_PUBLIC_IS_DEMO_UPLOAD;
+
       setIsButtonLoading(true);
 
       let uploadNames: string | null = null;
@@ -62,7 +64,7 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
 
       const { files, ...restFormValues } = formValues;
 
-      if (files && files.fileList.length > 0) {
+      if (!isDemoUpload && files && files.fileList.length > 0) {
          const formData = getUploadsFilesAsFormData(files);
 
          try {
@@ -85,6 +87,12 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
             return;
          }
       }
+
+      if (isDemoUpload && files && files.fileList.length > 0) {
+         uploadNames = files.fileList.map((file) => file.name ?? '').join(',');
+      }
+
+      console.log(uploadNames);
 
       try {
          const response = await sendFormDataAction(restFormValues, uploadNames);

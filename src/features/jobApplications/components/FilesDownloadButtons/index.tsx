@@ -17,6 +17,12 @@ const FilesDownloadButtons = ({
    );
 
    const handleOnClick = async (fileName: string) => {
+      if (process.env.NEXT_PUBLIC_IS_DEMO_UPLOAD) {
+         alert('Demo version not have uploaded files on server');
+
+         return;
+      }
+
       const response = await getUploadFilesAction(fileName);
 
       if (!response.ok) {
