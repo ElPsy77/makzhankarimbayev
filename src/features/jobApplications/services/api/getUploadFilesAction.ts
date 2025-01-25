@@ -1,9 +1,23 @@
 export const getUploadFilesAction = async (
    fileName: string,
-): Promise<Response> => {
-   const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileName}`;
+): Promise<Response | null> => {
+   try {
+      const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileName}`;
 
-   const response = await fetch(apiUrl);
+      const response = await fetch(apiUrl);
 
-   return response;
+      if (!response.ok) {
+         console.error(
+            `Code ${response.status} - Something wrong while get upload file`,
+         );
+
+         return response;
+      }
+
+      return response;
+   } catch (err) {
+      console.error(err);
+
+      return null;
+   }
 };

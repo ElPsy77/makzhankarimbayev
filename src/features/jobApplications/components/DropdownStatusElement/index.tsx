@@ -17,25 +17,22 @@ const DropdownStatusElement = ({
    const { showNotification } = useContext(NotificationContext);
 
    const handleDropdownItemOnClick = async (id: string, status: number) => {
-      try {
-         const reponse = await updateApplicationStatusAction(id, status);
+      const isUpdateJobApplicationStatus = await updateApplicationStatusAction(
+         id,
+         status,
+      );
 
-         if (!reponse.ok) {
-            alert('Something went wrong while updating your status');
-
-            return;
-         }
-
-         await queryClient.invalidateQueries(['jobApplications']);
-
-         const notificationText = statusData[status]?.isAccepted
-            ? 'Application moved to accepted'
-            : 'Application moved to new';
-
-         showNotification(notificationText, 'success', 2);
-      } catch (err) {
-         console.error(err);
+      if (!isUpdateJobApplicationStatus) {
+         return;
       }
+
+      await queryClient.invalidateQueries(['jobApplications']);
+
+      const notificationText = statusData[status]?.isAccepted
+         ? 'Application moved to accepted'
+         : 'Application moved to new';
+
+      showNotification(notificationText, 'success', 2);
    };
 
    const getStatusDropdownButtonItems = (

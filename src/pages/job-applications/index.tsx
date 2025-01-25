@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import ContentContainer from '@/components/ContentContainer';
 import TableApplications from '@/features/jobApplications/components/TableApplications';
 import { useAuthSession } from '@/hooks/useAuthSession';
-import { getAllJobApplications } from '@/services/apiQueries/getAllJobApplications';
+import { getAllJobApplicationsActionQuery } from '@/services/api/getAllJobApplicationsActionQuery';
 
 const JobApplicationsPage = (): ReactElement => {
    const {
@@ -19,7 +19,7 @@ const JobApplicationsPage = (): ReactElement => {
       isLoading: isQueryLoading,
       isError,
    } = useQuery({
-      queryFn: getAllJobApplications,
+      queryFn: getAllJobApplicationsActionQuery,
       queryKey: ['jobApplications'],
       refetchOnWindowFocus: false,
    });

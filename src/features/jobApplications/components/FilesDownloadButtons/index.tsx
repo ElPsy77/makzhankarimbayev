@@ -25,9 +25,7 @@ const FilesDownloadButtons = ({
 
       const response = await getUploadFilesAction(fileName);
 
-      if (!response.ok) {
-         alert('An error occurred while downloading the file');
-
+      if (!response) {
          return;
       }
 

@@ -3,6 +3,7 @@ import { Button, Popconfirm, Tooltip } from 'antd';
 import { useQueryClient } from 'react-query';
 import { NotificationContext } from '@/providers/NotificationProvider';
 import { DeleteOutlined } from '@ant-design/icons';
+import { deleteJobApplicationAction } from '../../services/api/deleteJobApplicationAction';
 import { deleteUploadFilesAction } from '../../services/api/deleteUploadFilesAction';
 
 type RemoveJobApplicationActionButtonProps = {
@@ -18,37 +19,22 @@ const RemoveJobApplicationActionButton = ({
    const { showNotification } = useContext(NotificationContext);
 
    const handleRemoveJobApplication = async (id: string) => {
-      try {
-         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/job-applications/${id}`,
-            {
-               method: 'DELETE',
-            },
-         );
+      const isDeleteJobApplication = deleteJobApplicationAction(id);
 
-         if (!response.ok) {
-            alert('There was a problem deleting the application');
-
-            return;
-         }
-
-         await queryClient.invalidateQueries(['jobApplications']);
-
-         showNotification('Application deleted', 'success');
-      } catch (err) {
-         console.error(err);
+      if (!isDeleteJobApplication) {
+         return;
       }
+
+      await queryClient.invalidateQueries(['jobApplications']);
+
+      showNotification('Application deleted', 'success');
 
       if (
          uploadFiles &&
          uploadFiles.length > 0 &&
          !process.env.NEXT_PUBLIC_IS_DEMO_UPLOAD
       ) {
-         try {
-            await deleteUploadFilesAction(uploadFiles);
-         } catch (err) {
-            console.error(err);
-         }
+         await deleteUploadFilesAction(uploadFiles);
       }
    };
 

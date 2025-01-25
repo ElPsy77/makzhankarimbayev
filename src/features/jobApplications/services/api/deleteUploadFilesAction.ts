@@ -1,11 +1,25 @@
 export const deleteUploadFilesAction = async (
    fileNames: string,
-): Promise<Response> => {
-   const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileNames}`;
+): Promise<boolean> => {
+   try {
+      const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/uploads/${fileNames}`;
 
-   const response = await fetch(apiUrl, {
-      method: 'DELETE',
-   });
+      const response = await fetch(apiUrl, {
+         method: 'DELETE',
+      });
 
-   return response;
+      if (!response.ok) {
+         console.error(
+            `Code ${response.status} - Something wrong while delete upload files`,
+         );
+
+         return false;
+      }
+
+      return true;
+   } catch (err) {
+      console.error(err);
+
+      return false;
+   }
 };

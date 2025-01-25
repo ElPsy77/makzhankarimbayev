@@ -1,6 +1,6 @@
 import { JobApplicationDataWithId } from '@/types';
 
-export const getAllJobApplications = async () => {
+export const getAllJobApplicationsActionQuery = async () => {
    const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/job-applications`,
    );
