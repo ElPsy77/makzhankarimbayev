@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { Spin } from 'antd';
-
 import ContentContainer from '@/components/ContentContainer';
 import LoginForm from '@/features/loginPanel/components/LoginForm';
 import { useAuthSession } from '@/hooks/useAuthSession';

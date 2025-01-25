@@ -1,5 +1,4 @@
 import { Form } from 'antd';
-
 import FormSubmitButton from '@/components/FormSubmitButton';
 import InputElement from '@/components/InputElement';
 import {
@@ -7,7 +6,6 @@ import {
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-
 import { useLogin } from '../../hooks/useLogin';
 import { LoginFormData } from '../../types';
 import ErrorStatusMessage from '../ErrorStatusMessage';

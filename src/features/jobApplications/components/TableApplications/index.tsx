@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { Button, Segmented, Table } from 'antd';
-
 import { useTableApplications } from '../../hooks/useTableApplications';
 import { useTableFilters } from '../../hooks/useTableFilters';
 import { TABLE_SEGMENTED_OPTIONS, TableDataType } from '../../types';

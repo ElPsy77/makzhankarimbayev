@@ -2,7 +2,6 @@ import { ReactElement } from 'react';
 import Head from 'next/head';
 import { Spin } from 'antd';
 import { useQuery } from 'react-query';
-
 import ContentContainer from '@/components/ContentContainer';
 import TableApplications from '@/features/jobApplications/components/TableApplications';
 import { useAuthSession } from '@/hooks/useAuthSession';

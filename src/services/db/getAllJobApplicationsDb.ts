@@ -1,5 +1,4 @@
 import { RowDataPacket } from 'mysql2';
-
 import pool from '@/lib/db';
 import { JobApplicationDataWithId } from '@/types';
 

@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer';
-
 import { JobApplicationData } from '@/types';
 
 const transporter = nodemailer.createTransport({

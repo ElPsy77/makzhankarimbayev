@@ -1,5 +1,4 @@
 import { GetProp, TableProps } from 'antd';
-
 import { JobApplicationDataWithId } from '@/types';
 
 export type TableDataType = Omit<

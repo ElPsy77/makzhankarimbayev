@@ -1,10 +1,8 @@
 import { ReactElement, useContext } from 'react';
 import { Button, Dropdown, MenuProps, Tooltip } from 'antd';
 import { useQueryClient } from 'react-query';
-
 import { NotificationContext } from '@/providers/NotificationProvider';
 import { EditOutlined } from '@ant-design/icons';
-
 import { updateApplicationStatusAction } from '../../services/api/updateApplicationStatusAction';
 import { statusData } from '../StatusTag';
 

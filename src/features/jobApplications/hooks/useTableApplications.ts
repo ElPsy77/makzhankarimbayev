@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { FilterValue, SorterResult } from 'antd/lib/table/interface';
-
 import { statusData } from '../components/StatusTag';
 import { ColumnsType, TableDataType } from '../types';
-
 import { useTableColumns } from './useTableColumns';
 
 type TableApplicationsHookResult = {

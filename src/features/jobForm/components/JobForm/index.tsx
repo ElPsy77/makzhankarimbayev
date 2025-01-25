@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { Checkbox, Form, Radio, Upload } from 'antd';
-
 import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 import FormSubmitButton from '@/components/FormSubmitButton';
 import InputElement from '@/components/InputElement';
@@ -14,7 +13,6 @@ import {
 } from '@/configs/form';
 import { phoneValidationRule, priceValidationRule } from '@/configs/formRules';
 import { acceptedFilesExtensions } from '@/helpers/checkIsUploadFileHasInvalidExtension';
-
 import DatePickerElement from '../../../../components/DatePickerElement';
 import { useUpload } from '../../../../hooks/useUpload';
 import { useJobForm } from '../../hooks/useJobForm';

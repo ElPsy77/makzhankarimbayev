@@ -1,5 +1,4 @@
 import { FilterValue, SorterResult } from 'antd/lib/table/interface';
-
 import DropdownStatusElement from '../components/DropdownStatusElement';
 import FilesDownloadButtons from '../components/FilesDownloadButtons';
 import NameRow from '../components/NameRow';

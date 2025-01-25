@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
-
 import { sendJobApplicationDb } from '@/features/jobForm/services/db/sendJobApplicationDb';
 import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
 import { getAllJobApplicationsDb } from '@/services/db/getAllJobApplicationsDb';

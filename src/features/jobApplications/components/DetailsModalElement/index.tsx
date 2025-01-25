@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { Modal } from 'antd';
-
 import { ColumnsType, TableDataType } from '../../types';
 import DetailsRow from '../DetailsRow';
 import StatusTag from '../StatusTag';

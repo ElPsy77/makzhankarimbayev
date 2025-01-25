@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { Button, Tooltip } from 'antd';
-
 import { PlusOutlined } from '@ant-design/icons';
 
 type NameRowProps = {

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { FormInstance, FormProps } from 'antd';
-
 import { redirectToBackUrl } from '../helpers/redirectToBackUrl';
 import { LoginFormData } from '../types';
 

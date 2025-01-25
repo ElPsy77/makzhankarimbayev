@@ -4,11 +4,9 @@ import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 import { ConfigProvider } from 'antd';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
 import Layout from '@/components/Layout';
 import { NotificationProvider } from '@/providers/NotificationProvider';
 import { theme } from '@/styles/ant-theme';
-
 import '@/styles/globals.css';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });

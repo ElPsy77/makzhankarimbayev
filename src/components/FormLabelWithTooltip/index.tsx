@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { Tooltip } from 'antd';
-
 import { InfoCircleOutlined } from '@ant-design/icons';
 
 type FormLabelWithTooltipProps = {

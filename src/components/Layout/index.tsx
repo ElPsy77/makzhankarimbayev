@@ -2,7 +2,6 @@ import { ReactElement, ReactNode } from 'react';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { Button } from 'antd';
-
 import Logo from '../../../public/assets/logo.svg';
 
 type LayoutProps = {
