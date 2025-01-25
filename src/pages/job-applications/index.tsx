@@ -1,11 +1,12 @@
 import { ReactElement } from 'react';
-import TableApplications from '@/features/jobApplications/components/TableApplications';
-import ContentContainer from '@/components/ContentContainer';
-import { useQuery } from 'react-query';
-import { getAllJobApplications } from '@/services/apiQueries/getAllJobApplications';
-import { Spin } from 'antd';
-import { useAuthSession } from '@/hooks/useAuthSession';
 import Head from 'next/head';
+import { Spin } from 'antd';
+import { useQuery } from 'react-query';
+
+import ContentContainer from '@/components/ContentContainer';
+import TableApplications from '@/features/jobApplications/components/TableApplications';
+import { useAuthSession } from '@/hooks/useAuthSession';
+import { getAllJobApplications } from '@/services/apiQueries/getAllJobApplications';
 
 const JobApplicationsPage = (): ReactElement => {
    const {

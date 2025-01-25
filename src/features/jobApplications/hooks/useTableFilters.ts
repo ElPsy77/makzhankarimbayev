@@ -1,5 +1,6 @@
-import { FilterValue, SorterResult } from 'antd/lib/table/interface';
 import { useState } from 'react';
+import { FilterValue, SorterResult } from 'antd/lib/table/interface';
+
 import { TableDataType } from '../types';
 
 type TableFiltersHookResult = {

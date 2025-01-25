@@ -1,5 +1,7 @@
 import React, { ChangeEvent, ReactElement } from 'react';
+
 import { normalizerPhoneNumber } from '@/helpers/normalizerPhoneNumber';
+
 import InputElement from '../InputElement';
 
 const InputPhoneNumber = ({ ...props }): ReactElement => {

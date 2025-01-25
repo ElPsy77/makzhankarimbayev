@@ -1,7 +1,8 @@
 import { FilterValue, SorterResult } from 'antd/lib/table/interface';
-import NameRow from '../components/NameRow';
+
 import DropdownStatusElement from '../components/DropdownStatusElement';
 import FilesDownloadButtons from '../components/FilesDownloadButtons';
+import NameRow from '../components/NameRow';
 import RemoveJobApplicationActionButton from '../components/RemoveJobApplicationActionButton';
 import StatusTag from '../components/StatusTag';
 import { getColumnSearchProps } from '../helpers/getColumnSearchProps';

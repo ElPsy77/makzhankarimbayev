@@ -1,7 +1,8 @@
-import { deleteJobApplication } from '@/services/db/deleteJobApplication';
-import { updateJobApplicationStatus } from '@/services/db/updateJobApplicationStatus';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
+
+import { deleteJobApplication } from '@/services/db/deleteJobApplication';
+import { updateJobApplicationStatus } from '@/services/db/updateJobApplicationStatus';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
    const { id } = req.query;

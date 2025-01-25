@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
+import Head from 'next/head';
+import { Spin } from 'antd';
+
 import ContentContainer from '@/components/ContentContainer';
 import LoginForm from '@/features/loginPanel/components/LoginForm';
-import { Spin } from 'antd';
 import { useAuthSession } from '@/hooks/useAuthSession';
-import Head from 'next/head';
 
 const LoginPanelPage = (): ReactElement => {
    const { isLoading, isAuth, redirectToUrl } =

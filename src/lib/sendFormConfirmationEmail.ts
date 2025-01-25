@@ -1,5 +1,6 @@
-import { JobApplicationData } from '@/types';
 import nodemailer from 'nodemailer';
+
+import { JobApplicationData } from '@/types';
 
 const transporter = nodemailer.createTransport({
    host: process.env.CONFIRMATION_MAIL_HOST,

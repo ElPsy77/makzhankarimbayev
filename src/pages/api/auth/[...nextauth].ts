@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { compare } from 'bcrypt';
+
 import { getUserByLogin } from '@/features/loginPanel/services/db/getUserByLogin';
 
 export default NextAuth({

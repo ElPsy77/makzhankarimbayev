@@ -20,7 +20,7 @@
       "ecmaVersion": "latest",
       "sourceType": "module"
    },
-   "plugins": ["react", "react-hooks", "prettier"],
+   "plugins": ["react", "react-hooks", "prettier", "simple-import-sort"],
    "rules": {
       "no-var": "error",
       "no-unused-vars": "off",
@@ -37,6 +37,20 @@
          }
       ],
       "react-hooks/rules-of-hooks": "error",
-      "prettier/prettier": "warn"
+      "prettier/prettier": "warn",
+      "simple-import-sort/imports": [
+         "error",
+         {
+            "groups": [
+               ["^react$", "^next", "^[a-z]"],
+               ["^@"],
+               ["^~"],
+               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+               ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+               ["^.+\\.s?css$"],
+               ["^\\u0000"]
+            ]
+         }
+      ]
    }
 }

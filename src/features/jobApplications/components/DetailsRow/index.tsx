@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { ColumnsType, ColumnType } from 'antd/lib/table';
+
 import { normalizeDetailRowValue } from '../../helpers/normalizeDetailRowValue';
 import { TableDataType } from '../../types';
 import CopyButton from '../CopyButton';

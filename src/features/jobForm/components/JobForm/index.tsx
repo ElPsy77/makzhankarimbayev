@@ -1,23 +1,25 @@
+import { ReactElement } from 'react';
+import { Checkbox, Form, Radio, Upload } from 'antd';
+
+import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 import FormSubmitButton from '@/components/FormSubmitButton';
 import InputElement from '@/components/InputElement';
+import InputPhoneNumber from '@/components/InputPhoneNumber';
+import InputPriceElement from '@/components/InputPriceElement';
+import UploadContent from '@/components/UploadContent';
 import {
    formCommonProps,
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-import { Checkbox, Form, Radio, Upload } from 'antd';
-import { ReactElement } from 'react';
-import { useJobForm } from '../../hooks/useJobForm';
-import { useUpload } from '../../../../hooks/useUpload';
-import DatePickerElement from '../../../../components/DatePickerElement';
-import ResultStatusMessage from '../ResultStatusMessage';
 import { phoneValidationRule, priceValidationRule } from '@/configs/formRules';
-import UploadContent from '@/components/UploadContent';
-import { JobApplicationFormData } from '../../types';
-import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
-import InputPriceElement from '@/components/InputPriceElement';
-import InputPhoneNumber from '@/components/InputPhoneNumber';
 import { acceptedFilesExtensions } from '@/helpers/checkIsUploadFileHasInvalidExtension';
+
+import DatePickerElement from '../../../../components/DatePickerElement';
+import { useUpload } from '../../../../hooks/useUpload';
+import { useJobForm } from '../../hooks/useJobForm';
+import { JobApplicationFormData } from '../../types';
+import ResultStatusMessage from '../ResultStatusMessage';
 
 const JobForm = (): ReactElement => {
    const [formRef] = Form.useForm();

@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
+import Head from 'next/head';
+
 import ContentContainer from '@/components/ContentContainer';
 import JobForm from '@/features/jobForm/components/JobForm';
-import Head from 'next/head';
 
 const JobApplicationFormPage = (): ReactElement => (
    <>

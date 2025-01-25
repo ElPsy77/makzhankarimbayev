@@ -1,7 +1,8 @@
 import { ResultSetHeader } from 'mysql2';
 import { v4 as uuidv4 } from 'uuid';
-import { JobApplicationData } from '@/types';
+
 import pool from '@/lib/db';
+import { JobApplicationData } from '@/types';
 
 const SQL_QUERY = `
    INSERT INTO ${process.env.DB_TABLE_NAME_APPLICATIONS}

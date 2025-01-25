@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { FormInstance, FormProps } from 'antd/lib/form';
+
 import { getUploadsFilesAsFormData } from '@/helpers/getUploadsFilesAsFormData';
 import { UploadPostResponseData } from '@/pages/api/uploads';
+
 import { sendFormDataAction } from '../services/api/sendFormDataAction';
 import { uploadFilesAction } from '../services/api/uploadFilesAction';
-import { JobApplicationFormData, FormResultStatus } from '../types';
+import { FormResultStatus, JobApplicationFormData } from '../types';
 
 type JobFormHookResult = {
    formResultStatus: FormResultStatus | null;

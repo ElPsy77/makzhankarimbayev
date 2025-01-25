@@ -1,5 +1,6 @@
-import Alert from 'antd/lib/alert';
 import React, { ReactElement } from 'react';
+import Alert from 'antd/lib/alert';
+
 import { FormResultStatus } from '../../types';
 
 type ResultStatusMessageProps = {

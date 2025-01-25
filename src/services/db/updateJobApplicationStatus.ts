@@ -1,5 +1,6 @@
-import pool from '@/lib/db';
 import { ResultSetHeader } from 'mysql2';
+
+import pool from '@/lib/db';
 
 const SQL_QUERY = `UPDATE ${process.env.DB_TABLE_NAME_APPLICATIONS} SET status = ?, closedDate = ? WHERE id = ?`;
 

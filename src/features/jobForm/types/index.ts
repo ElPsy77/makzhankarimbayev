@@ -1,4 +1,5 @@
 import { UploadFile } from 'antd';
+
 import { JobApplicationData } from '@/types';
 
 export type JobApplicationFormData = {

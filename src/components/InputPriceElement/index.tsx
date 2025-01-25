@@ -1,5 +1,7 @@
 import React, { ChangeEvent, ReactElement } from 'react';
+
 import { normalizerPrice } from '@/helpers/normalizerPrice';
+
 import InputElement from '../InputElement';
 
 const InputPriceElement = ({ ...props }): ReactElement => {

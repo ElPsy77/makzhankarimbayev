@@ -1,8 +1,10 @@
+import { ReactElement, useContext } from 'react';
+import { Button, Popconfirm, Tooltip } from 'antd';
+import { useQueryClient } from 'react-query';
+
 import { NotificationContext } from '@/providers/NotificationProvider';
 import { DeleteOutlined } from '@ant-design/icons';
-import { Button, Popconfirm, Tooltip } from 'antd';
-import { ReactElement, useContext } from 'react';
-import { useQueryClient } from 'react-query';
+
 import { deleteUploadFilesAction } from '../../services/api/deleteUploadFilesAction';
 
 type RemoveJobApplicationActionButtonProps = {

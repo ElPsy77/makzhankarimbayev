@@ -1,11 +1,13 @@
 import { Form } from 'antd';
+
+import FormSubmitButton from '@/components/FormSubmitButton';
+import InputElement from '@/components/InputElement';
 import {
    formCommonProps,
    formItemCommonProps,
    validateMessages,
 } from '@/configs/form';
-import FormSubmitButton from '@/components/FormSubmitButton';
-import InputElement from '@/components/InputElement';
+
 import { useLogin } from '../../hooks/useLogin';
 import { LoginFormData } from '../../types';
 import ErrorStatusMessage from '../ErrorStatusMessage';

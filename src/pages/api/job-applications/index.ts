@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { sendJobApplicationDb } from '@/features/jobForm/services/db/sendJobApplicationDb';
-import { getAllJobApplicationsDb } from '@/services/db/getAllJobApplicationsDb';
-import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
 import { getSession } from 'next-auth/react';
+
+import { sendJobApplicationDb } from '@/features/jobForm/services/db/sendJobApplicationDb';
+import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
+import { getAllJobApplicationsDb } from '@/services/db/getAllJobApplicationsDb';
 import { JobApplicationData } from '@/types';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

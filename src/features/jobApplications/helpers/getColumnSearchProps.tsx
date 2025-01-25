@@ -1,5 +1,7 @@
 import { TableColumnType } from 'antd';
+
 import { SearchOutlined } from '@ant-design/icons';
+
 import FilterDropdownSearchElement from '../components/FilterDropdownSearchElement';
 import { DataIndex, TableDataType } from '../types';
 

@@ -1,6 +1,6 @@
+import { createContext, ReactElement, ReactNode } from 'react';
 import { notification } from 'antd';
 import { IconType } from 'antd/lib/notification/interface';
-import { createContext, ReactElement, ReactNode } from 'react';
 
 type NotificationProviderProps = {
    children: ReactNode;

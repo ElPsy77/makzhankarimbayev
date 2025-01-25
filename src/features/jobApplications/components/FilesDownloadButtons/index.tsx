@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
 import { Button, Tooltip } from 'antd';
-import { getUploadFilesAction } from '../../services/api/getUploadFilesAction';
+
 import { downloadFile } from '../../helpers/downloadFile';
+import { getUploadFilesAction } from '../../services/api/getUploadFilesAction';
 
 type FilesDownloadButtonsProps = {
    uploadNames: string;

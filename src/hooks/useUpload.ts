@@ -1,9 +1,10 @@
+import { FormInstance } from 'antd/lib/form/Form';
+import { RcFile, UploadChangeParam, UploadFile } from 'antd/lib/upload';
+
 import { checkIsUploadFileExist } from '@/helpers/checkIsUploadFileExist';
 import { checkIsUploadFileHasInvalidExtension } from '@/helpers/checkIsUploadFileHasInvalidExtension';
 import { checkIsUploadFileTooBig } from '@/helpers/checkIsUploadFileTooBig';
 import { checkIsUploadTotalFilesSizeTooBig } from '@/helpers/checkIsUploadTotalFilesSizeTooBig';
-import { FormInstance } from 'antd/lib/form/Form';
-import { RcFile, UploadChangeParam, UploadFile } from 'antd/lib/upload';
 
 type UploadHookResult = {
    validateUploadFiles: (info: UploadChangeParam<UploadFile>) => void;

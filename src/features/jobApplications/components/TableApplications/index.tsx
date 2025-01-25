@@ -1,8 +1,9 @@
 import React, { ReactElement } from 'react';
 import { Button, Segmented, Table } from 'antd';
-import { useTableFilters } from '../../hooks/useTableFilters';
+
 import { useTableApplications } from '../../hooks/useTableApplications';
-import { TableDataType, TABLE_SEGMENTED_OPTIONS } from '../../types';
+import { useTableFilters } from '../../hooks/useTableFilters';
+import { TABLE_SEGMENTED_OPTIONS, TableDataType } from '../../types';
 import DetailsModalElement from '../DetailsModalElement';
 
 export type TableApplicationsProps = {
