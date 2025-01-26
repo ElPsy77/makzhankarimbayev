@@ -29,7 +29,7 @@ export const sendFormConfirmationEmail = async (
          <b>The application has been delivered, we will respond as soon as possible</b>
          <br/><br/>
 
-         Imię i nazwisko: <b>${jobApplicationData.name}</b><br/>
+         Name: <b>${jobApplicationData.name}</b><br/>
 
          Town: <b>${jobApplicationData.town}</b><br/>
 
@@ -43,9 +43,9 @@ export const sendFormConfirmationEmail = async (
 
          Last Company Name: <b>${jobApplicationData.lastCompany || '-'}</b><br/>
 
-         Employee name: <b>${jobApplicationData.employeeName || '-'}</b><br/>
+         Recommending employee name: <b>${jobApplicationData.employeeName || '-'}</b><br/>
          
-         Załączniki: <b>${jobApplicationData.uploadNames || '-'}</b>
+         Files: <b>${jobApplicationData.uploadNames || '-'}</b>
       `,
    });
 };
