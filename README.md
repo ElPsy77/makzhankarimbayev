@@ -6,7 +6,8 @@ Application with job application form, applications can be manage in table.
 
 ### Admin login panel data
 
-Login: Admin
+Login: admin
+
 Password: 4uslvzdo6
 
 ### Project Link
