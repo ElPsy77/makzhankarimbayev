@@ -4,6 +4,11 @@
 
 Application with job application form, applications can be manage in table.
 
+### Admin login panel data
+
+Login: Admin
+Password: 4uslvzdo6
+
 ### Project Link
 
 https://job-application.sebastiangolab.pl/

@@ -58,12 +58,13 @@ export const useTableColumns = (
          dataIndex: 'startJobDate',
          sorter: (a, b) =>
             sortTableValues(
-               new Date(a.createdDate).getTime(),
-               new Date(b.createdDate).getTime(),
+               new Date(a.startJobDate).getTime(),
+               new Date(b.startJobDate).getTime(),
             ),
          sortOrder:
             sortedInfo.field === 'startJobDate' ? sortedInfo.order : null,
-         render: (_, record) => new Date(record.startJobDate).toLocaleString(),
+         render: (_, record) =>
+            new Date(record.startJobDate).toLocaleDateString(),
       },
       {
          title: 'Financial Expectations',

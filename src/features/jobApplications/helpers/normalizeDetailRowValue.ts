@@ -6,5 +6,9 @@ export const normalizeDetailRowValue = (
       return new Date(value).toLocaleString();
    }
 
+   if (detailKey === 'startJobDate') {
+      return new Date(value).toLocaleDateString();
+   }
+
    return value;
 };
