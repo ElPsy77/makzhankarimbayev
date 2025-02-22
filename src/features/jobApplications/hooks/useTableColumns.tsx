@@ -110,14 +110,14 @@ export const useTableColumns = (
                : null,
       },
       {
-         title: 'Załączniki',
+         title: 'Files',
          render: (_, record) =>
             record.uploadNames ? (
                <FilesDownloadButtons uploadNames={record.uploadNames} />
             ) : null,
       },
       {
-         title: 'Akcje',
+         title: 'Actions',
          width: 135,
          render: (_, record) => (
             <div className='flex'>
