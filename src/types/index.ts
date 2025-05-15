@@ -1,17 +1,19 @@
-export type JobApplicationData = {
+export interface JobApplicationData {
    name: string;
    town: string;
    email: string;
    phone: string;
-   startJobDate: string;
-   financialExpectations: number;
-   lastCompany?: string | null;
-   employeeName?: string | null;
-   uploadNames: string | null;
-   status: number;
-   createdDate: string;
-   closedDate?: string | null;
-};
+   startJobDate: string | Date;
+   financialExpectations: string;
+   lastCompany?: string;
+   isRecommendation: boolean; // ✅ добавлено
+   employeeName: string;
+   agreement: boolean; // ✅ добавлено
+   uploadNames?: string;
+   status?: number;
+   createdDate: string | Date;
+   closedDate?: string | Date | null;
+}
 
 export type JobApplicationDataWithId = JobApplicationData & {
    id: string;

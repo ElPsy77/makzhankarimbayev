@@ -19,7 +19,7 @@ const FilterDropdownSearchElement = ({
 }: FilterDropdownSearchElementProps): ReactElement<FilterDropdownSearchElementProps> => {
    const searchInput = (
       <Input
-         placeholder={'Search'}
+         placeholder={'Поиск'}
          value={selectedKeys[0]}
          onChange={(e) => {
             setSelectedKeys(e.target.value ? [e.target.value] : []);
@@ -41,7 +41,7 @@ const FilterDropdownSearchElement = ({
             }
          }}
       >
-         Reset
+         Сбросить
       </Button>
    );
 
@@ -52,7 +52,7 @@ const FilterDropdownSearchElement = ({
             close();
          }}
       >
-         Close
+         Закрыть
       </Button>
    );
 

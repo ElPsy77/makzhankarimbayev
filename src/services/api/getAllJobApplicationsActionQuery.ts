@@ -14,5 +14,5 @@ export const getAllJobApplicationsActionQuery = async () => {
       return jobApplications;
    }
 
-   throw Error('There was a problem downloading applications');
+   throw Error('Произошла ошибка при загрузке заявок');
 };

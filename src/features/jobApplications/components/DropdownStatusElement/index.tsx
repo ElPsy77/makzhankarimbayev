@@ -29,8 +29,8 @@ const DropdownStatusElement = ({
       await queryClient.invalidateQueries(['jobApplications']);
 
       const notificationText = statusData[status]?.isAccepted
-         ? 'Application moved to accepted'
-         : 'Application moved to new';
+         ? 'Заявка перемещена в принятые'
+         : 'Заявка перемещена в новые';
 
       showNotification(notificationText, 'success', 2);
    };
@@ -52,7 +52,7 @@ const DropdownStatusElement = ({
          trigger={['click']}
          placement='bottomRight'
       >
-         <Tooltip title='Change status'>
+         <Tooltip title='Изменить статус'>
             <Button className='text-lg px-3 py-5 mr-3'>
                <EditOutlined />
             </Button>

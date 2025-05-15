@@ -1,70 +1,54 @@
-<!-- ABOUT THE PROJECT -->
+<!-- О ПРОЕКТЕ -->
 
-## About The Project
+## О проекте
 
-Application with job application form, applications can be manage in table.
+Дипломный проект Мейрбека Алмаса 
+Группы П21-4гк
 
-### Admin login panel data
+### Данные для входа в панель администратора
 
-Login: admin
+Логин: admin  
+Пароль: 4uslvzdo6  
 
-Password: 4uslvzdo6
+<!-- СОЗДАНО С ПОМОЩЬЮ -->
 
-### Project Link
-
-https://job-application.sebastiangolab.pl/
-
-<!-- BUILD WITH -->
-
-## Build With
+## Создано с помощью
 
 <ul>
-  <li>React</li>
-  <li>Next.js</li>
-  <li>React Query</li>
-  <li>Ant Design</li>
-  <li>Tailwind CSS</li>
+   <li>React</li>
+   <li>Next.js</li>
+   <li>React Query</li>
+   <li>Ant Design</li>
+   <li>Tailwind CSS</li>
 </ul>
 
-<!-- GETTING STARTED -->
+<!-- НАЧАЛО РАБОТЫ -->
 
-## Getting Started
+## Начало работы
 
-To get a local copy up and running follow these simple steps.
+Чтобы запустить локальную копию, выполните следующие простые шаги.
 
-### Prerequisites
+### Предварительные требования
 
 - npm
 
-  ```sh
-  npm install npm@latest -g
-  ```
-
-- node (project use version 20.17.0) - https://nodejs.org/en/download/
-
-### Installation
-
-1. Clone the repo
    ```sh
-   git clone https://github.com/sebastiangolab/free-coffee-app.git
-   ```
-2. Install NPM packages
-
-   ```sh
-   npm install
+   npm install npm@latest -g
    ```
 
-3. Fill .env file
+- node (проект использует версию 20.17.0) - https://nodejs.org/en/download/
 
-4. Start app in local
-   ```sh
-   npm run dev
-   ```
+### Установка
 
-<!-- CONTACT -->
+1. Установите пакеты NPM
 
-## Contact
+    ```sh
+    npm install
+    ```
 
-Sebastian Gołąb - sebagolab97@gmail.com
+2. Заполните файл .env
 
-More about me: https://sebastiangolab.pl/
+3. Запустите приложение локально
+    ```sh
+    npm run dev
+    ```

@@ -16,14 +16,14 @@ const CopyButton = ({
       try {
          await navigator.clipboard.writeText(value);
 
-         showNotification('Copied', 'success');
+         showNotification('Скопировано', 'success');
       } catch {
-         showNotification('Copy error', 'error');
+         showNotification('Ошибка копирования', 'error');
       }
    };
 
    return (
-      <Tooltip title='Copy value'>
+      <Tooltip title='Скопировать значение'>
          <Button
             onClick={handleOnClick}
             size='large'

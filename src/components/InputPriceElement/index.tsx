@@ -16,7 +16,7 @@ const InputPriceElement = ({ ...props }): ReactElement => {
       }
    };
 
-   return <InputElement {...props} onChange={handleChange} addonAfter='zł' />;
+   return <InputElement {...props} onChange={handleChange} addonAfter='₸' />;
 };
 
 export default InputPriceElement;

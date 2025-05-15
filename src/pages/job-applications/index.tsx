@@ -34,24 +34,24 @@ const JobApplicationsPage = (): ReactElement => {
    }
 
    if (isError) {
-      return <h2>There was a problem downloading applications...</h2>;
+      return <h2>Произошла ошибка при загрузке заявок...</h2>;
    }
 
    return (
       <>
          <Head>
-            <title>Job Applications</title>
-            <meta name='description' content='Applications' />
+            <title>Заявки на работу</title>
+            <meta name='description' content='Заявки' />
             <meta name='robots' content='noindex,nofollow' />
          </Head>
 
          <ContentContainer isFull>
-            <h1 className='mb-5 text-3xl font-bold'>Job Applications</h1>
+            <h1 className='mb-5 text-3xl font-bold'>Заявки на работу</h1>
 
             {isQueryLoading ? (
                <div className='flex'>
                   <Spin className='mr-3' />
-                  Loading data...
+                  Загрузка данных...
                </div>
             ) : (
                <TableApplications jobApplications={jobApplications || []} />

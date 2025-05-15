@@ -17,7 +17,7 @@ export const updateApplicationStatusAction = async (
 
       if (!response.ok) {
          console.error(
-            `Code ${response.status} - Something wrong while updating status`,
+            `Код ${response.status} — Произошла ошибка при обновлении статуса`,
          );
 
          return false;
@@ -25,7 +25,7 @@ export const updateApplicationStatusAction = async (
 
       return true;
    } catch (err) {
-      console.error(err);
+      console.error('Ошибка при обновлении статуса заявки:', err);
 
       return false;
    }

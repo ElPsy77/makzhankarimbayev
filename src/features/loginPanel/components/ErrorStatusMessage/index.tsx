@@ -12,13 +12,13 @@ const ErrorStatusMessage = ({
       <>
          {status === 401 ? (
             <Alert
-               message='Login or password is incorrect'
+               message='Неверный логин или пароль'
                type='error'
                showIcon
             />
          ) : (
             <Alert
-               message='There was a problem logging in, please contact your administrator'
+               message='Произошла ошибка при входе, пожалуйста, обратитесь к администратору'
                type='error'
                showIcon
             />

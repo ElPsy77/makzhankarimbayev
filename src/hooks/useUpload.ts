@@ -29,25 +29,25 @@ export const useUpload = (formRef: FormInstance): UploadHookResult => {
 
       fileList.forEach((file) => {
          if (checkIsUploadFileExist(fileList, file)) {
-            uploadErrors.push(`Plik "${file.name}" jest już dodany`);
+            uploadErrors.push(`Файл "${file.name}" уже добавлен`);
          }
 
          if (checkIsUploadFileTooBig(file)) {
             uploadErrors.push(
-               `Rozmiar pliku "${file.name}" jest zbyt duży (max. 3MB)`,
+               `Размер файла "${file.name}" слишком большой (макс. 3 МБ)`,
             );
          }
 
          if (checkIsUploadFileHasInvalidExtension(file)) {
             uploadErrors.push(
-               `Plik "${file.name}" ma nieprawidłowe rozszerzenie`,
+               `Файл "${file.name}" имеет неправильное расширение`,
             );
          }
       });
 
       if (checkIsUploadTotalFilesSizeTooBig(fileList)) {
          uploadErrors.push(
-            'Łączny rozmiar wszystkich plików nie może przekraczać 3MB',
+            'Общий размер всех файлов не может превышать 3 МБ',
          );
       }
 

@@ -1,52 +1,44 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
 import { sendJobApplicationDb } from '@/features/jobForm/services/db/sendJobApplicationDb';
-import { sendFormConfirmationEmail } from '@/lib/sendFormConfirmationEmail';
-import { getAllJobApplicationsDb } from '@/services/db/getAllJobApplicationsDb';
 import { JobApplicationData } from '@/types';
+import { getAllJobApplicationsDb } from '@/services/db/getAllJobApplicationsDb';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-   const session = await getSession({ req });
-
    switch (req.method) {
-      case 'GET': {
-         if (!session) {
-            return res.status(401).json({ error: 'Unauthorized' });
-         }
+      case 'POST': {
+         try {
+            const jobApplicationData: JobApplicationData = req.body;
+            console.log('📦 Пришли данные:', jobApplicationData); // Лог данных
 
+            const result = await sendJobApplicationDb(jobApplicationData);
+
+            if (!result) {
+               console.error('❌ Ошибка: Не удалось сохранить данные в БД');
+               return res
+                  .status(500)
+                  .json({ error: 'Failed to save job application' });
+            }
+
+            console.log('✅ Данные успешно сохранены в БД');
+            return res.status(200).json({ success: true });
+         } catch (err) {
+            console.error('❌ Ошибка внутри POST:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+         }
+      }
+
+      case 'GET': {
          try {
             const jobApplications = await getAllJobApplicationsDb();
 
             return res.status(200).json({ jobApplications });
          } catch (err) {
-            return res
-               .status(500)
-               .json({ error: 'failed get all job applications' });
-         }
-      }
-
-      case 'POST': {
-         try {
-            const jobApplicationData: JobApplicationData = req.body;
-            const isOk = await sendJobApplicationDb(jobApplicationData);
-
-            if (jobApplicationData) {
-               sendFormConfirmationEmail(jobApplicationData);
-            }
-
-            if (!isOk) {
-               return res
-                  .status(500)
-                  .json({ error: 'failed send application' });
-            }
-
-            return res.status(201).json({ isOk: true });
-         } catch (err) {
-            return res.status(500).json({ error: 'failed send application' });
+            console.error('❌ Ошибка при получении заявок:', err);
+            return res.status(500).json({ error: 'Failed to fetch job applications' });
          }
       }
 
       default:
-         return res.status(400).json({ error: 'Bad request' });
+         return res.status(405).json({ error: 'Method Not Allowed' });
    }
 };

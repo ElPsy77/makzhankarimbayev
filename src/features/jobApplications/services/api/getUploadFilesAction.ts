@@ -8,7 +8,7 @@ export const getUploadFilesAction = async (
 
       if (!response.ok) {
          console.error(
-            `Code ${response.status} - Something wrong while get upload file`,
+            `Код ${response.status} — Произошла ошибка при получении загруженного файла`,
          );
 
          return response;
@@ -16,7 +16,7 @@ export const getUploadFilesAction = async (
 
       return response;
    } catch (err) {
-      console.error(err);
+      console.error('Ошибка при получении файла:', err);
 
       return null;
    }

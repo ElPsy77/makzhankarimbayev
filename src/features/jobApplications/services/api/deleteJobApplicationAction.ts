@@ -10,7 +10,7 @@ export const deleteJobApplicationAction = async (
 
       if (!response.ok) {
          console.error(
-            `Code ${response.status} - Something wrong while delete job application`,
+            `Код ${response.status} — Произошла ошибка при удалении заявки на вакансию`,
          );
 
          return false;
@@ -18,7 +18,7 @@ export const deleteJobApplicationAction = async (
 
       return true;
    } catch (err) {
-      console.error(err);
+      console.error('Ошибка при удалении заявки:', err);
 
       return false;
    }

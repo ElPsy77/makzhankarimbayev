@@ -7,19 +7,19 @@ const UploadContent = () => {
             <InboxOutlined />
          </p>
 
-         <p className='ant-upload-text'>Click or drag the file to upload</p>
+         <p className='ant-upload-text'>Клик или перенисте файл</p>
          <p className='ant-upload-hint'>
-            Maximum file size 3 MB
+            Максимальный размер файла 3 MB
             <br />
-            Acceptable extensions: .pdf, .jpg, .png, .zip
+            Приемлемые расширения: .pdf, .jpg, .png, .zip
          </p>
 
          {process.env.NEXT_PUBLIC_IS_DEMO_UPLOAD ? (
             <>
                <br />
                <p>
-                  THIS IS A DEMO VERSION, SO FILES WILL NOT BE UPLOADED TO THE
-                  SERVER
+               ЭТО ДЕМО-ВЕРСИЯ, ПОЭТОМУ ФАЙЛЫ НЕ БУДУТ ЗАГРУЖЕНЫ НА
+               СЕРВЕР
                </p>
             </>
          ) : null}

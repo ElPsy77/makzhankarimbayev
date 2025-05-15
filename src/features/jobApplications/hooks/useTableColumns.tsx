@@ -20,7 +20,7 @@ export const useTableColumns = (
 ): TableColumnsResult => {
    const tableColumns: ColumnsType = [
       {
-         title: 'Name',
+         title: 'Имя',
          dataIndex: 'name',
          sorter: (a, b) => sortTableValues(a.name, b.name),
          filteredValue: filteredInfo.name || null,
@@ -34,12 +34,12 @@ export const useTableColumns = (
          ...getColumnSearchProps('name'),
       },
       {
-         title: 'Status',
+         title: 'Статус',
          dataIndex: 'status',
          render: (_, record) => <StatusTag status={record.status} />,
       },
       {
-         title: 'Town',
+         title: 'Город',
          dataIndex: 'town',
          hidden: true,
       },
@@ -50,11 +50,11 @@ export const useTableColumns = (
          ...getColumnSearchProps('email'),
       },
       {
-         title: 'Phone Number',
+         title: 'Номер телефона',
          dataIndex: 'phone',
       },
       {
-         title: 'Earliest Possible Start Date',
+         title: 'Самая ранняя возможная дата начала',
          dataIndex: 'startJobDate',
          sorter: (a, b) =>
             sortTableValues(
@@ -67,22 +67,22 @@ export const useTableColumns = (
             new Date(record.startJobDate).toLocaleDateString(),
       },
       {
-         title: 'Financial Expectations',
+         title: 'Финансовые ожидания',
          dataIndex: 'financialExpectations',
          hidden: true,
       },
       {
-         title: 'Last Company Name',
+         title: 'Название последней компании',
          dataIndex: 'lastCompany',
          hidden: true,
       },
       {
-         title: 'Recommending Employee Name',
+         title: 'Имя рекомендующего сотрудника',
          dataIndex: 'employeeName',
          hidden: true,
       },
       {
-         title: 'Created Date',
+         title: 'Дата создания',
          dataIndex: 'createdDate',
          sorter: (a, b) =>
             sortTableValues(
@@ -95,7 +95,7 @@ export const useTableColumns = (
          render: (_, record) => new Date(record.createdDate).toLocaleString(),
       },
       {
-         title: 'Accepted Date',
+         title: 'Дата принятия',
          dataIndex: 'closedDate',
          sorter: (a, b) =>
             sortTableValues(
@@ -110,14 +110,14 @@ export const useTableColumns = (
                : null,
       },
       {
-         title: 'Files',
+         title: 'Файлы',
          render: (_, record) =>
             record.uploadNames ? (
                <FilesDownloadButtons uploadNames={record.uploadNames} />
             ) : null,
       },
       {
-         title: 'Actions',
+         title: 'Действия',
          width: 135,
          render: (_, record) => (
             <div className='flex'>

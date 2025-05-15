@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
 
    const signInButton = (
       <Button href='/login-panel' title='Sign in'>
-         Sign in
+         Войти
       </Button>
    );
 
@@ -24,7 +24,7 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
          }}
          title='Sign out'
       >
-         Sign out
+         Выйти
       </Button>
    );
 
@@ -35,12 +35,12 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
       <div>
          <header className='bg-white px-8 py-4 mb-12 shadow-sm flex justify-between items-center max-medium:flex-col'>
             <Link href='/' className='text-3xl font-bold max-medium:mb-3'>
-               ImJobApp.
+               ЯРабота.
             </Link>
 
             <div>
                <Link href='/' title='form' className={linkCommonStyles}>
-                  Form
+                  Форма
                </Link>
 
                <Link
@@ -48,16 +48,16 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
                   title='applications'
                   className={linkCommonStyles}
                >
-                  Applications
+                  Приложения
                </Link>
 
                <Link
-                  href='https://sebastiangolab.pl/contact'
+                  href='https://almatypolytech.edu.kz'
                   title='contact'
                   target='_blank'
                   className={linkCommonStyles}
                >
-                  Contact
+                  Контакты 
                </Link>
 
                {session ? signOutButton : signInButton}

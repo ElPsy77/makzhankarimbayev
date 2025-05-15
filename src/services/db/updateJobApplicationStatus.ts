@@ -6,7 +6,7 @@ const SQL_QUERY = `UPDATE ${process.env.DB_TABLE_NAME_APPLICATIONS} SET status =
 export const updateJobApplicationStatus = async (
    jobApplicationId: string,
    status: number,
-   closedDate: string,
+   closedDate: string | null,
 ): Promise<boolean> => {
    const [result] = await pool.query<ResultSetHeader>(SQL_QUERY, [
       status,

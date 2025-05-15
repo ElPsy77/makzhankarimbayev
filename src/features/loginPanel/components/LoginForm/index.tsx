@@ -27,7 +27,7 @@ const LoginForm = () => {
             {...formCommonProps}
          >
             <Form.Item<LoginFormData>
-               label='Login'
+               label='Логин'
                name='login'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -36,7 +36,7 @@ const LoginForm = () => {
             </Form.Item>
 
             <Form.Item<LoginFormData>
-               label='Password'
+               label='Пароль'
                name='password'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -45,7 +45,7 @@ const LoginForm = () => {
             </Form.Item>
 
             <Form.Item>
-               <FormSubmitButton text='Sign in' isLoading={isButtonLoading} />
+               <FormSubmitButton text='Войти' isLoading={isButtonLoading} />
             </Form.Item>
          </Form>
 

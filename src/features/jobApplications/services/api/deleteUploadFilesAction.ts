@@ -10,7 +10,7 @@ export const deleteUploadFilesAction = async (
 
       if (!response.ok) {
          console.error(
-            `Code ${response.status} - Something wrong while delete upload files`,
+            `Код ${response.status} — Произошла ошибка при удалении загруженных файлов`,
          );
 
          return false;
@@ -18,7 +18,7 @@ export const deleteUploadFilesAction = async (
 
       return true;
    } catch (err) {
-      console.error(err);
+      console.error('Ошибка при удалении файлов:', err);
 
       return false;
    }

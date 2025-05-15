@@ -6,11 +6,9 @@ import { getUserByLogin } from '@/features/loginPanel/services/db/getUserByLogin
 export default NextAuth({
    providers: [
       CredentialsProvider({
-         name: 'Credentials',
+         name: 'Учетные данные',
          credentials: {
-            login: {
-               type: 'text',
-            },
+            login: { type: 'text' },
             password: { type: 'password' },
          },
          async authorize(credentials) {
@@ -18,14 +16,17 @@ export default NextAuth({
             const password = credentials?.password;
 
             if (!login || !password) {
+               console.error('Отсутствуют логин или пароль');
                return null;
             }
 
             try {
                const user = await getUserByLogin(login);
+               console.log('Пользователь найден:', user);
 
                if (user) {
                   const isValid = await compare(password, user.password);
+                  console.log('Пароль верен:', isValid);
 
                   if (isValid) {
                      return { id: user.login, login: user.login };
@@ -34,8 +35,7 @@ export default NextAuth({
 
                return null;
             } catch (error) {
-               console.error('Error: ', error);
-
+               console.error('Ошибка при авторизации:', error);
                return null;
             }
          },

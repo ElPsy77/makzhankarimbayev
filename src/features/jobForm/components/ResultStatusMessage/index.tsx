@@ -16,7 +16,7 @@ const ResultStatusMessage = ({
          {status === FormResultStatus.SUCCESSS ? (
             <Alert
                className='text-base'
-               message='The application has been sent'
+               message='Заявка была отправлена'
                type='success'
                showIcon
             />
@@ -26,7 +26,7 @@ const ResultStatusMessage = ({
             <Alert
                message={
                   validationErrors === null || !validationErrors.length ? (
-                     'There was a problem sending the application, please contact your administrator'
+                     'Возникла проблема при отправке заявки, пожалуйста, свяжитесь с администратором'
                   ) : (
                      <>
                         {validationErrors.map((error) => (

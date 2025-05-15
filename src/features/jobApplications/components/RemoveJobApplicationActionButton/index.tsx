@@ -40,20 +40,20 @@ const RemoveJobApplicationActionButton = ({
 
    return (
       <Popconfirm
-         title='Attention! You delete the application'
-         description='Are you sure you want to delete the selected application?'
+         title='Внимание! Вы удаляете заявку'
+         description='Вы уверены, что хотите удалить выбранную заявку?'
          onConfirm={() => handleRemoveJobApplication(jobApplicationId)}
-         okText='Yes'
-         cancelText='No'
+         okText='Да'
+         cancelText='Нет'
          placement='topRight'
       >
-         <Tooltip title='Delete application'>
+         <Tooltip title='Удалить заявку'>
             <Button className='text-lg px-3 py-5'>
                <DeleteOutlined />
             </Button>
          </Tooltip>
       </Popconfirm>
-   );
+   );   
 };
 
 export default RemoveJobApplicationActionButton;

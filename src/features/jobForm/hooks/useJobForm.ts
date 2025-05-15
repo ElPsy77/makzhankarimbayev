@@ -22,13 +22,11 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
 
    const setSuccessFormStatus = (): void => {
       setIsButtonLoading(false);
-
       setFormResultStatus(FormResultStatus.SUCCESSS);
    };
 
    const setErrorFormStatus = (): void => {
       setIsButtonLoading(false);
-
       setFormResultStatus(FormResultStatus.ERROR);
    };
 
@@ -40,7 +38,6 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
       errorInfo,
    ) => {
       console.error(errorInfo);
-
       setErrorFormStatus();
    };
 
@@ -57,12 +54,12 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
 
       if (filesFieldErrors.length > 0) {
          setErrorFormStatus();
-
          return;
       }
 
       const { files, ...restFormValues } = formValues;
 
+      // Загружаем файлы, если не демо-режим
       if (!isDemoUpload && files && files.fileList.length > 0) {
          const filesFormData = getUploadsFilesAsFormData(files);
 
@@ -70,17 +67,18 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
 
          if (uploadFiles === null) {
             setErrorFormStatus();
-
             return;
          }
 
          uploadNames = uploadFiles;
       }
 
+      // В демо-режиме просто получаем имена файлов
       if (isDemoUpload && files && files.fileList.length > 0) {
          uploadNames = files.fileList.map((file) => file.name ?? '').join(',');
       }
 
+      // Отправляем форму
       const isSendFormData = await sendFormDataAction(
          restFormValues,
          uploadNames,
@@ -88,7 +86,6 @@ export const useJobForm = (formRef: FormInstance): JobFormHookResult => {
 
       if (!isSendFormData) {
          setErrorFormStatus();
-
          return;
       }
 

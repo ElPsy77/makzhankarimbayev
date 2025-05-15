@@ -1,6 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
-import { deleteJobApplication } from '@/services/db/deleteJobApplication';
 import { updateJobApplicationStatus } from '@/services/db/updateJobApplicationStatus';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -12,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const { status, closedDate } = JSON.parse(req.body);
 
             if (typeof status !== 'number') {
-               return res.status(500).send({ error: 'invalid status' });
+               return res.status(400).json({ error: 'Неверный статус' });
             }
 
             const isOk = await updateJobApplicationStatus(
@@ -24,42 +22,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             if (!isOk) {
                return res
                   .status(500)
-                  .send({ error: 'failed update application' });
+                  .json({ error: 'Не удалось обновить заявку' });
             }
 
-            res.status(200).json({ isOk: true });
+            res.status(200).json({ success: true });
          } catch (err) {
-            res.status(500).send({ error: 'failed update application' });
+            console.error('❌ Ошибка при обновлении заявки:', err);
+            res.status(500).json({ error: 'Внутренняя ошибка сервера' });
          }
-
-         break;
-      }
-
-      case 'DELETE': {
-         const session = await getSession({ req });
-
-         if (!session) {
-            return res.status(401).json({ error: 'Unauthorized' });
-         }
-
-         try {
-            const isOk = await deleteJobApplication(id as string);
-
-            if (!isOk) {
-               return res
-                  .status(500)
-                  .send({ error: 'failed delete application' });
-            }
-
-            res.status(200).json({ isOk: true });
-         } catch (err) {
-            res.status(500).send({ error: 'failed delete application' });
-         }
-
          break;
       }
 
       default:
-         res.status(400).json({ message: 'Bad request' });
+         res.status(405).json({ error: 'Метод не разрешён' });
    }
 };

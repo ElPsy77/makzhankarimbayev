@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <>
          <Head>
             <link rel='icon' href='/favicon.png' />
-            <title>ImJobApp.</title>
+            <title>ЯРабота.</title>
          </Head>
 
          <SessionProvider>

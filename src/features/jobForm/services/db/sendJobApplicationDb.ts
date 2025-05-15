@@ -3,31 +3,40 @@ import { v4 as uuidv4 } from 'uuid';
 import pool from '@/lib/db';
 import { JobApplicationData } from '@/types';
 
+// Функция форматирования даты в YYYY-MM-DD
+const formatDate = (date: string | Date): string => {
+  return new Date(date).toISOString().split('T')[0]; // '2025-05-25T19:00:00.000Z' => '2025-05-25'
+};
+
 const SQL_QUERY = `
    INSERT INTO ${process.env.DB_TABLE_NAME_APPLICATIONS}
-   (id, name, town, email, phone, startJobDate, financialExpectations, lastCompany, employeeName, uploadNames, status, createdDate, closedDate)
+   (id, name, town, email, phone, startJobDate, financialExpectations, lastCompany, isRecommendation, employeeName, agreement, uploadNames, status, createdDate, closedDate)
    VALUES
-   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 `;
 
 export const sendJobApplicationDb = async (
    jobApplicationData: JobApplicationData,
 ): Promise<boolean> => {
-   const [result] = await pool.query<ResultSetHeader>(SQL_QUERY, [
-      uuidv4(),
-      jobApplicationData.name,
-      jobApplicationData.town,
-      jobApplicationData.email,
-      jobApplicationData.phone,
-      jobApplicationData.startJobDate,
-      jobApplicationData.financialExpectations,
-      jobApplicationData.lastCompany,
-      jobApplicationData.employeeName,
-      jobApplicationData.uploadNames,
-      jobApplicationData.status,
-      jobApplicationData.createdDate,
-      jobApplicationData.closedDate,
-   ]);
+   console.log('Saving job application data:', jobApplicationData);
 
-   return result.affectedRows === 1;
+  const [result] = await pool.query<ResultSetHeader>(SQL_QUERY, [
+    uuidv4(),
+    jobApplicationData.name,
+    jobApplicationData.town,
+    jobApplicationData.email,
+    jobApplicationData.phone,
+    formatDate(jobApplicationData.startJobDate),
+    jobApplicationData.financialExpectations,
+    jobApplicationData.lastCompany,
+    jobApplicationData.isRecommendation, // ✅ обязательно!
+    jobApplicationData.employeeName,
+    jobApplicationData.agreement, // ✅ обязательно!
+    jobApplicationData.uploadNames,
+    jobApplicationData.status,
+    formatDate(jobApplicationData.createdDate),
+    jobApplicationData.closedDate ? formatDate(jobApplicationData.closedDate) : null,
+  ]);
+
+  return result.affectedRows === 1;
 };

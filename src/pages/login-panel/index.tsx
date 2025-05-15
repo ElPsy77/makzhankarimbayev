@@ -18,13 +18,13 @@ const LoginPanelPage = (): ReactElement => {
    return (
       <>
          <Head>
-            <title>Login Panel</title>
-            <meta name='description' content='Login Panel' />
+            <title>Панель входа</title>
+            <meta name='description' content='Панель входа' />
             <meta name='robots' content='noindex,nofollow' />
          </Head>
 
          <ContentContainer isLogin>
-            <h1 className='mb-5 text-3xl font-bold'>Login Panel</h1>
+            <h1 className='mb-5 text-3xl font-bold'>Панель входа</h1>
 
             <LoginForm />
          </ContentContainer>

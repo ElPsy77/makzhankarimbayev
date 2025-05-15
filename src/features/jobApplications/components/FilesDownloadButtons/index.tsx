@@ -18,7 +18,7 @@ const FilesDownloadButtons = ({
 
    const handleOnClick = async (fileName: string) => {
       if (process.env.NEXT_PUBLIC_IS_DEMO_UPLOAD) {
-         alert('Demo version not have uploaded files on server');
+         alert('Демо-версия не содержит загруженных файлов на сервере');
 
          return;
       }
@@ -34,7 +34,7 @@ const FilesDownloadButtons = ({
    };
 
    const filesButtons = filteredFilesNames.map((fileName) => (
-      <Tooltip key={fileName} title='Download file'>
+      <Tooltip key={fileName} title='Скачать файл'>
          <Button onClick={() => handleOnClick(fileName)} className='mb-3 block'>
             {fileName}
          </Button>

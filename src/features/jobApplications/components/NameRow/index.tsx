@@ -12,7 +12,7 @@ const NameRow = ({
    iconOnClick,
 }: NameRowProps): ReactElement<NameRowProps> => {
    const detailsIconElement = (
-      <Tooltip title='See details'>
+      <Tooltip title='Посмотреть детали'>
          <Button className='text-l px-3 py-5 mr-3' onClick={iconOnClick}>
             <PlusOutlined />
          </Button>

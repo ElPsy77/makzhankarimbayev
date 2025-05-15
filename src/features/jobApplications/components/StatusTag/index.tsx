@@ -27,7 +27,7 @@ const StatusTag = ({
       <Tag color={statusData[status].color} className='mr-0'>
          {statusData[status].text}
       </Tag>
-   );
+   );   
 };
 
 export default StatusTag;

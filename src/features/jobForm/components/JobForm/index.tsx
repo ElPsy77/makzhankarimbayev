@@ -50,7 +50,7 @@ const JobForm = (): ReactElement => {
             {...formCommonProps}
          >
             <Form.Item<JobApplicationFormData>
-               label='*Name'
+               label='*Имя'
                name='name'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -59,7 +59,7 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='*Town'
+               label='*Город'
                name='town'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -68,7 +68,7 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='*E-mail'
+               label='*Электронная почта'
                name='email'
                rules={[{ required: true }, { type: 'email' }]}
                {...formItemCommonProps}
@@ -77,7 +77,7 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='*Phone Number'
+               label='*Номер телефона'
                name='phone'
                rules={[{ required: true }, phoneValidationRule]}
                {...formItemCommonProps}
@@ -86,7 +86,7 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='*Earliest Possible Start Date'
+               label='*Дата начала работы'
                name='startJobDate'
                rules={[{ required: true }]}
                {...formItemCommonProps}
@@ -95,7 +95,7 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='*Financial Expectations (netto)'
+               label='*Финансовые ожидания (на руки)'
                name='financialExpectations'
                rules={[{ required: true }, priceValidationRule]}
                {...formItemCommonProps}
@@ -107,7 +107,7 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='Last Company Name'
+               label='Название последней компании'
                name='lastCompany'
                {...formItemCommonProps}
             >
@@ -117,27 +117,26 @@ const JobForm = (): ReactElement => {
             <Form.Item
                label={
                   <FormLabelWithTooltip
-                     text='*Recommendation of our employee'
-                     tooltip='Przykładowy tekst'
+                     text='*Рекомендация нашего сотрудника'
+                     tooltip='Например: Иван Иванов порекомендовал'
                   />
                }
                name='isRecommendation'
                rules={[
                   {
                      required: true,
-                     message:
-                        '*Recommendation of our employee is required field',
+                     message: '*Рекомендация обязательна для заполнения',
                   },
                ]}
             >
                <Radio.Group>
-                  <Radio value={1}>Yes</Radio>
-                  <Radio value={0}>No</Radio>
+                  <Radio value={1}>Да</Radio>
+                  <Radio value={0}>Нет</Radio>
                </Radio.Group>
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='*Employee name'
+               label='*Имя сотрудника'
                name='employeeName'
                hidden={isRecommendationFieldValue !== 1}
                rules={[{ required: isRecommendationFieldValue === 1 }]}
@@ -147,7 +146,7 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item<JobApplicationFormData>
-               label='Załączniki'
+               label='Вложения'
                name='files'
                {...formItemCommonProps}
             >
@@ -170,17 +169,17 @@ const JobForm = (): ReactElement => {
                         value
                            ? Promise.resolve()
                            : Promise.reject(
-                                new Error('*Accept condition is required'),
+                                new Error('*Вы должны принять условия'),
                              ),
                   },
                ]}
             >
-               <Checkbox>*I accept the condition</Checkbox>
+               <Checkbox>*Я принимаю условия</Checkbox>
             </Form.Item>
 
             <Form.Item>
                <FormSubmitButton
-                  text='Send application'
+                  text='Отправить анкету'
                   isLoading={isButtonLoading}
                />
             </Form.Item>
