@@ -3,6 +3,7 @@ import { statusData } from '../../components/StatusTag';
 export const updateApplicationStatusAction = async (
    jobApplicationId: string,
    status: number,
+   closedDate?: string | null, // добавьте этот аргумент
 ): Promise<boolean> => {
    try {
       const apiQuery = `${process.env.NEXT_PUBLIC_BASE_URL}/api/job-applications/${jobApplicationId}`;
@@ -11,7 +12,9 @@ export const updateApplicationStatusAction = async (
          method: 'PATCH',
          body: JSON.stringify({
             status,
-            closedDate: statusData[status]?.isAccepted ? new Date() : null,
+            closedDate:
+               closedDate ??
+               (statusData[status]?.isAccepted ? new Date() : null),
          }),
       });
 
@@ -19,14 +22,10 @@ export const updateApplicationStatusAction = async (
          console.error(
             `Код ${response.status} — Произошла ошибка при обновлении статуса`,
          );
-
-         return false;
       }
-
-      return true;
+      return response.ok;
    } catch (err) {
       console.error('Ошибка при обновлении статуса заявки:', err);
-
       return false;
    }
 };

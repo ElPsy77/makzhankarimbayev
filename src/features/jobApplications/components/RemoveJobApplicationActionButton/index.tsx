@@ -1,9 +1,9 @@
 import { ReactElement, useContext } from 'react';
 import { Button, Popconfirm, Tooltip } from 'antd';
 import { useQueryClient } from 'react-query';
+import { deleteJobApplicationAction } from '@/features/jobApplications/services/api/deleteJobApplicationAction';
 import { NotificationContext } from '@/providers/NotificationProvider';
 import { DeleteOutlined } from '@ant-design/icons';
-import { deleteJobApplicationAction } from '../../services/api/deleteJobApplicationAction';
 import { deleteUploadFilesAction } from '../../services/api/deleteUploadFilesAction';
 
 type RemoveJobApplicationActionButtonProps = {
@@ -19,11 +19,14 @@ const RemoveJobApplicationActionButton = ({
    const { showNotification } = useContext(NotificationContext);
 
    const handleRemoveJobApplication = async (id: string) => {
-      const isDeleteJobApplication = deleteJobApplicationAction(id);
+      const isDeleteJobApplication = await deleteJobApplicationAction(id);
 
       if (!isDeleteJobApplication) {
+         console.error('Ошибка при удалении анкеты');
          return;
       }
+
+      console.log('Анкета успешно удалена');
 
       await queryClient.invalidateQueries(['jobApplications']);
 
@@ -53,7 +56,7 @@ const RemoveJobApplicationActionButton = ({
             </Button>
          </Tooltip>
       </Popconfirm>
-   );   
+   );
 };
 
 export default RemoveJobApplicationActionButton;
