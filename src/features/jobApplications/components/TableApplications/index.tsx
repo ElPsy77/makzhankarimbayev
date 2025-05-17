@@ -19,6 +19,10 @@ const TableApplications = ({
       clearFiltersAndSort,
    } = useTableFilters();
 
+   const acceptedApplications = jobApplications.filter(
+      (application) => application.status === 1,
+   );
+
    const {
       isAcceptedVisible,
       isDetailsModalOpen,

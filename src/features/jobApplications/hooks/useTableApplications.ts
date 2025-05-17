@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { FilterValue, SorterResult } from 'antd/lib/table/interface';
+import { useQueryClient } from 'react-query';
 import { getFilteredTableData } from '../helpers/getFilteredTableData';
 import { ColumnsType, TableDataType } from '../types';
 import { useTableColumns } from './useTableColumns';
@@ -15,11 +16,19 @@ type TableApplicationsHookResult = {
    closeDetailsModal: () => void;
 };
 
+const fetchAcceptedApplications = async () => {
+   const response = await fetch('/api/job-applications?status=1');
+   const data = await response.json();
+   return data;
+};
+
 export const useTableApplications = (
    jobApplications: TableDataType[],
    filteredInfo: Record<string, FilterValue | null>,
    sortedInfo: SorterResult<TableDataType>,
 ): TableApplicationsHookResult => {
+   const queryClient = useQueryClient(); // Переместили вызов внутрь хука
+
    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
 
    const [activeApplicationData, setActiveApplicationData] =

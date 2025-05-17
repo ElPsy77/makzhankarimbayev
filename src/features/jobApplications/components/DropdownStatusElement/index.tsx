@@ -35,6 +35,20 @@ const DropdownStatusElement = ({
       showNotification(notificationText, 'success', 2);
    };
 
+   const handleAccept = async (jobApplicationId: string) => {
+      const isUpdated = await updateApplicationStatusAction(
+         jobApplicationId,
+         1,
+      );
+
+      if (isUpdated) {
+         showNotification('Заявка успешно добавлена в принятые', 'success');
+         await queryClient.invalidateQueries(['jobApplications']); // Обновление таблицы
+      } else {
+         showNotification('Не удалось обновить статус заявки', 'error');
+      }
+   };
+
    const getStatusDropdownButtonItems = (
       applicationId: string,
    ): MenuProps['items'] =>
@@ -45,19 +59,22 @@ const DropdownStatusElement = ({
       }));
 
    return (
-      <Dropdown
-         menu={{
-            items: getStatusDropdownButtonItems(jobApplicationId),
-         }}
-         trigger={['click']}
-         placement='bottomRight'
-      >
-         <Tooltip title='Изменить статус'>
-            <Button className='text-lg px-3 py-5 mr-3'>
-               <EditOutlined />
-            </Button>
-         </Tooltip>
-      </Dropdown>
+      <>
+         <Dropdown
+            menu={{
+               items: getStatusDropdownButtonItems(jobApplicationId),
+            }}
+            trigger={['click']}
+            placement='bottomRight'
+         >
+            <Tooltip title='Изменить статус'>
+               <Button className='text-lg px-3 py-5 mr-3'>
+                  <EditOutlined />
+               </Button>
+            </Tooltip>
+         </Dropdown>
+         <button onClick={() => handleAccept(jobApplicationId)}></button>
+      </>
    );
 };
 
