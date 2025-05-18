@@ -79,7 +79,16 @@ const JobForm = (): ReactElement => {
             <Form.Item<JobApplicationFormData>
                label='*Номер телефона'
                name='phone'
-               rules={[{ required: true }, phoneValidationRule]}
+               rules={[
+                  {
+                     required: true,
+                     message: 'Пожалуйста, введите номер телефона',
+                  },
+                  {
+                     pattern: /^\d{10}$/,
+                     message: 'Номер телефона должен содержать 10 цифр',
+                  },
+               ]}
                {...formItemCommonProps}
             >
                <InputPhoneNumber />

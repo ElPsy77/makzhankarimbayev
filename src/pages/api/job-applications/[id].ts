@@ -21,6 +21,26 @@ export default async function handler(
    }
 
    switch (req.method) {
+      case 'DELETE': {
+         try {
+            // Удаление записи из базы данных
+            const result = await db.query(
+               `DELETE FROM ${process.env.DB_TABLE_NAME_APPLICATIONS} WHERE id = ?`,
+               [id],
+            );
+
+            const [resultSetHeader] = result as ResultSetHeader[];
+            if (resultSetHeader.affectedRows === 0) {
+               return res.status(404).json({ error: 'Анкета не найдена' });
+            }
+
+            return res.status(200).json({ message: 'Анкета успешно удалена' });
+         } catch (error) {
+            console.error('Ошибка при удалении анкеты:', error);
+            return res.status(500).json({ error: 'Ошибка сервера' });
+         }
+      }
+
       case 'PATCH': {
          try {
             const { status, closedDate } = req.body;
@@ -49,7 +69,7 @@ export default async function handler(
       }
 
       default:
-         res.setHeader('Allow', ['PATCH']);
+         res.setHeader('Allow', ['PATCH', 'DELETE']);
          return res
             .status(405)
             .json({ error: `Метод ${req.method} не поддерживается` });

@@ -1,20 +1,10 @@
 export const normalizerPhoneNumber = (value: string): string => {
-   const cleanedInput = value.replace(/[^\d]/g, '').trim();
+   // Удаляем все символы, кроме цифр
+   return value.replace(/\D/g, '');
+};
 
-   let formatted = [];
-
-   const digits = cleanedInput.split('');
-   for (let i = 0; i < digits.length; i++) {
-      formatted.push(digits[i]);
-
-      if ((i + 1) % 3 === 0 && i + 1 !== digits.length) {
-         formatted.push(' ');
-      }
-   }
-
-   if (value.length > 11) {
-      formatted = formatted.slice(0, 11);
-   }
-
-   return formatted.join('');
+export const isValidPhoneNumber = (phone: string): boolean => {
+   console.log('Проверяем номер:', phone);
+   // Проверяем, что номер состоит из 10 цифр
+   return /^\d{10}$/.test(phone);
 };

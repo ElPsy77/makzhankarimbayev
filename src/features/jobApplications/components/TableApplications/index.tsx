@@ -50,7 +50,7 @@ const TableApplications = ({
                }
             />
 
-            <Button onClick={clearFiltersAndSort}>Clear filters</Button>
+            <Button onClick={clearFiltersAndSort}>Очистить фильтры</Button>
          </div>
 
          <Table<TableDataType>

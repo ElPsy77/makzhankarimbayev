@@ -56,7 +56,7 @@ export const useTableApplications = (
 
    const tableData = jobApplications.map((application) => ({
       ...application,
-      phone: `+48 ${application.phone}`,
+      phone: `+7 ${application.phone}`,
       financialExpectations: `${application.financialExpectations} ₸`,
       lastCompany: !application.lastCompany ? '-' : application.lastCompany,
       employeeName: !application.employeeName ? '-' : application.employeeName,

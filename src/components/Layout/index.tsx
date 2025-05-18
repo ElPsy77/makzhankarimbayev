@@ -48,7 +48,7 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
                   title='applications'
                   className={linkCommonStyles}
                >
-                  Приложения
+                  Анкеты
                </Link>
 
                <Link
@@ -57,7 +57,7 @@ const Layout = ({ children }: LayoutProps): ReactElement<LayoutProps> => {
                   target='_blank'
                   className={linkCommonStyles}
                >
-                  Контакты 
+                  Контакты
                </Link>
 
                {session ? signOutButton : signInButton}
