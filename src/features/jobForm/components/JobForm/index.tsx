@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { Checkbox, Form, Radio, Upload } from 'antd';
 import FormLabelWithTooltip from '@/components/FormLabelWithTooltip';
 import FormSubmitButton from '@/components/FormSubmitButton';
@@ -26,6 +26,13 @@ const JobForm = (): ReactElement => {
       'isRecommendation',
       formRef,
    );
+
+   // Сброс значения employeeName если выбрано "Нет"
+   useEffect(() => {
+      if (isRecommendationFieldValue !== 1) {
+         formRef.setFieldsValue({ employeeName: undefined });
+      }
+   }, [isRecommendationFieldValue, formRef]);
 
    const {
       formResultStatus,
@@ -124,19 +131,9 @@ const JobForm = (): ReactElement => {
             </Form.Item>
 
             <Form.Item
-               label={
-                  <FormLabelWithTooltip
-                     text='*Рекомендация нашего сотрудника'
-                     tooltip='Например: Иван Иванов порекомендовал'
-                  />
-               }
+               label='Рекомендация нашего сотрудника'
                name='isRecommendation'
-               rules={[
-                  {
-                     required: true,
-                     message: '*Рекомендация обязательна для заполнения',
-                  },
-               ]}
+               {...formItemCommonProps}
             >
                <Radio.Group>
                   <Radio value={1}>Да</Radio>
@@ -144,15 +141,21 @@ const JobForm = (): ReactElement => {
                </Radio.Group>
             </Form.Item>
 
-            <Form.Item<JobApplicationFormData>
-               label='*Имя сотрудника'
-               name='employeeName'
-               hidden={isRecommendationFieldValue !== 1}
-               rules={[{ required: isRecommendationFieldValue === 1 }]}
-               {...formItemCommonProps}
-            >
-               <InputElement />
-            </Form.Item>
+            {isRecommendationFieldValue === 1 && (
+               <Form.Item<JobApplicationFormData>
+                  label='*Имя сотрудника'
+                  name='employeeName'
+                  rules={[
+                     {
+                        required: true,
+                        message: 'Пожалуйста, укажите имя сотрудника',
+                     },
+                  ]}
+                  {...formItemCommonProps}
+               >
+                  <InputElement />
+               </Form.Item>
+            )}
 
             <Form.Item<JobApplicationFormData>
                label='Вложения'

@@ -25,6 +25,10 @@ export const sendJobApplicationDb = async (
 ): Promise<boolean> => {
    console.log('Saving job application data:', jobApplicationData);
 
+   const safeEmployeeName = jobApplicationData.isRecommendation
+      ? jobApplicationData.employeeName
+      : '';
+
    const [result] = await pool.query<ResultSetHeader>(SQL_QUERY, [
       uuidv4(),
       jobApplicationData.name,
@@ -33,16 +37,14 @@ export const sendJobApplicationDb = async (
       jobApplicationData.phone,
       formatDate(jobApplicationData.startJobDate),
       jobApplicationData.financialExpectations,
-      jobApplicationData.lastCompany,
-      jobApplicationData.isRecommendation, // ✅ обязательно!
-      jobApplicationData.employeeName,
-      jobApplicationData.agreement, // ✅ обязательно!
-      jobApplicationData.uploadNames,
-      jobApplicationData.status,
-      formatDate(jobApplicationData.createdDate),
-      jobApplicationData.closedDate
-         ? formatDate(jobApplicationData.closedDate)
-         : null,
+      jobApplicationData.lastCompany ?? null,
+      jobApplicationData.isRecommendation ? 1 : 0,
+      safeEmployeeName, // <-- всегда строка, не null!
+      jobApplicationData.agreement ? 1 : 0,
+      jobApplicationData.uploadNames ?? null,
+      0,
+      new Date().toISOString().slice(0, 19).replace('T', ' '),
+      null,
    ]);
 
    return result.affectedRows === 1;
