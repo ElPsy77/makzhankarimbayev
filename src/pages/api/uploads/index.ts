@@ -46,7 +46,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                      let sanitizedFilename =
                         name
                            .toLowerCase()
-                           .replace(/[^a-z0-9]+/g, '_')
+                           .replace(/[^a-z0-9а-яё]+/gi, '_') // Разрешаем кириллицу
                            .replace(/^_+|_+$/g, '')
                            .replace(/\./g, '_') + ext;
 
@@ -58,6 +58,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                      );
 
                      const newPath = path.join(uploadDir, uniqueUploadFileName);
+
+                     console.log(
+                        'Оригинальное имя файла:',
+                        file.originalFilename,
+                     );
+                     console.log(
+                        'Сгенерированное имя файла:',
+                        uniqueUploadFileName,
+                     );
+                     console.log('Путь сохранения файла:', newPath);
+
+                     console.log(
+                        'Сохраняем файл с именем:',
+                        uniqueUploadFileName,
+                     );
+                     console.log('Путь сохранения файла:', newPath);
 
                      uploadNames.push(uniqueUploadFileName);
 

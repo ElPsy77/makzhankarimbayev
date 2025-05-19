@@ -1,12 +1,10 @@
-export const downloadFile = (blogFile: Blob, fileName: string): void => {
-   const url = window.URL.createObjectURL(blogFile);
+export const downloadFile = (blob: Blob, fileName: string) => {
+   const url = window.URL.createObjectURL(blob);
    const a = document.createElement('a');
-
-   a.style.display = 'none';
    a.href = url;
    a.download = fileName;
    document.body.appendChild(a);
-
    a.click();
+   a.remove();
    window.URL.revokeObjectURL(url);
 };
